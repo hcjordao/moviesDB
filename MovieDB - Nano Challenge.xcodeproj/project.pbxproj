@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E53B7FC1EE1F3EA00E6FD27 /* MainScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E53B7FB1EE1F3EA00E6FD27 /* MainScreenCollectionViewCell.swift */; };
 		AF5CBC761EE1D5BD00DEA955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */; };
 		AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */; };
 		AF5CBC7B1EE1D5BD00DEA955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E53B7FB1EE1F3EA00E6FD27 /* MainScreenCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		AF5CBC721EE1D5BD00DEA955 /* MovieDB - Nano Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MovieDB - Nano Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			children = (
 				AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */,
 				AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */,
+				7E53B7FB1EE1F3EA00E6FD27 /* MainScreenCollectionViewCell.swift */,
 				AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */,
 				AF5CBC7C1EE1D5BD00DEA955 /* Assets.xcassets */,
 				AF5CBC7E1EE1D5BD00DEA955 /* LaunchScreen.storyboard */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */,
+				7E53B7FC1EE1F3EA00E6FD27 /* MainScreenCollectionViewCell.swift in Sources */,
 				AF5CBC761EE1D5BD00DEA955 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +511,7 @@
 				AF5CBC9C1EE1D5BD00DEA955 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AF5CBC9D1EE1D5BD00DEA955 /* Build configuration list for PBXNativeTarget "MovieDB - Nano ChallengeTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +520,7 @@
 				AF5CBC9F1EE1D5BD00DEA955 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AF5CBCA01EE1D5BD00DEA955 /* Build configuration list for PBXNativeTarget "MovieDB - Nano ChallengeUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +529,7 @@
 				AF5CBCA21EE1D5BD00DEA955 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -20,16 +20,70 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="J9l-5b-13s">
+                                <rect key="frame" x="0.0" y="150" width="375" height="460"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cZi-EB-Kfi">
+                                    <size key="itemSize" width="273" height="405"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCell" id="Hde-eD-iNA" customClass="MainScreenCollectionViewCell" customModule="MovieDB___Nano_Challenge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="27.5" width="273" height="405"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="273" height="405"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c2Y-kE-dQB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="273" height="405"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="c2Y-kE-dQB" firstAttribute="top" secondItem="Hde-eD-iNA" secondAttribute="top" id="04E-Ik-XUP"/>
+                                            <constraint firstAttribute="trailing" secondItem="c2Y-kE-dQB" secondAttribute="trailing" id="SCw-hS-shd"/>
+                                            <constraint firstAttribute="bottom" secondItem="c2Y-kE-dQB" secondAttribute="bottom" id="Uph-kZ-eMC"/>
+                                            <constraint firstItem="c2Y-kE-dQB" firstAttribute="leading" secondItem="Hde-eD-iNA" secondAttribute="leading" id="r7R-CI-Ar6"/>
+                                        </constraints>
+                                        <size key="customSize" width="273" height="405"/>
+                                        <connections>
+                                            <outlet property="movieImageView" destination="c2Y-kE-dQB" id="uib-vf-rsu"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVl-fe-eXc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="142"/>
+                                <color key="backgroundColor" red="0.49803921568627452" green="0.058823529411764705" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="OVl-fe-eXc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2co-Be-Ds6"/>
+                            <constraint firstAttribute="trailing" secondItem="J9l-5b-13s" secondAttribute="trailing" id="9tg-uW-tP9"/>
+                            <constraint firstItem="J9l-5b-13s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Dza-nu-IKa"/>
+                            <constraint firstItem="OVl-fe-eXc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IiC-oV-LxI"/>
+                            <constraint firstAttribute="trailing" secondItem="OVl-fe-eXc" secondAttribute="trailing" id="LtB-Km-mNS"/>
+                            <constraint firstItem="J9l-5b-13s" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="130" id="m5G-ug-CHu"/>
+                            <constraint firstItem="J9l-5b-13s" firstAttribute="top" secondItem="OVl-fe-eXc" secondAttribute="bottom" constant="8" id="mc3-pg-p8E"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="J9l-5b-13s" secondAttribute="bottom" constant="57" id="tqY-7R-eHF"/>
+                        </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <segue destination="5Zn-TN-0ET" kind="show" id="uKO-ij-A1X"/>
-                        <segue destination="2MT-J9-QOv" kind="show" id="uLr-uY-cCQ"/>
-                        <segue destination="HRO-AO-aLg" kind="show" id="s3Y-6Z-xYd"/>
+                        <outlet property="mainCollectionView" destination="J9l-5b-13s" id="j19-0g-tbn"/>
+                        <segue destination="5Zn-TN-0ET" kind="show" identifier="mainToMyMovies" id="uKO-ij-A1X"/>
+                        <segue destination="2MT-J9-QOv" kind="show" identifier="mainToDescription" id="uLr-uY-cCQ"/>
+                        <segue destination="HRO-AO-aLg" kind="show" identifier="mainToSearch" id="s3Y-6Z-xYd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
         <!--description-->
         <scene sceneID="9Zs-22-jGL">
@@ -63,7 +117,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="2MT-J9-QOv" kind="show" id="qOm-cu-aSY"/>
+                        <segue destination="2MT-J9-QOv" kind="show" identifier="searchToDescription" id="qOm-cu-aSY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3N6-Pu-9kr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -84,7 +138,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="2MT-J9-QOv" kind="show" id="elC-r0-0Cd"/>
+                        <segue destination="2MT-J9-QOv" kind="show" identifier="myMoviesToDescription" id="elC-r0-0Cd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pRM-N0-GZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -93,6 +147,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qOm-cu-aSY"/>
+        <segue reference="uLr-uY-cCQ"/>
     </inferredMetricsTieBreakers>
 </document>
