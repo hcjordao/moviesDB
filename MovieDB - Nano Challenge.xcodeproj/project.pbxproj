@@ -1,0 +1,530 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AF5CBC761EE1D5BD00DEA955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */; };
+		AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */; };
+		AF5CBC7B1EE1D5BD00DEA955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */; };
+		AF5CBC7D1EE1D5BD00DEA955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF5CBC7C1EE1D5BD00DEA955 /* Assets.xcassets */; };
+		AF5CBC801EE1D5BD00DEA955 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF5CBC7E1EE1D5BD00DEA955 /* LaunchScreen.storyboard */; };
+		AF5CBC8B1EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC8A1EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeTests.swift */; };
+		AF5CBC961EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC951EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AF5CBC871EE1D5BD00DEA955 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF5CBC6A1EE1D5BC00DEA955 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF5CBC711EE1D5BD00DEA955;
+			remoteInfo = "MovieDB - Nano Challenge";
+		};
+		AF5CBC921EE1D5BD00DEA955 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF5CBC6A1EE1D5BC00DEA955 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF5CBC711EE1D5BD00DEA955;
+			remoteInfo = "MovieDB - Nano Challenge";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AF5CBC721EE1D5BD00DEA955 /* MovieDB - Nano Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MovieDB - Nano Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AF5CBC7A1EE1D5BD00DEA955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AF5CBC7C1EE1D5BD00DEA955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AF5CBC7F1EE1D5BD00DEA955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AF5CBC811EE1D5BD00DEA955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF5CBC861EE1D5BD00DEA955 /* MovieDB - Nano ChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MovieDB - Nano ChallengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF5CBC8A1EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDB___Nano_ChallengeTests.swift"; sourceTree = "<group>"; };
+		AF5CBC8C1EE1D5BD00DEA955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF5CBC911EE1D5BD00DEA955 /* MovieDB - Nano ChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MovieDB - Nano ChallengeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF5CBC951EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDB___Nano_ChallengeUITests.swift"; sourceTree = "<group>"; };
+		AF5CBC971EE1D5BD00DEA955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF5CBC6F1EE1D5BD00DEA955 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5CBC831EE1D5BD00DEA955 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5CBC8E1EE1D5BD00DEA955 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AF5CBC691EE1D5BC00DEA955 = {
+			isa = PBXGroup;
+			children = (
+				AF5CBC741EE1D5BD00DEA955 /* MovieDB - Nano Challenge */,
+				AF5CBC891EE1D5BD00DEA955 /* MovieDB - Nano ChallengeTests */,
+				AF5CBC941EE1D5BD00DEA955 /* MovieDB - Nano ChallengeUITests */,
+				AF5CBC731EE1D5BD00DEA955 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AF5CBC731EE1D5BD00DEA955 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF5CBC721EE1D5BD00DEA955 /* MovieDB - Nano Challenge.app */,
+				AF5CBC861EE1D5BD00DEA955 /* MovieDB - Nano ChallengeTests.xctest */,
+				AF5CBC911EE1D5BD00DEA955 /* MovieDB - Nano ChallengeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF5CBC741EE1D5BD00DEA955 /* MovieDB - Nano Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */,
+				AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */,
+				AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */,
+				AF5CBC7C1EE1D5BD00DEA955 /* Assets.xcassets */,
+				AF5CBC7E1EE1D5BD00DEA955 /* LaunchScreen.storyboard */,
+				AF5CBC811EE1D5BD00DEA955 /* Info.plist */,
+			);
+			path = "MovieDB - Nano Challenge";
+			sourceTree = "<group>";
+		};
+		AF5CBC891EE1D5BD00DEA955 /* MovieDB - Nano ChallengeTests */ = {
+			isa = PBXGroup;
+			children = (
+				AF5CBC8A1EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeTests.swift */,
+				AF5CBC8C1EE1D5BD00DEA955 /* Info.plist */,
+			);
+			path = "MovieDB - Nano ChallengeTests";
+			sourceTree = "<group>";
+		};
+		AF5CBC941EE1D5BD00DEA955 /* MovieDB - Nano ChallengeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AF5CBC951EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeUITests.swift */,
+				AF5CBC971EE1D5BD00DEA955 /* Info.plist */,
+			);
+			path = "MovieDB - Nano ChallengeUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF5CBC711EE1D5BD00DEA955 /* MovieDB - Nano Challenge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF5CBC9A1EE1D5BD00DEA955 /* Build configuration list for PBXNativeTarget "MovieDB - Nano Challenge" */;
+			buildPhases = (
+				AF5CBC6E1EE1D5BD00DEA955 /* Sources */,
+				AF5CBC6F1EE1D5BD00DEA955 /* Frameworks */,
+				AF5CBC701EE1D5BD00DEA955 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MovieDB - Nano Challenge";
+			productName = "MovieDB - Nano Challenge";
+			productReference = AF5CBC721EE1D5BD00DEA955 /* MovieDB - Nano Challenge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AF5CBC851EE1D5BD00DEA955 /* MovieDB - Nano ChallengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF5CBC9D1EE1D5BD00DEA955 /* Build configuration list for PBXNativeTarget "MovieDB - Nano ChallengeTests" */;
+			buildPhases = (
+				AF5CBC821EE1D5BD00DEA955 /* Sources */,
+				AF5CBC831EE1D5BD00DEA955 /* Frameworks */,
+				AF5CBC841EE1D5BD00DEA955 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF5CBC881EE1D5BD00DEA955 /* PBXTargetDependency */,
+			);
+			name = "MovieDB - Nano ChallengeTests";
+			productName = "MovieDB - Nano ChallengeTests";
+			productReference = AF5CBC861EE1D5BD00DEA955 /* MovieDB - Nano ChallengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AF5CBC901EE1D5BD00DEA955 /* MovieDB - Nano ChallengeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF5CBCA01EE1D5BD00DEA955 /* Build configuration list for PBXNativeTarget "MovieDB - Nano ChallengeUITests" */;
+			buildPhases = (
+				AF5CBC8D1EE1D5BD00DEA955 /* Sources */,
+				AF5CBC8E1EE1D5BD00DEA955 /* Frameworks */,
+				AF5CBC8F1EE1D5BD00DEA955 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF5CBC931EE1D5BD00DEA955 /* PBXTargetDependency */,
+			);
+			name = "MovieDB - Nano ChallengeUITests";
+			productName = "MovieDB - Nano ChallengeUITests";
+			productReference = AF5CBC911EE1D5BD00DEA955 /* MovieDB - Nano ChallengeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF5CBC6A1EE1D5BC00DEA955 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "nano Challenge Movie DB";
+				TargetAttributes = {
+					AF5CBC711EE1D5BD00DEA955 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+					AF5CBC851EE1D5BD00DEA955 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = AF5CBC711EE1D5BD00DEA955;
+					};
+					AF5CBC901EE1D5BD00DEA955 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = AF5CBC711EE1D5BD00DEA955;
+					};
+				};
+			};
+			buildConfigurationList = AF5CBC6D1EE1D5BC00DEA955 /* Build configuration list for PBXProject "MovieDB - Nano Challenge" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AF5CBC691EE1D5BC00DEA955;
+			productRefGroup = AF5CBC731EE1D5BD00DEA955 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF5CBC711EE1D5BD00DEA955 /* MovieDB - Nano Challenge */,
+				AF5CBC851EE1D5BD00DEA955 /* MovieDB - Nano ChallengeTests */,
+				AF5CBC901EE1D5BD00DEA955 /* MovieDB - Nano ChallengeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF5CBC701EE1D5BD00DEA955 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF5CBC801EE1D5BD00DEA955 /* LaunchScreen.storyboard in Resources */,
+				AF5CBC7D1EE1D5BD00DEA955 /* Assets.xcassets in Resources */,
+				AF5CBC7B1EE1D5BD00DEA955 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5CBC841EE1D5BD00DEA955 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5CBC8F1EE1D5BD00DEA955 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF5CBC6E1EE1D5BD00DEA955 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */,
+				AF5CBC761EE1D5BD00DEA955 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5CBC821EE1D5BD00DEA955 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF5CBC8B1EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF5CBC8D1EE1D5BD00DEA955 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF5CBC961EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AF5CBC881EE1D5BD00DEA955 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF5CBC711EE1D5BD00DEA955 /* MovieDB - Nano Challenge */;
+			targetProxy = AF5CBC871EE1D5BD00DEA955 /* PBXContainerItemProxy */;
+		};
+		AF5CBC931EE1D5BD00DEA955 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF5CBC711EE1D5BD00DEA955 /* MovieDB - Nano Challenge */;
+			targetProxy = AF5CBC921EE1D5BD00DEA955 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF5CBC7A1EE1D5BD00DEA955 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AF5CBC7E1EE1D5BD00DEA955 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF5CBC7F1EE1D5BD00DEA955 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AF5CBC981EE1D5BD00DEA955 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AF5CBC991EE1D5BD00DEA955 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AF5CBC9B1EE1D5BD00DEA955 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "MovieDB - Nano Challenge/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nano.challenge.MovieDB.MovieDB---Nano-Challenge";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		AF5CBC9C1EE1D5BD00DEA955 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "MovieDB - Nano Challenge/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nano.challenge.MovieDB.MovieDB---Nano-Challenge";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		AF5CBC9E1EE1D5BD00DEA955 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "MovieDB - Nano ChallengeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nano.challenge.MovieDB.MovieDB---Nano-ChallengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieDB - Nano Challenge.app/MovieDB - Nano Challenge";
+			};
+			name = Debug;
+		};
+		AF5CBC9F1EE1D5BD00DEA955 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "MovieDB - Nano ChallengeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nano.challenge.MovieDB.MovieDB---Nano-ChallengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieDB - Nano Challenge.app/MovieDB - Nano Challenge";
+			};
+			name = Release;
+		};
+		AF5CBCA11EE1D5BD00DEA955 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "MovieDB - Nano ChallengeUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nano.challenge.MovieDB.MovieDB---Nano-ChallengeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "MovieDB - Nano Challenge";
+			};
+			name = Debug;
+		};
+		AF5CBCA21EE1D5BD00DEA955 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "MovieDB - Nano ChallengeUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nano.challenge.MovieDB.MovieDB---Nano-ChallengeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "MovieDB - Nano Challenge";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF5CBC6D1EE1D5BC00DEA955 /* Build configuration list for PBXProject "MovieDB - Nano Challenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF5CBC981EE1D5BD00DEA955 /* Debug */,
+				AF5CBC991EE1D5BD00DEA955 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF5CBC9A1EE1D5BD00DEA955 /* Build configuration list for PBXNativeTarget "MovieDB - Nano Challenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF5CBC9B1EE1D5BD00DEA955 /* Debug */,
+				AF5CBC9C1EE1D5BD00DEA955 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AF5CBC9D1EE1D5BD00DEA955 /* Build configuration list for PBXNativeTarget "MovieDB - Nano ChallengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF5CBC9E1EE1D5BD00DEA955 /* Debug */,
+				AF5CBC9F1EE1D5BD00DEA955 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AF5CBCA01EE1D5BD00DEA955 /* Build configuration list for PBXNativeTarget "MovieDB - Nano ChallengeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF5CBCA11EE1D5BD00DEA955 /* Debug */,
+				AF5CBCA21EE1D5BD00DEA955 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AF5CBC6A1EE1D5BC00DEA955 /* Project object */;
+}
