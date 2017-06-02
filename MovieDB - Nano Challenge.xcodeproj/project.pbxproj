@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D1BA1EA1EE1DB6B00537045 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1BA1E91EE1DB6B00537045 /* Movie.swift */; };
+		8D1BA1EC1EE1DBFA00537045 /* Actors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1BA1EB1EE1DBFA00537045 /* Actors.swift */; };
+		8D1BA1EE1EE1DE8500537045 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1BA1ED1EE1DE8500537045 /* MovieModel.swift */; };
 		AF5CBC761EE1D5BD00DEA955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */; };
 		AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */; };
 		AF5CBC7B1EE1D5BD00DEA955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */; };
@@ -36,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D1BA1E91EE1DB6B00537045 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		8D1BA1EB1EE1DBFA00537045 /* Actors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actors.swift; sourceTree = "<group>"; };
+		8D1BA1ED1EE1DE8500537045 /* MovieModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		AF5CBC721EE1D5BD00DEA955 /* MovieDB - Nano Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MovieDB - Nano Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +113,9 @@
 				AF5CBC7C1EE1D5BD00DEA955 /* Assets.xcassets */,
 				AF5CBC7E1EE1D5BD00DEA955 /* LaunchScreen.storyboard */,
 				AF5CBC811EE1D5BD00DEA955 /* Info.plist */,
+				8D1BA1E91EE1DB6B00537045 /* Movie.swift */,
+				8D1BA1EB1EE1DBFA00537045 /* Actors.swift */,
+				8D1BA1ED1EE1DE8500537045 /* MovieModel.swift */,
 				EDEAA8671EE1DA8000666563 /* RequestsManager.swift */,
 				EDEAA8691EE1E69C00666563 /* URLManager.swift */,
 			);
@@ -269,6 +278,9 @@
 				EDEAA86A1EE1E69C00666563 /* URLManager.swift in Sources */,
 				AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */,
 				AF5CBC761EE1D5BD00DEA955 /* AppDelegate.swift in Sources */,
+				8D1BA1EE1EE1DE8500537045 /* MovieModel.swift in Sources */,
+				8D1BA1EA1EE1DB6B00537045 /* Movie.swift in Sources */,
+				8D1BA1EC1EE1DBFA00537045 /* Actors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
