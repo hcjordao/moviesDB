@@ -11,7 +11,8 @@ import UIKit
 class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UISearchDisplayDelegate, UICollectionViewDelegateFlowLayout  {
 
     
-    
+    lazy   var searchBar:UISearchBar = UISearchBar(frame: CGRect.init(x:0, y:0, width:200, height:20))
+
     @IBOutlet weak var myCollectionView: UICollectionView!
     
     var movieArray: [ Movie]! = []
@@ -24,7 +25,11 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         myCollectionView.dataSource = self
         //collectionView.
         
-        
+        //self.configureSearchController()
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Your placeholder"
+        //var leftNavBarButton = UIBarButtonItem(customView:searchBar)
+        self.navigationItem.titleView = searchBar
         
         //myCollectionView.register(colle, forSupplementaryViewOfKind: <#T##String#>, withReuseIdentifier: <#T##String#>)
         
@@ -39,7 +44,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth
         
-        return CGSize(width: widthPerItem, height: 89)
+        return CGSize(width: widthPerItem, height: 212)
     }
     
     //3
@@ -87,6 +92,20 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         
     }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        
 //        
@@ -99,11 +118,14 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         let cell: CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! CollectionViewCell
         
-        cell.initWithContent(teste: "blablabla")
+       
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 10
+        
+        return movieArray.count
+        
+        //return 10
     }
     
     

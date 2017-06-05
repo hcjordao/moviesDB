@@ -11,15 +11,27 @@ import UIKit
 class CollectionViewCell: UICollectionViewCell {
     
     
+    @IBOutlet weak var movieTitlePort: UILabel!
+    
+    @IBOutlet weak var movieYear: UILabel!
     
     
+    @IBOutlet weak var movieTitleEn: UILabel!
     
-    
+    @IBOutlet weak var movieDuration: UILabel!
     
     @IBOutlet weak var movieImage: UIImageView!
-    func initWithContent(teste: String){
-        
-        
+    
+    
+    
+    
+    
+    
+    func initWithContent(cellMovie: Movie){
+        movieYear.text = String.init(format: "(" + cellMovie.year + ")")
+        movieTitleEn.text = cellMovie.originalTitle
+        //movieTitlePort.text = cellMovie.
+        movieDuration.text = String(cellMovie.duration)
         
     }
 }
