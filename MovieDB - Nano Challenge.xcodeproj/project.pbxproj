@@ -10,6 +10,9 @@
 		8D1BA1EA1EE1DB6B00537045 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1BA1E91EE1DB6B00537045 /* Movie.swift */; };
 		8D1BA1EC1EE1DBFA00537045 /* Actors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1BA1EB1EE1DBFA00537045 /* Actors.swift */; };
 		8D1BA1EE1EE1DE8500537045 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1BA1ED1EE1DE8500537045 /* MovieModel.swift */; };
+		8D1BA1F41EE5C43100537045 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1BA1F31EE5C43100537045 /* SearchViewController.swift */; };
+		8D1BA1F61EE5CDBC00537045 /* SearchCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1BA1F51EE5CDBC00537045 /* SearchCollectionReusableView.swift */; };
+		8D1BA1F81EE5D11100537045 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1BA1F71EE5D11100537045 /* CollectionViewCell.swift */; };
 		AF5CBC761EE1D5BD00DEA955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */; };
 		AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */; };
 		AF5CBC7B1EE1D5BD00DEA955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */; };
@@ -42,6 +45,9 @@
 		8D1BA1E91EE1DB6B00537045 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		8D1BA1EB1EE1DBFA00537045 /* Actors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actors.swift; sourceTree = "<group>"; };
 		8D1BA1ED1EE1DE8500537045 /* MovieModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		8D1BA1F31EE5C43100537045 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8D1BA1F51EE5CDBC00537045 /* SearchCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionReusableView.swift; sourceTree = "<group>"; };
+		8D1BA1F71EE5D11100537045 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		AF5CBC721EE1D5BD00DEA955 /* MovieDB - Nano Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MovieDB - Nano Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +122,11 @@
 				8D1BA1E91EE1DB6B00537045 /* Movie.swift */,
 				8D1BA1EB1EE1DBFA00537045 /* Actors.swift */,
 				8D1BA1ED1EE1DE8500537045 /* MovieModel.swift */,
+				EDEAA8671EE1DA8000666563 /* RequestsManager.swift */,
+				EDEAA8691EE1E69C00666563 /* URLManager.swift */,
+				8D1BA1F31EE5C43100537045 /* SearchViewController.swift */,
+				8D1BA1F51EE5CDBC00537045 /* SearchCollectionReusableView.swift */,
+				8D1BA1F71EE5D11100537045 /* CollectionViewCell.swift */,
 			);
 			path = "MovieDB - Nano Challenge";
 			sourceTree = "<group>";
@@ -272,8 +283,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D1BA1F81EE5D11100537045 /* CollectionViewCell.swift in Sources */,
+				8D1BA1F61EE5CDBC00537045 /* SearchCollectionReusableView.swift in Sources */,
 				EDEAA8681EE1DA8000666563 /* RequestsManager.swift in Sources */,
 				EDEAA86A1EE1E69C00666563 /* URLManager.swift in Sources */,
+				8D1BA1F41EE5C43100537045 /* SearchViewController.swift in Sources */,
 				AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */,
 				AF5CBC761EE1D5BD00DEA955 /* AppDelegate.swift in Sources */,
 				8D1BA1EE1EE1DE8500537045 /* MovieModel.swift in Sources */,
