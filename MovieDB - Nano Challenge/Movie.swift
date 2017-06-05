@@ -18,24 +18,39 @@ class Movie: AnyObject {
     let portugueseTitle: String!
     let overview: String!
     let imagePath: String!
-    let genres: [String]!
+    var genres: [String] = []
     let rating: Float!
     let id: Int!
     
     
     
-    init(OriginalTitle: String, Year: String, ActorsList: [Actors], language: String, Duration: String, PortugueseTitle: String, Overview: String, ImagePath:String, Genres: [String], Rating:Float, Id: Int) {
+   
+        
+   // https://api.themoviedb.org/3/movie/500?api_key=f0e3c4fcec46612abd4acf735d09c4a6&language=en-US
+    
+    init(OriginalTitle: String, Year: String, ActorsList: [Actors], language: String, PortugueseTitle: String, Overview: String, ImagePath:String, Genres: [Int], Rating:Float, Id: Int) {
         self.actorsList = ActorsList
-        self.duration = Duration
+        
+        
+        
+        
+        
+        //self.duration = Duration
         self.language = language
         self.originalTitle = OriginalTitle
         self.portugueseTitle = PortugueseTitle
         self.overview = Overview
         self.year = Year
         self.imagePath = ImagePath
-        self.genres = Genres
         self.rating = Rating
         self.id  = Id
+        self.genres = []
+        for gender in Genres
+        {
+            self.genres.append(self.getGenderFromId(id: gender))
+        }
+    
+        
     
         
     }

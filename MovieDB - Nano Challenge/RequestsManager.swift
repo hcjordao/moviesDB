@@ -12,6 +12,22 @@ import UIKit
 class RequestsManager: AnyObject {
     
     
+    
+    
+    
+    
+    func getGenderAndDuration(movieId: Int, movieDuration: Int, movieGenders: [String])
+    {
+        
+        let request = URL
+        
+    
+        
+    }
+    
+    
+    
+    
     func getMovieListFromUrlRequest(url:URL){
         
         
