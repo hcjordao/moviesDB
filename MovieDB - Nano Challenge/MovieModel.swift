@@ -10,14 +10,29 @@ import UIKit
 
 class MovieModel: AnyObject {
 
-    var movieArray: [Movie] = []
+    var movieArray: [Movie]!
     
     
-    
-    func initWithMovie (Movie: Movie)
-    {
+    init() {
         
-        movieArray.append(Movie)
+        self.movieArray = []
+        
+    }
+    
+    
+    func addMovie(movie:Movie){
+        
+        self.movieArray.append(movie)
+        
+    }
+    
+    func printInformation(){
+        
+        for movie in movieArray
+        {
+            print(movie)
+            
+        }
         
     }
     
