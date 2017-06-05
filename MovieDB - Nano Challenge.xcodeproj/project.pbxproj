@@ -116,8 +116,6 @@
 				8D1BA1E91EE1DB6B00537045 /* Movie.swift */,
 				8D1BA1EB1EE1DBFA00537045 /* Actors.swift */,
 				8D1BA1ED1EE1DE8500537045 /* MovieModel.swift */,
-				EDEAA8671EE1DA8000666563 /* RequestsManager.swift */,
-				EDEAA8691EE1E69C00666563 /* URLManager.swift */,
 			);
 			path = "MovieDB - Nano Challenge";
 			sourceTree = "<group>";

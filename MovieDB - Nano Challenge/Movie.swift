@@ -10,56 +10,54 @@ import UIKit
 
 class Movie: AnyObject {
     
-    let originalTitle: String!
-    let year: String!
-    let actorsList: [ Actors]!
-    let language: String!
-    let duration: String!
-    let portugueseTitle: String!
-    let overview: String!
-    let imagePath: String!
-    var genres: [String] = []
-    let rating: Float!
-    let id: Int!
+    let originalTitle: String
+    let releaseDate: String
+    let castList: [Actors]! // depois
+    let language: String
+    let duration: Int! // depois
+    let overview: String
+    let posterPath: String
+    var genres: [Int]
+    let rating: Float
+    let id: Int
     
     
     
-   
+    init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:[Int], rating:Float, id:Int) {
         
-   // https://api.themoviedb.org/3/movie/500?api_key=f0e3c4fcec46612abd4acf735d09c4a6&language=en-US
-    
-    init(OriginalTitle: String, Year: String, ActorsList: [Actors], language: String, PortugueseTitle: String, Overview: String, ImagePath:String, Genres: [Int], Rating:Float, Id: Int) {
-        self.actorsList = ActorsList
-        
-        
-        
-        
-        
-        //self.duration = Duration
+        self.originalTitle = originalTitle
+        self.releaseDate = releaseDate
         self.language = language
-        self.originalTitle = OriginalTitle
-        self.portugueseTitle = PortugueseTitle
-        self.overview = Overview
-        self.year = Year
-        self.imagePath = ImagePath
-        self.rating = Rating
-        self.id  = Id
-        self.genres = []
-        for gender in Genres
-        {
-            self.genres.append(self.getGenderFromId(id: gender))
-        }
+        self.overview = overview
+        self.posterPath = posterPath
+        self.genres = genres
+        self.rating = rating
+        self.id = id
+        self.castList = nil
+        self.duration = nil
+    }
     
+    init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:[Int], rating:Float, id:Int, duration:Int, castList:[Actors]) {
         
-    
+        self.originalTitle = originalTitle
+        self.releaseDate = releaseDate
+        self.language = language
+        self.overview = overview
+        self.posterPath = posterPath
+        self.genres = genres
+        self.rating = rating
+        self.id = id
+        self.castList = castList
+        self.duration = duration
         
     }
     
+ 
     
     
     
-   // https://api.themoviedb.org/3/movie/now_playing?api_key=f0e3c4fcec46612abd4acf735d09c4a6&language=pt-BR
     
+
     
     
 

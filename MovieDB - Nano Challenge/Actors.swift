@@ -10,4 +10,14 @@ import UIKit
 
 class Actors: AnyObject {
 
+    var name:String
+    var profilePath:String
+    
+    
+    init(name:String, profilePath:String) {
+        self.name = name
+        self.profilePath = profilePath
+    }
+    
+    
 }
