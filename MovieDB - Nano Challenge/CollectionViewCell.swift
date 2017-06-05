@@ -10,15 +10,14 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var testLabel: UILabel!
     
     
     
     
     
     
+    @IBOutlet weak var movieImage: UIImageView!
     func initWithContent(teste: String){
-        testLabel.text = teste
         
         
         
