@@ -26,13 +26,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // Dispose of any resources that can be recreated.
     }
 
-	// MARK: - CollectionViewSettings
+// MARK: - CollectionViewSettings
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		// Provisório
+		// return movieModel.movies.count
 		return 3
 	}
 	

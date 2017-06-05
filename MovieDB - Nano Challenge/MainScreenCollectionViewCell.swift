@@ -13,7 +13,7 @@ class MainScreenCollectionViewCell: UICollectionViewCell {
 	@IBOutlet var movieImageView: UIImageView!
 	
 	func loadDefaultImg() {
-		
+		// só pra testes
 		movieImageView.backgroundColor = UIColor.gray
 		
 	}
