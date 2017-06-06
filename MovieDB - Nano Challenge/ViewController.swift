@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDataSource {
 
 	@IBOutlet var mainCollectionView: UICollectionView!
 	@IBOutlet var MyMoviesButton: UIButton!
@@ -26,7 +26,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 		mainCollectionView.delegate = self
 		mainCollectionView.dataSource = self
 		mainCollectionView.prefetchDataSource = self
-		
+        
+        
+        let screenSize = UIScreen.main.bounds.size
+        let screenCenterX = UIScreen.main.bounds.size.width/2
+        let cellWidth = floor(screenSize.width * 0.6)
+        let cellHeight = floor(screenSize.height * 0.6)
+        let insetX = (view.bounds.width - cellWidth)/2.0
+        let insetY = (view.bounds.height - cellHeight)/2.0
+        
+        let layout = mainCollectionView!.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        
+        mainCollectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +76,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 		return cell
 	}
 
+}
+
+// MARK: - CollectionView Data Source
+extension ViewController: UIScrollViewDelegate, UICollectionViewDelegate{
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let layout = self.mainCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
+        
+        var offset = targetContentOffset.pointee
+        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
+        let roundedIndex = round(index) //Index of the cell selected.
+        
+        
+        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
+        targetContentOffset.pointee = offset
+    }
 }
 
 // MARK: - Prefetch
