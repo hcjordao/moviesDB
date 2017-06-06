@@ -22,6 +22,7 @@
 		AF5CBC961EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC951EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeUITests.swift */; };
 		EDEAA8681EE1DA8000666563 /* RequestsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA8671EE1DA8000666563 /* RequestsManager.swift */; };
 		EDEAA86A1EE1E69C00666563 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA8691EE1E69C00666563 /* URLManager.swift */; };
+		EDEAA8701EE5EAD300666563 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA86F1EE5EAD300666563 /* Images.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		AF5CBC971EE1D5BD00DEA955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDEAA8671EE1DA8000666563 /* RequestsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsManager.swift; sourceTree = "<group>"; };
 		EDEAA8691EE1E69C00666563 /* URLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
+		EDEAA86F1EE5EAD300666563 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				8D1BA1EB1EE1DBFA00537045 /* Actors.swift */,
 				8D1BA1ED1EE1DE8500537045 /* MovieModel.swift */,
 				EDEAA8671EE1DA8000666563 /* RequestsManager.swift */,
+				EDEAA86F1EE5EAD300666563 /* Images.swift */,
 				EDEAA8691EE1E69C00666563 /* URLManager.swift */,
 				8D1BA1F31EE5C43100537045 /* SearchViewController.swift */,
 				8D1BA1F51EE5CDBC00537045 /* SearchCollectionReusableView.swift */,
@@ -286,6 +289,7 @@
 				8D1BA1F81EE5D11100537045 /* CollectionViewCell.swift in Sources */,
 				8D1BA1F61EE5CDBC00537045 /* SearchCollectionReusableView.swift in Sources */,
 				EDEAA8681EE1DA8000666563 /* RequestsManager.swift in Sources */,
+				EDEAA8701EE5EAD300666563 /* Images.swift in Sources */,
 				EDEAA86A1EE1E69C00666563 /* URLManager.swift in Sources */,
 				8D1BA1F41EE5C43100537045 /* SearchViewController.swift in Sources */,
 				AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */,
