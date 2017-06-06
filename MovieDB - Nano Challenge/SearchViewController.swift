@@ -11,6 +11,13 @@ import UIKit
 class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UISearchDisplayDelegate, UICollectionViewDelegateFlowLayout  {
 
     
+    
+    var searchText: String!
+    
+    
+    
+    
+    
     lazy   var searchBar:UISearchBar = UISearchBar(frame: CGRect.init(x:0, y:0, width:200, height:20))
 
     @IBOutlet weak var myCollectionView: UICollectionView!
@@ -36,6 +43,14 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         // Do any additional setup after loading the view.
     }
+    
+    
+    
+    
+    
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
