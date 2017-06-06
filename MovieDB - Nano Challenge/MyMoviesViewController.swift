@@ -12,6 +12,10 @@ class MyMoviesViewController: UIViewController {
 	
 	let transition = TransitionAnimator()
 
+	@IBOutlet var MoviesInTheaterLabel: UILabel!
+	@IBOutlet var MyMoviesLabel1: UILabel!
+	@IBOutlet var MyMoviesLabel2: UILabel!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.transitioningDelegate = self

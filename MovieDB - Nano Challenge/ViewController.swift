@@ -13,6 +13,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 	@IBOutlet var mainCollectionView: UICollectionView!
 	@IBOutlet var MyMoviesButton: UIButton!
 	
+	@IBOutlet var MoviesLabel: UILabel!
+	@IBOutlet var InTheaterLabel: UILabel!
+	@IBOutlet var MyMoviesLabel: UILabel!
+	
 	let transition = TransitionAnimator()
 
     override func viewDidLoad() {
