@@ -38,7 +38,7 @@ class RequestsManager: AnyObject {
         
         var imagesToInsert:[Images] = []
         
-        var directorToInsert:String!
+        var directorToInsert:String = ""
         
         session.dataTask(with: request){(data, response, error) in
             
@@ -105,8 +105,11 @@ class RequestsManager: AnyObject {
                                 if let job_assignment = crew["job"] as? String{
                                     
                                     if(job_assignment == "Director"){
+                                        if let crewName = crew["name"]{
+                                            directorToInsert =  crew["name"] as! String
+                                            
+                                        }
                                         
-                                        directorToInsert =  crew["name"] as! String
                                     }
                                     
                                 }
@@ -123,20 +126,62 @@ class RequestsManager: AnyObject {
                     // Getting the movie information from the Json main dictionary path
                     
                     
-                            movieToReturn  = Movie(originalTitle: movie["original_title"] as! String,
-                                                            releaseDate: movie["release_date"] as! String,
-                                                            language: movie["original_language"] as! String,
-                                                            overview: movie["overview"] as! String,
-                                                            posterPath: movie["poster_path"] as! String,
-                                                            genres: (movie["genres"] as? Array<NSDictionary>)!,
-                                                            rating: movie["vote_average"] as! Float,
+                    var originalTitle:String = ""
+                    var releaseData:String = ""
+                    var originalLanguage:String = ""
+                    var overView:String = ""
+                    var posterPath:String = ""
+                    var vote_average:Float = -1.0
+                    var runtime:Int = -1
+                    var genres:[NSDictionary] = []
+                    //var director:String = ""
+                    
+                    if let originaltitle = movie["original_title"] as? String{
+                        
+                        originalTitle = originaltitle
+                    }
+                    if let releasedata = movie["release_date"] as? String{
+                        
+                        releaseData = releasedata
+                    }
+                    if let originallanguage = movie["original_language"] as? String{
+                        originalLanguage = originallanguage
+                    }
+                    if let overview = movie["overview"] as? String{
+                        overView = overview
+                        
+                    }
+                    if let posterpath = movie["poster_path"] as? String{
+                        posterPath = posterpath
+                    }
+                    if let voteAverage = movie["vote_average"] as? Float{
+                        
+                        vote_average = voteAverage
+                    }
+                    
+                    if let runTime = movie["runtime"] as? Int{
+                        
+                        runtime = runTime
+                    }
+                    if let Genres = (movie["genres"] as? Array<NSDictionary>){
+                        genres = Genres
+                    }
+                   
+                    
+                            movieToReturn  = Movie(originalTitle: originalTitle,
+                                                            releaseDate: releaseData,
+                                                            language: originalLanguage,
+                                                            overview: overView,
+                                                            posterPath: posterPath,
+                                                            genres: genres,
+                                                            rating: vote_average,
                                                             id: movie["id"] as! Int,
-                                                            duration: movie["runtime"] as! Int,
+                                                            duration: runtime,
                                                             castList: actorsToInsert,
                                                             movieImages: imagesToInsert,
                                                             director:directorToInsert)
                             
-                            
+                         print(movie)
                             
                     
                         responseMovie(movieToReturn)
@@ -189,17 +234,35 @@ class RequestsManager: AnyObject {
                     
                     if let res = dic ["results"] as? Array<NSDictionary>{
                         
+                        
                         for movies in res{
+                            
+                            
+                            if let posterPath = movies["poster_path"]{
+                                movieList.addMovie(movie: Movie(originalTitle: movies["original_title"] as! String,
+                                                                releaseDate: movies["release_date"] as! String,
+                                                                language: movies["original_language"] as! String,
+                                                                overview: movies["overview"] as! String,
+                                                                posterPath: posterPath as! String,
+                                                                genres: (movies["genre_ids"] as? Array<Int>)!,
+                                                                rating: movies["vote_average"] as! Float,
+                                                                id: movies["id"] as! Int))
+
+                            
+                            }
+                            else{
+                                
+                            
                         
                             movieList.addMovie(movie: Movie(originalTitle: movies["original_title"] as! String,
                                                             releaseDate: movies["release_date"] as! String,
                                                             language: movies["original_language"] as! String,
                                                             overview: movies["overview"] as! String,
-                                                            posterPath: movies["poster_path"] as! String,
-                                                            genres: movies["genres"] as! Array<NSDictionary>,
+                                                            posterPath: "",
+                                                            genres: (movies["genre_ids"] as? Array<Int>)!,
                                                             rating: movies["vote_average"] as! Float,
                                                             id: movies["id"] as! Int))
-                            
+                            }
                             
                         }
                         

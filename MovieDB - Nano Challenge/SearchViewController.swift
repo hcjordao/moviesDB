@@ -22,7 +22,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
 
     @IBOutlet weak var myCollectionView: UICollectionView!
     
-    var movieArray: [ Movie]! = []
+    var movieArray = MovieModel()
     var searchController: UISearchController!
     let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6.7, right: 0)
     
@@ -37,6 +37,24 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         searchBar.placeholder = "Your placeholder"
         //var leftNavBarButton = UIBarButtonItem(customView:searchBar)
         self.navigationItem.titleView = searchBar
+        
+        
+        let myRequestsManeger = RequestsManager()
+        myRequestsManeger.getMoviesInTheaterInformation(search: .NameSearch, movieName: searchText) { (movieList) in
+            
+            
+            self.movieArray = movieList
+            
+        }
+        self.myCollectionView.reloadData()
+        
+        for movieName in self.movieArray.movieArray{
+            
+            print(movieName.originalTitle)
+        }
+        
+        
+        
         
         //myCollectionView.register(colle, forSupplementaryViewOfKind: <#T##String#>, withReuseIdentifier: <#T##String#>)
         
@@ -133,12 +151,14 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         let cell: CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! CollectionViewCell
         
+        cell.initWithContent(cellMovie: movieArray.movieArray[indexPath.section])
+        
        
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return movieArray.count
+        return self.movieArray.movieArray.count
         
         //return 10
     }

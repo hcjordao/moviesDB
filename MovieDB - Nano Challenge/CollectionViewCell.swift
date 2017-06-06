@@ -11,7 +11,7 @@ import UIKit
 class CollectionViewCell: UICollectionViewCell {
     
     
-    @IBOutlet weak var movieTitlePort: UILabel!
+
     
     @IBOutlet weak var movieYear: UILabel!
     
@@ -23,15 +23,61 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieImage: UIImageView!
     
     
+    @IBOutlet weak var movieDirector: UILabel!
     
     
     
     
     func initWithContent(cellMovie: Movie){
-        movieYear.text = String.init(format: "(" + cellMovie.year + ")")
+        
+        
+        
+        let request = RequestsManager()
+        
+        //var duration:Int!
+        
+        request.getMovieInformationByMovieId(movieID: cellMovie.id) { (movieInfo) in
+            
+            
+            if (movieInfo.director) != nil{
+                self.movieDirector.text = movieInfo.director
+            }
+            
+            
+            if let duration = movieInfo.duration{
+                self.movieDuration.text = String(duration)
+            }
+            
+            
+            
+            
+            
+        }
+        
+        
+        if (cellMovie.posterPath != ""){
+            
+            
+//            NSString *filePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"imageName"] ofType:@"jpg"];
+//            UIImage *theImage = [UIImage imageWithContentsOfFile:filePath];
+            if let url = URL(string: cellMovie.posterPath){
+                if let data =  NSData(contentsOf: url){
+                    movieImage.image = UIImage.init(data: data as Data)
+                }
+            }
+            
+            
+        }
+        
+        
+        //movieYear.text = String.init(format: "(" + cellMovie.year + ")")
         movieTitleEn.text = cellMovie.originalTitle
+        
+        
+    
+        
         //movieTitlePort.text = cellMovie.
-        movieDuration.text = String(cellMovie.duration)
+        //movieDuration.text = String(cellMovie.duration)
         
     }
 }

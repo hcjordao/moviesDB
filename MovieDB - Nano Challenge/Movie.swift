@@ -24,7 +24,7 @@ class Movie: AnyObject {
     let director: String!
     
     
-    init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<NSDictionary>, rating:Float, id:Int) {
+    init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<Any>, rating:Float, id:Int) {
         
         self.originalTitle = originalTitle
         self.releaseDate = releaseDate
@@ -37,7 +37,7 @@ class Movie: AnyObject {
         self.duration = nil
         self.movieImages = nil
         self.director = nil
-        self.genres = self.setMovieGendersById(genders: genres)
+        self.genres = self.setMovieGendersByIdAndSearchForName(genders: genres)
 
         
     }
@@ -62,6 +62,23 @@ class Movie: AnyObject {
     }
     
     
+    
+    private func setMovieGendersByIdAndSearchForName(genders:Array<Any>)->[String]{
+        
+        var gendersArray:[String] = []
+        
+        for gender in genders{
+            
+            gendersArray.append(self.defineGenderById(id: gender as! Int))
+            
+            
+        }
+        
+        return gendersArray
+        
+    }
+    
+    
     private func setMovieGendersById(genders:Array<NSDictionary>)->[String]{
         
         
@@ -69,7 +86,10 @@ class Movie: AnyObject {
         
         for gender in genders{
             
-             genderArray.append(self.defineGenderById(id: gender["id"] as! Int))
+            
+                genderArray.append(self.defineGenderById(id: gender["id"] as! Int))
+                
+            
         }
         
         
