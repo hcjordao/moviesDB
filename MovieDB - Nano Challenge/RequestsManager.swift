@@ -9,6 +9,13 @@
 import UIKit
 
 
+enum SearchType{
+    
+    case NameSearch
+    case CurrentTheaterSearch
+    
+}
+
 class RequestsManager: AnyObject {
     
     
@@ -16,9 +23,9 @@ class RequestsManager: AnyObject {
     
     
     
+    // Returns a list of movies that matches with the movie name informed
     
-    
-    func getMovieInformationByMovieId(movieID:Int)->Movie{
+    func getMovieInformationByMovieId(movieID:Int, responseMovie:@escaping (_ movie:Movie)->Void){
         
         
         let request = URLRequest(url:self.urlManager.getMovieInformationURLFromMovieID(movieID: movieID))
@@ -27,7 +34,11 @@ class RequestsManager: AnyObject {
         
         var movieToReturn:Movie!
         
-        var actorsToInsert:[Actors]!
+        var actorsToInsert:[Actors] = []
+        
+        var imagesToInsert:[Images] = []
+        
+        var directorToInsert:String!
         
         session.dataTask(with: request){(data, response, error) in
             
@@ -48,7 +59,7 @@ class RequestsManager: AnyObject {
                             
                             for image in imagesList{
                                 
-                                actorsToInsert.append(Actors(name: actor["name"] as! String, profilePath: actor["profile_path"] as! String))
+                                imagesToInsert.append(Images(imagePath: image["file_path"] as! String))
                                 
                             }
                             
@@ -58,19 +69,48 @@ class RequestsManager: AnyObject {
                     }
                     
                     
-                    
-                    
                     // Getting the actors information
                     
                     if let casts = movie ["casts"] as? [String:Any]{
                         
-
+                        // Getting the movie actors
+                        
                         if let actorsList=casts["cast"] as? Array<NSDictionary>{
                             
                             
                             for actor in actorsList{
                                 
-                                actorsToInsert.append(Actors(name: actor["name"] as! String, profilePath: actor["profile_path"] as! String))
+                                // Not all the actors have a profile path image
+                                
+                                if let profile_path = actor["profile_path"] as? String{
+                                 
+                                    actorsToInsert.append(Actors(name: actor["name"] as! String, profilePath: profile_path))
+                                    
+                                }
+                                
+                                
+                            }
+                            
+                        }
+                        
+                        // Getting the movie director
+                        
+                        if let crewList=casts["crew"] as? Array<NSDictionary>{
+                            
+                            
+                            for crew in crewList{
+                                
+                                // Not all the actors have a profile path image
+                                
+                                if let job_assignment = crew["job"] as? String{
+                                    
+                                    if(job_assignment == "Director"){
+                                        
+                                        directorToInsert =  crew["name"] as! String
+                                    }
+                                    
+                                }
+                                
                                 
                             }
                             
@@ -82,25 +122,27 @@ class RequestsManager: AnyObject {
                     
                     // Getting the movie information from the Json main dictionary path
                     
-                    if let movieInfo = movie["JSON"] as? Array<NSDictionary>{
+                    
+                            movieToReturn  = Movie(originalTitle: movie["original_title"] as! String,
+                                                            releaseDate: movie["release_date"] as! String,
+                                                            language: movie["original_language"] as! String,
+                                                            overview: movie["overview"] as! String,
+                                                            posterPath: movie["poster_path"] as! String,
+                                                            genres: (movie["genres"] as? Array<NSDictionary>)!,
+                                                            rating: movie["vote_average"] as! Float,
+                                                            id: movie["id"] as! Int,
+                                                            duration: movie["runtime"] as! Int,
+                                                            castList: actorsToInsert,
+                                                            movieImages: imagesToInsert,
+                                                            director:directorToInsert)
+                            
+                            
+                            
+                    
+                        responseMovie(movieToReturn)
+                       
                         
-                        for info in movieInfo{
-                            
-                            movieToReturn  = Movie(originalTitle: info["original_title"] as! String,
-                                                            releaseDate: info["release_date"] as! String,
-                                                            language: info["original_language"] as! String,
-                                                            overview: info["overview"] as! String,
-                                                            posterPath: info["poster_path"] as! String,
-                                                            genres: info["genre_ids"] as! [Int],
-                                                            rating: info["vote_average"] as! Float,
-                                                            id: info["id"] as! Int,
-                                                            duration: info["runtime"] as! Int,
-                                                            castList: actorsToInsert)
-                            
-                            
-                        }
-                        
-                    }
+                    
                     
                 }
                 
@@ -115,17 +157,22 @@ class RequestsManager: AnyObject {
             }.resume()
 
         
-        
-        return movieToReturn
-        
     }
     
     
+    // search used for name or for current movies in theater
     
-    func getMoviesInTheaterInformation()->MovieModel{
+    func getMoviesInTheaterInformation(search:SearchType, movieName:String,responseMovies:@escaping (_ movie:MovieModel)->Void){
         
         
-        let request = URLRequest(url:self.urlManager.getCurrentMoviesInTheaterUrl())
+        let request:URLRequest!
+        
+        if(search == .NameSearch){
+            request = URLRequest(url:self.urlManager.getMoviesUrlSearchForMovieName(movieName: movieName))
+        }
+        else{
+            request = URLRequest(url:self.urlManager.getCurrentMoviesInTheaterUrl())
+        }
         
         let session = URLSession.shared
         
@@ -149,12 +196,14 @@ class RequestsManager: AnyObject {
                                                             language: movies["original_language"] as! String,
                                                             overview: movies["overview"] as! String,
                                                             posterPath: movies["poster_path"] as! String,
-                                                            genres: movies["genre_ids"] as! [Int],
+                                                            genres: movies["genres"] as! Array<NSDictionary>,
                                                             rating: movies["vote_average"] as! Float,
                                                             id: movies["id"] as! Int))
                             
                             
                         }
+                        
+                        responseMovies(movieList)
                         
                     }
                     
@@ -170,18 +219,10 @@ class RequestsManager: AnyObject {
             
             }.resume()
     
-    
-        
-      return movieList
     }
     
     
-    func getMovieListFromUrlRequest(url:URL){
-        
-        
-        
-    }
-        
+
     
 }
     
