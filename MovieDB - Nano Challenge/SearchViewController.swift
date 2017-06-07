@@ -15,10 +15,11 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     var searchText: String!
     
     
+    @IBOutlet weak var mySearchBar: UISearchBar!
     
     
     
-    lazy   var searchBar:UISearchBar = UISearchBar(frame: CGRect.init(x:0, y:0, width:200, height:20))
+    //lazy   var searchBar:UISearchBar = UISearchBar(frame: CGRect.init(x:0, y:0, width:200, height:20))
 
     @IBOutlet weak var myCollectionView: UICollectionView!
     
@@ -31,12 +32,12 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
         //collectionView.
-        
+        mySearchBar.delegate = self
         //self.configureSearchController()
-        searchBar.sizeToFit()
-        searchBar.placeholder = "Your placeholder"
+        //mySearchBar.sizeToFit()
+        mySearchBar.placeholder = "Your placeholder"
         //var leftNavBarButton = UIBarButtonItem(customView:searchBar)
-        self.navigationItem.titleView = searchBar
+        //self.navigationItem.titleView = searchBar
         
         
         let myRequestsManeger = RequestsManager()
@@ -44,9 +45,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
             
             
             self.movieArray = movieList
+            print(self.movieArray.movieArray)
             
         }
-        self.myCollectionView.reloadData()
+         self.myCollectionView.reloadData()
         
         for movieName in self.movieArray.movieArray{
             
@@ -69,16 +71,16 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     
     
     
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        //2
-//        let paddingSpace = sectionInsets.left
-//        let availableWidth = view.frame.width - paddingSpace
-//        let widthPerItem = availableWidth
-//        
-//        return CGSize(width: widthPerItem, height: 212)
-//    }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //2
+        //let paddingSpace = sectionInsets.left
+        let availableWidth = view.frame.width //- paddingSpace
+        let widthPerItem = availableWidth
+        
+        return CGSize(width: widthPerItem, height: 212)
+    }
     
     //3
 //    func collectionView(_ collectionView: UICollectionView,
@@ -94,17 +96,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
 //        return sectionInsets.left
 //    }
     
-    func configureSearchController() {
-        searchController = UISearchController(searchResultsController: nil)
-        
-        searchController.searchResultsUpdater = self
-        //searchController.searchBar = searchBar
-        searchController.dimsBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = "Search here..."
-        searchController.searchBar.delegate = self
-        searchController.searchBar.sizeToFit()
-    }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -22,9 +22,11 @@ class Movie: AnyObject {
     let id: Int
     let movieImages:[Images]!
     let director: String!
+    let backDropPath: String!
     
     
-    init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<Any>, rating:Float, id:Int) {
+    
+    init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<Any>, rating:Float, id:Int, backGround:String) {
         
         self.originalTitle = originalTitle
         self.releaseDate = releaseDate
@@ -37,12 +39,14 @@ class Movie: AnyObject {
         self.duration = nil
         self.movieImages = nil
         self.director = nil
+        self.backDropPath = backGround
         self.genres = self.setMovieGendersByIdAndSearchForName(genders: genres)
+        
 
         
     }
     
-    init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<NSDictionary>, rating:Float, id:Int, duration:Int, castList:[Actors], movieImages:[Images], director:String) {
+    init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<NSDictionary>, rating:Float, id:Int, duration:Int, castList:[Actors], movieImages:[Images], director:String, backGroung:String) {
         
         self.originalTitle = originalTitle
         self.releaseDate = releaseDate
@@ -55,6 +59,7 @@ class Movie: AnyObject {
         self.duration = duration
         self.movieImages = movieImages
         self.director = director
+        self.backDropPath = backGroung
         self.genres = self.setMovieGendersById(genders: genres)
        
         

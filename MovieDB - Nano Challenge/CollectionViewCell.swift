@@ -47,6 +47,11 @@ class CollectionViewCell: UICollectionViewCell {
             if let duration = movieInfo.duration{
                 self.movieDuration.text = String(duration)
             }
+            
+            
+            
+            
+            
 //            
 //            if let movieImages = movieInfo.movieImages{
 //                
@@ -76,8 +81,14 @@ class CollectionViewCell: UICollectionViewCell {
             
             
         }
+        if let url = URL(string: "http://image.tmdb.org/t/p/original/\(cellMovie.backDropPath)"){
+                                                    if let data =  NSData(contentsOf: url){
+                                                        self.movieImage.image = UIImage.init(data: data as Data)
+                                                    }
+                                                }
+
         
-        
+     
         
         
         
@@ -97,6 +108,7 @@ class CollectionViewCell: UICollectionViewCell {
 //            
 //        }
 //        
+        
         
         //movieYear.text = String.init(format: "(" + cellMovie.year + ")")
         movieTitleEn.text = cellMovie.originalTitle

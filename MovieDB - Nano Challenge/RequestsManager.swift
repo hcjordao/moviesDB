@@ -134,6 +134,7 @@ class RequestsManager: AnyObject {
                     var vote_average:Float = -1.0
                     var runtime:Int = -1
                     var genres:[NSDictionary] = []
+                    var BackGround = ""
                     //var director:String = ""
                     
                     if let originaltitle = movie["original_title"] as? String{
@@ -163,6 +164,15 @@ class RequestsManager: AnyObject {
                         
                         runtime = runTime
                     }
+                    
+                    
+                    if let backGround = movie["backdrop_path"] as? String{
+                        
+                        BackGround = backGround
+                        
+                    }
+                    
+                    
                     if let Genres = (movie["genres"] as? Array<NSDictionary>){
                         genres = Genres
                     }
@@ -179,10 +189,12 @@ class RequestsManager: AnyObject {
                                                             duration: runtime,
                                                             castList: actorsToInsert,
                                                             movieImages: imagesToInsert,
-                                                            director:directorToInsert)
+                                                            director:directorToInsert,
+                                                            backGroung:BackGround)
+                    
                             
                          print(movie)
-                            
+                    
                     
                         responseMovie(movieToReturn)
                        
@@ -238,31 +250,94 @@ class RequestsManager: AnyObject {
                         for movies in res{
                             
                             
-                            if let posterPath = movies["poster_path"]{
-                                movieList.addMovie(movie: Movie(originalTitle: movies["original_title"] as! String,
-                                                                releaseDate: movies["release_date"] as! String,
-                                                                language: movies["original_language"] as! String,
-                                                                overview: movies["overview"] as! String,
-                                                                posterPath: posterPath as! String,
-                                                                genres: (movies["genre_ids"] as? Array<Int>)!,
-                                                                rating: movies["vote_average"] as! Float,
-                                                                id: movies["id"] as! Int))
+                            var originalTitle:String = ""
+                            var releaseData:String = ""
+                            var originalLanguage:String = ""
+                            var overView:String = ""
+                            var PosterPath:String = ""
+                            var vote_average:Float = -1.0
+                            //var runtime:Int = -1
+                            var genres:[NSDictionary] = []
+                            var BackGround = ""
+                            
+                            //var director:String = ""
+                            
+                            if let Originaltitle = movies["original_title"] as? String{
+                                
+                                originalTitle = Originaltitle
+                            }
+                            if let Releasedata = movies["release_date"] as? String{
+                                
+                                releaseData = Releasedata
+                            }
+                            if let Originallanguage = movies["original_language"] as? String{
+                                originalLanguage = Originallanguage
+                            }
+                            if let Overview = movies["overview"] as? String{
+                                overView = Overview
+                                
+                            }
+                            if let posterpath = movies["poster_path"] as? String{
+                                PosterPath = posterpath
+                            }
+                            if let voteAverage = movies["vote_average"] as? Float{
+                                
+                                vote_average = voteAverage
+                            }
+                            
+//                            if let runTime = movies["runtime"] as? Int{
+//                                
+//                                runtime = runTime
+//                            }
+                            
+                            
+                            if let backGround = movies["backdrop_path"] as? String{
+                                
+                                BackGround = backGround
+                                
+                            }
+                            
+                            
+                            if let Genres = (movies["genres"] as? Array<NSDictionary>){
+                                genres = Genres
+                            }
 
                             
-                            }
-                            else{
-                                
                             
-                        
-                            movieList.addMovie(movie: Movie(originalTitle: movies["original_title"] as! String,
-                                                            releaseDate: movies["release_date"] as! String,
-                                                            language: movies["original_language"] as! String,
-                                                            overview: movies["overview"] as! String,
-                                                            posterPath: "",
-                                                            genres: (movies["genre_ids"] as? Array<Int>)!,
-                                                            rating: movies["vote_average"] as! Float,
-                                                            id: movies["id"] as! Int))
+                            
+                            
+                            
+                            if let posterPath = movies["poster_path"] as? String{
+                                PosterPath = posterPath
+                                
+                                
                             }
+                                movieList.addMovie(movie: Movie(originalTitle: originalTitle,
+                                                                releaseDate: releaseData,
+                                                                language: originalLanguage,
+                                                                overview: overView,
+                                                                posterPath: PosterPath,
+                                                                genres: genres,
+                                                                rating: vote_average,
+                                                                id: movies["id"] as! Int,
+                                                                backGround: BackGround))
+
+                            
+//                            }
+//                            else{
+//                                
+//                            
+//                        
+//                            movieList.addMovie(movie: Movie(originalTitle: movies["original_title"] as! String,
+//                                                            releaseDate: movies["release_date"] as! String,
+//                                                            language: movies["original_language"] as! String,
+//                                                            overview: movies["overview"] as! String,
+//                                                            posterPath: "",
+//                                                            genres: (movies["genre_ids"] as? Array<Int>)!,
+//                                                            rating: movies["vote_average"] as! Float,
+//                                                            id: movies["id"] as! Int,
+//                                                            backGround:  movies["backdrop_path"] as! String))
+//                            }
                             
                         }
                         
