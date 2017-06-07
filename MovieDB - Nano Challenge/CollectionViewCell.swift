@@ -81,11 +81,16 @@ class CollectionViewCell: UICollectionViewCell {
             
             
         }
-        if let url = URL(string: "http://image.tmdb.org/t/p/original/\(cellMovie.backDropPath)"){
-                                                    if let data =  NSData(contentsOf: url){
-                                                        self.movieImage.image = UIImage.init(data: data as Data)
-                                                    }
-                                                }
+        print( "backgorund: %d", cellMovie.backDropPath)
+        if let url = URL(string: "http://image.tmdb.org/t/p/original/" + (cellMovie.backDropPath)){
+            
+            
+            print(url)
+            
+            if let data =  NSData(contentsOf: url){
+                self.movieImage.image = UIImage(data:data as Data)
+            }
+        }
 
         
      
@@ -95,8 +100,8 @@ class CollectionViewCell: UICollectionViewCell {
         
         
 //        if (cellMovie.posterPath != ""){
-//            
-//            
+//
+//
 ////            NSString *filePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"imageName"] ofType:@"jpg"];
 ////            UIImage *theImage = [UIImage imageWithContentsOfFile:filePath];
 //            if let url = URL(string: cellMovie.posterPath){

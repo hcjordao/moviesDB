@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate {
 
+    @IBOutlet weak var seachBar: UISearchBar!
 	@IBOutlet var mainCollectionView: UICollectionView!
 	@IBOutlet var MyMoviesButton: UIButton!
 	
@@ -17,12 +18,29 @@ class ViewController: UIViewController, UICollectionViewDataSource {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+        seachBar.delegate = self
 		self.transitioningDelegate = self
 		mainCollectionView.delegate = self
 		mainCollectionView.dataSource = self
 		mainCollectionView.prefetchDataSource = self
+        //seachBar.layer.backgroundColor = UIColor.init(colorLiteralRed: 127/255, green: 15/255, blue: 95/255, alpha: 1.0).cgColor
+       // seachBar.barStyle = UIBarStyle.minimal
+        seachBar.backgroundImage = UIImage()
         
+        seachBar.isHidden = true
+        //self.navigationItem.leftBarButtonItem
         
+        let btn1 = UIButton(type: .custom)
+        btn1.setImage(UIImage(named: "searchIconCopy"), for: .normal)
+        btn1.frame = CGRect(x: 0, y: 0, width: 26, height: 26)
+        btn1.addTarget(self, action: #selector(lupaPressed), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
+        
+       // self.navigationItem.setRightBarButtonItems(item1, animated: true)
+        self.navigationItem.rightBarButtonItem = item1
+        self.seachBar.addSubview(btn1)
+        
+        //seachBar.backgroundColor =  UIColor.init(colorLiteralRed: 127/255, green: 15/255, blue: 95/255, alpha: 1.0)
         let screenSize = UIScreen.main.bounds.size
 //        let screenCenterX = UIScreen.main.bounds.size.width/2
         let cellWidth = floor(screenSize.width * 0.6)
@@ -35,6 +53,12 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
         
         mainCollectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
+        
+    }
+    
+    
+    func lupaPressed(){
+        seachBar.isHidden = false
         
     }
 
@@ -61,6 +85,39 @@ class ViewController: UIViewController, UICollectionViewDataSource {
 		// return movieModel.movies.count
 		return 3
 	}
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //performSegue(withIdentifier: , sender: nil)
+        // let mySegue = UIStoryboardSegue.init(identifier: , source: self, destination: SearchViewController as! UIViewController)
+        // prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
+        
+        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        
+        secondViewController.searchText = searchBar.text
+        
+        self.goToSearch()
+        
+        //self.present(secondViewController, animated: true, completion: nil)
+        
+        //self.performSegue(withIdentifier: "goToSearch", sender: self)
+        
+        //performSegue(withIdentifier: "goToSearchResults", sender: self)
+        
+        
+    }
+    
+    
+    func goToSearch(){
+    
+        let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
+        let destination: SearchViewController = main.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        destination.searchText =  seachBar.text
+    DispatchQueue.main.async(execute: {
+    self.present(destination, animated: true, completion: { 
+        
+    })    });
+    }
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MainScreenCollectionViewCell
