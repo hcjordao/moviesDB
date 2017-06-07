@@ -24,7 +24,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     
     var movieArray = MovieModel()
     var searchController: UISearchController!
-    let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6.7, right: 0)
+    //let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6.7, right: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,30 +69,30 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     
     
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //2
-        let paddingSpace = sectionInsets.left
-        let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth
-        
-        return CGSize(width: widthPerItem, height: 212)
-    }
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        //2
+//        let paddingSpace = sectionInsets.left
+//        let availableWidth = view.frame.width - paddingSpace
+//        let widthPerItem = availableWidth
+//        
+//        return CGSize(width: widthPerItem, height: 212)
+//    }
     
     //3
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return sectionInsets
+//    }
     
     // 4
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
-    }
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return sectionInsets.left
+//    }
     
     func configureSearchController() {
         searchController = UISearchController(searchResultsController: nil)

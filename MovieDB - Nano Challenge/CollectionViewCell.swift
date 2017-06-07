@@ -47,6 +47,29 @@ class CollectionViewCell: UICollectionViewCell {
             if let duration = movieInfo.duration{
                 self.movieDuration.text = String(duration)
             }
+//            
+//            if let movieImages = movieInfo.movieImages{
+//                
+//                
+//                for paths in movieImages{
+//                    if let url = URL(string: "http://image.tmdb.org/t/p/w375/\(paths.imagePath)"){
+//                                        if let data =  NSData(contentsOf: url){
+//                                            self.movieImage.image = UIImage.init(data: data as Data)
+//                                        }
+//                                    }
+//                    
+//                }
+//                
+//               
+//                    
+//                    
+//                    
+//                }
+//            
+//            else 
+//                
+//            }
+            
             
             
             
@@ -55,20 +78,25 @@ class CollectionViewCell: UICollectionViewCell {
         }
         
         
-        if (cellMovie.posterPath != ""){
-            
-            
-//            NSString *filePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"imageName"] ofType:@"jpg"];
-//            UIImage *theImage = [UIImage imageWithContentsOfFile:filePath];
-            if let url = URL(string: cellMovie.posterPath){
-                if let data =  NSData(contentsOf: url){
-                    movieImage.image = UIImage.init(data: data as Data)
-                }
-            }
-            
-            
-        }
         
+        
+        
+        
+        
+//        if (cellMovie.posterPath != ""){
+//            
+//            
+////            NSString *filePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"imageName"] ofType:@"jpg"];
+////            UIImage *theImage = [UIImage imageWithContentsOfFile:filePath];
+//            if let url = URL(string: cellMovie.posterPath){
+//                if let data =  NSData(contentsOf: url){
+//                    movieImage.image = UIImage.init(data: data as Data)
+//                }
+//            }
+//            
+//            
+//        }
+//        
         
         //movieYear.text = String.init(format: "(" + cellMovie.year + ")")
         movieTitleEn.text = cellMovie.originalTitle
