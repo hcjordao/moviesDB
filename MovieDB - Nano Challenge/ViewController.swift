@@ -14,6 +14,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 	@IBOutlet var mainCollectionView: UICollectionView!
 	@IBOutlet var MyMoviesButton: UIButton!
 	
+	@IBOutlet var movieTitle: UILabel!
+	@IBOutlet var movieYear: UILabel!
+	
+	@IBOutlet var star1: UIImageView!
+	@IBOutlet var star2: UIImageView!
+	@IBOutlet var star3: UIImageView!
+	@IBOutlet var star4: UIImageView!
+	@IBOutlet var star5: UIImageView!
+	
+	
 	let transition = TransitionAnimator()
 	
     override func viewDidLoad() {
@@ -23,9 +33,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		mainCollectionView.delegate = self
 		mainCollectionView.dataSource = self
 		mainCollectionView.prefetchDataSource = self
-        //seachBar.layer.backgroundColor = UIColor.init(colorLiteralRed: 127/255, green: 15/255, blue: 95/255, alpha: 1.0).cgColor
-       // seachBar.barStyle = UIBarStyle.minimal
-        seachBar.backgroundImage = UIImage()
+		
+		refreshRating(rating: 5.0, isUserRating: false)
+
         
         seachBar.isHidden = true
         //self.navigationItem.leftBarButtonItem
@@ -74,6 +84,136 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		
 		myMoviesViewController.transitioningDelegate = self
 		
+	}
+	
+	func refreshRating (rating: CGFloat, isUserRating: Bool) {
+		
+		let movieRating = rating / 2
+		
+		if isUserRating {
+			switch movieRating {
+			case 4.76...5.0:
+				star5.image = UIImage(named: "averageStarFull")
+				star4.image = UIImage(named: "averageStarFull")
+				star3.image = UIImage(named: "averageStarFull")
+				star2.image = UIImage(named: "averageStarFull")
+				star1.image = UIImage(named: "averageStarFull")
+				break
+			case 4.26...4.75:
+				star5.image = UIImage(named: "averageStarHalf")
+				star4.image = UIImage(named: "averageStarFull")
+				star3.image = UIImage(named: "averageStarFull")
+				star2.image = UIImage(named: "averageStarFull")
+				star1.image = UIImage(named: "averageStarFull")
+				break
+			case 3.76...4.25:
+				star5.image = UIImage(named: "averageStarEmpty")
+				star4.image = UIImage(named: "averageStarFull")
+				star3.image = UIImage(named: "averageStarFull")
+				star2.image = UIImage(named: "averageStarFull")
+				star1.image = UIImage(named: "averageStarFull")
+				break
+			case 3.26...3.75:
+				star5.image = UIImage(named: "averageStarEmpty")
+				star4.image = UIImage(named: "averageStarHalf")
+				star3.image = UIImage(named: "averageStarFull")
+				star2.image = UIImage(named: "averageStarFull")
+				star1.image = UIImage(named: "averageStarFull")
+				break
+			case 2.76...3.25:
+				star5.image = UIImage(named: "averageStarEmpty")
+				star4.image = UIImage(named: "averageStarEmpty")
+				star3.image = UIImage(named: "averageStarFull")
+				star2.image = UIImage(named: "averageStarFull")
+				star1.image = UIImage(named: "averageStarFull")
+				break
+			case 2.26...2.75:
+				star5.image = UIImage(named: "averageStarEmpty")
+				star4.image = UIImage(named: "averageStarEmpty")
+				star3.image = UIImage(named: "averageStarHalf")
+				star2.image = UIImage(named: "averageStarFull")
+				star1.image = UIImage(named: "averageStarFull")
+				break
+			case 1.76...2.25:
+				star5.image = UIImage(named: "averageStarEmpty")
+				star4.image = UIImage(named: "averageStarEmpty")
+				star3.image = UIImage(named: "averageStarEmpty")
+				star2.image = UIImage(named: "averageStarFull")
+				star1.image = UIImage(named: "averageStarFull")
+				break
+			case 1.26...1.75:
+				star5.image = UIImage(named: "averageStarEmpty")
+				star4.image = UIImage(named: "averageStarEmpty")
+				star3.image = UIImage(named: "averageStarEmpty")
+				star2.image = UIImage(named: "averageStarHalf")
+				star1.image = UIImage(named: "averageStarFull")
+				break
+			case 0.76...1.25:
+				star5.image = UIImage(named: "averageStarEmpty")
+				star4.image = UIImage(named: "averageStarEmpty")
+				star3.image = UIImage(named: "averageStarEmpty")
+				star2.image = UIImage(named: "averageStarEmpty")
+				star1.image = UIImage(named: "averageStarFull")
+				break
+			case 0.26...0.75:
+				star5.image = UIImage(named: "averageStarEmpty")
+				star4.image = UIImage(named: "averageStarEmpty")
+				star3.image = UIImage(named: "averageStarEmpty")
+				star2.image = UIImage(named: "averageStarEmpty")
+				star1.image = UIImage(named: "averageStarHalf")
+				break
+			default:
+				star5.image = UIImage(named: "averageStarEmpty")
+				star4.image = UIImage(named: "averageStarEmpty")
+				star3.image = UIImage(named: "averageStarEmpty")
+				star2.image = UIImage(named: "averageStarEmpty")
+				star1.image = UIImage(named: "averageStarEmpty")
+			}
+		} else {
+			switch rating {
+			case 5:
+				star5.image = UIImage(named: "userStarFull")
+				star4.image = UIImage(named: "userStarFull")
+				star3.image = UIImage(named: "userStarFull")
+				star2.image = UIImage(named: "userStarFull")
+				star1.image = UIImage(named: "userStarFull")
+				break
+			case 4:
+				star5.image = UIImage(named: "userStarEmpty")
+				star4.image = UIImage(named: "userStarFull")
+				star3.image = UIImage(named: "userStarFull")
+				star2.image = UIImage(named: "userStarFull")
+				star1.image = UIImage(named: "userStarFull")
+				break
+			case 3:
+				star5.image = UIImage(named: "userStarEmpty")
+				star4.image = UIImage(named: "userStarEmpty")
+				star3.image = UIImage(named: "userStarFull")
+				star2.image = UIImage(named: "userStarFull")
+				star1.image = UIImage(named: "userStarFull")
+				break
+			case 2:
+				star5.image = UIImage(named: "userStarEmpty")
+				star4.image = UIImage(named: "userStarEmpty")
+				star3.image = UIImage(named: "userStarEmpty")
+				star2.image = UIImage(named: "userStarFull")
+				star1.image = UIImage(named: "userStarFull")
+				break
+			case 1:
+				star5.image = UIImage(named: "userStarEmpty")
+				star4.image = UIImage(named: "userStarEmpty")
+				star3.image = UIImage(named: "userStarEmpty")
+				star2.image = UIImage(named: "userStarEmpty")
+				star1.image = UIImage(named: "userStarFull")
+				break
+			default:
+				star5.image = UIImage(named: "averageStarEmpty")
+				star4.image = UIImage(named: "averageStarEmpty")
+				star3.image = UIImage(named: "averageStarEmpty")
+				star2.image = UIImage(named: "averageStarEmpty")
+				star1.image = UIImage(named: "averageStarEmpty")
+			}
+		}
 	}
 
 // MARK: - CollectionView Settings
