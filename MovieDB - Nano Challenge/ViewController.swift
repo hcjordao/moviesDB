@@ -13,12 +13,8 @@ class ViewController: UIViewController, UICollectionViewDataSource {
 	@IBOutlet var mainCollectionView: UICollectionView!
 	@IBOutlet var MyMoviesButton: UIButton!
 	
-	@IBOutlet var MoviesLabel: UILabel!
-	@IBOutlet var InTheaterLabel: UILabel!
-	@IBOutlet var MyMoviesLabel: UILabel!
-	
 	let transition = TransitionAnimator()
-
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -29,7 +25,7 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         
         
         let screenSize = UIScreen.main.bounds.size
-        let screenCenterX = UIScreen.main.bounds.size.width/2
+//        let screenCenterX = UIScreen.main.bounds.size.width/2
         let cellWidth = floor(screenSize.width * 0.6)
         let cellHeight = floor(screenSize.height * 0.6)
         let insetX = (view.bounds.width - cellWidth)/2.0

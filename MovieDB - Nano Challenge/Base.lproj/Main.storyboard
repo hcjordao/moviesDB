@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="J9l-5b-13s">
-                                <rect key="frame" x="0.0" y="150" width="375" height="405"/>
+                                <rect key="frame" x="0.0" y="149.5" width="375" height="405.5"/>
                                 <color key="backgroundColor" red="0.18823529411764706" green="0.21568627450980393" blue="0.24313725490196078" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cZi-EB-Kfi">
                                     <size key="itemSize" width="273" height="405"/>
@@ -32,7 +33,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCell" id="Hde-eD-iNA" customClass="MainScreenCollectionViewCell" customModule="MovieDB___Nano_Challenge" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="273" height="405"/>
+                                        <rect key="frame" x="0.0" y="0.5" width="273" height="405"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="273" height="405"/>
@@ -57,7 +58,7 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVl-fe-eXc">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="136.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfZ-hv-RV2">
                                         <rect key="frame" x="14" y="67" width="68.5" height="24"/>
@@ -72,13 +73,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Movies" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3Z-bA-chp">
-                                        <rect key="frame" x="271" y="102" width="87" height="21.5"/>
+                                        <rect key="frame" x="271" y="102" width="87" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" red="0.84705882352941175" green="0.71764705882352942" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="493-Ws-cti">
-                                        <rect key="frame" x="254" y="67" width="121" height="91.5"/>
+                                        <rect key="frame" x="254" y="67" width="121" height="91"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                         <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,6 +95,7 @@
                                     <constraint firstItem="493-Ws-cti" firstAttribute="centerY" secondItem="w3Z-bA-chp" secondAttribute="centerY" id="Fc7-Ne-EuU"/>
                                     <constraint firstItem="gof-Bm-16c" firstAttribute="leading" secondItem="OVl-fe-eXc" secondAttribute="leading" constant="14" id="JXl-lo-iqA"/>
                                     <constraint firstItem="gof-Bm-16c" firstAttribute="top" secondItem="OVl-fe-eXc" secondAttribute="top" constant="87" id="LO5-ZI-Upt"/>
+                                    <constraint firstAttribute="width" secondItem="OVl-fe-eXc" secondAttribute="height" multiplier="375:136" id="PcA-tw-vPb"/>
                                     <constraint firstItem="493-Ws-cti" firstAttribute="centerX" secondItem="w3Z-bA-chp" secondAttribute="centerX" id="R5W-Ci-Mra"/>
                                     <constraint firstAttribute="bottom" secondItem="w3Z-bA-chp" secondAttribute="bottom" constant="13" id="T8Q-qB-g8P"/>
                                     <constraint firstAttribute="trailing" secondItem="493-Ws-cti" secondAttribute="trailing" id="dVJ-YI-zoK"/>
@@ -104,16 +106,16 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEN-GR-XOx">
-                                <rect key="frame" x="119.5" y="564" width="136" height="20.5"/>
+                                <rect key="frame" x="117.5" y="564" width="140.5" height="20.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7X-YL-OD3">
-                                        <rect key="frame" x="0.0" y="0.0" width="83.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7X-YL-OD3">
+                                        <rect key="frame" x="0.0" y="0.0" width="88" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(2000)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s28-wZ-wUQ">
-                                        <rect key="frame" x="83.5" y="0.0" width="52.5" height="20.5"/>
+                                        <rect key="frame" x="88" y="0.0" width="52.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -135,11 +137,10 @@
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="InTheaterLabel" destination="gof-Bm-16c" id="VDe-iW-4mq"/>
-                        <outlet property="MoviesLabel" destination="QfZ-hv-RV2" id="x6J-KK-Nu8"/>
                         <outlet property="MyMoviesButton" destination="493-Ws-cti" id="0YL-9l-cXw"/>
-                        <outlet property="MyMoviesLabel" destination="w3Z-bA-chp" id="niD-la-cIX"/>
                         <outlet property="mainCollectionView" destination="J9l-5b-13s" id="j19-0g-tbn"/>
                         <segue destination="2MT-J9-QOv" kind="show" identifier="mainToDescription" id="uLr-uY-cCQ"/>
                         <segue destination="HRO-AO-aLg" kind="show" identifier="mainToSearch" id="s3Y-6Z-xYd"/>
@@ -203,10 +204,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aV7-RR-3nR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="142"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies In Theater" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyO-Zm-Urx">
-                                        <rect key="frame" x="15" y="102" width="143.5" height="27"/>
+                                        <rect key="frame" x="15" y="102" width="143.5" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" red="0.84705882352941175" green="0.71764705882352942" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -233,6 +234,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.49803921569999998" green="0.058823529409999999" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="aV7-RR-3nR" secondAttribute="height" multiplier="375:136" id="9EO-7E-6bg"/>
                                     <constraint firstAttribute="trailing" secondItem="BhM-8X-3fn" secondAttribute="trailing" constant="17" id="9t3-Pr-Fbq"/>
                                     <constraint firstItem="BhM-8X-3fn" firstAttribute="top" secondItem="aV7-RR-3nR" secondAttribute="top" constant="87" id="Fhp-aq-LYI"/>
                                     <constraint firstItem="YVN-27-VyT" firstAttribute="top" secondItem="aV7-RR-3nR" secondAttribute="top" constant="67" id="JR6-T8-xCZ"/>
@@ -248,14 +250,12 @@
                             <constraint firstItem="aV7-RR-3nR" firstAttribute="leading" secondItem="nKX-R6-tFL" secondAttribute="leading" id="3EP-VD-BPW"/>
                             <constraint firstAttribute="trailing" secondItem="aV7-RR-3nR" secondAttribute="trailing" id="XBw-Ur-uvA"/>
                             <constraint firstItem="aV7-RR-3nR" firstAttribute="top" secondItem="nKX-R6-tFL" secondAttribute="top" id="c4J-ds-h1D"/>
-                            <constraint firstItem="bbL-SU-ONm" firstAttribute="top" secondItem="aV7-RR-3nR" secondAttribute="bottom" constant="525" id="qLC-Kq-ZbA"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="MoviesInTheaterLabel" destination="OyO-Zm-Urx" id="hFy-6J-3Zp"/>
-                        <outlet property="MyMoviesLabel1" destination="YVN-27-VyT" id="z07-cn-ylr"/>
-                        <outlet property="MyMoviesLabel2" destination="BhM-8X-3fn" id="X9t-8w-IxR"/>
                         <segue destination="2MT-J9-QOv" kind="show" identifier="myMoviesToDescription" id="elC-r0-0Cd"/>
                     </connections>
                 </viewController>
@@ -265,6 +265,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="elC-r0-0Cd"/>
+        <segue reference="uLr-uY-cCQ"/>
     </inferredMetricsTieBreakers>
 </document>
