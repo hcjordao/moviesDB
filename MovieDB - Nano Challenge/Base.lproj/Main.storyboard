@@ -41,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wtW-wJ-bmg">
-                                <rect key="frame" x="0.0" y="170" width="375" height="497"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="adb-dZ-cXj">
                                     <size key="itemSize" width="375" height="267"/>
@@ -138,10 +138,10 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="na4-Hn-rZW">
-                                <rect key="frame" x="0.0" y="64" width="375" height="106"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
+                                <color key="backgroundColor" red="0.49803921568627452" green="0.058823529411764705" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="106" id="rtH-Sv-D6m"/>
+                                    <constraint firstAttribute="height" constant="136" id="rtH-Sv-D6m"/>
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="sVe-jn-k5S">
@@ -155,16 +155,17 @@
                             <constraint firstAttribute="trailing" secondItem="na4-Hn-rZW" secondAttribute="trailing" id="31d-7z-DKe"/>
                             <constraint firstItem="na4-Hn-rZW" firstAttribute="leading" secondItem="wOq-DF-9tD" secondAttribute="leading" id="AJ8-IJ-NJy"/>
                             <constraint firstAttribute="trailing" secondItem="sVe-jn-k5S" secondAttribute="trailing" id="B8A-yl-XSi"/>
-                            <constraint firstItem="na4-Hn-rZW" firstAttribute="top" secondItem="sVe-jn-k5S" secondAttribute="bottom" id="Ezw-Uh-izY"/>
                             <constraint firstAttribute="trailing" secondItem="wtW-wJ-bmg" secondAttribute="trailing" id="Mbp-vy-0Rz"/>
                             <constraint firstItem="sVe-jn-k5S" firstAttribute="top" secondItem="mFT-mb-qQ8" secondAttribute="bottom" id="RFN-0l-cRn"/>
                             <constraint firstItem="wtW-wJ-bmg" firstAttribute="leading" secondItem="wOq-DF-9tD" secondAttribute="leading" id="Zdf-3O-Mxz"/>
                             <constraint firstItem="wtW-wJ-bmg" firstAttribute="top" secondItem="na4-Hn-rZW" secondAttribute="bottom" id="aX7-cS-LHL"/>
                             <constraint firstItem="1Jb-SP-S40" firstAttribute="top" secondItem="wtW-wJ-bmg" secondAttribute="bottom" id="o9c-Eq-9gR"/>
+                            <constraint firstItem="na4-Hn-rZW" firstAttribute="top" secondItem="wOq-DF-9tD" secondAttribute="top" id="quW-Tg-9y7"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="myCollectionView" destination="wtW-wJ-bmg" id="TrM-LS-t1Q"/>
+                        <outlet property="mySearchBar" destination="sVe-jn-k5S" id="0T6-A1-13a"/>
                         <outlet property="searchDisplayController" destination="J2u-lE-drg" id="c7n-NO-7kx"/>
                     </connections>
                 </viewController>
@@ -178,7 +179,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-20" y="1178.8605697151424"/>
+            <point key="canvasLocation" x="104.8" y="814.54272863568224"/>
         </scene>
         <!--Main-->
         <scene sceneID="JDd-5y-4hz">
@@ -263,14 +264,27 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIw-ck-YxL">
+                                        <rect key="frame" x="341" y="34" width="26" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="T9Z-Sl-uMw"/>
+                                            <constraint firstAttribute="width" constant="26" id="bt5-Ts-t8R"/>
+                                        </constraints>
+                                        <state key="normal" image="searchIcon"/>
+                                        <connections>
+                                            <action selector="lupaPressed:" destination="bxX-xU-rgy" eventType="touchUpInside" id="joq-aS-WpG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.49803921569999998" green="0.058823529409999999" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="iFW-FA-3p0" firstAttribute="top" secondItem="ghA-ar-sxZ" secondAttribute="top" constant="67" id="0rR-Ju-oo1"/>
+                                    <constraint firstAttribute="trailing" secondItem="fIw-ck-YxL" secondAttribute="trailing" constant="8" id="7LI-md-Vcn"/>
                                     <constraint firstItem="2S8-Xd-iY6" firstAttribute="top" secondItem="ghA-ar-sxZ" secondAttribute="top" constant="87" id="7Ls-dF-Uff"/>
                                     <constraint firstAttribute="trailing" secondItem="eGY-UN-YkK" secondAttribute="trailing" constant="17" id="EwQ-kW-STy"/>
                                     <constraint firstItem="Te1-4B-OMt" firstAttribute="leading" secondItem="ghA-ar-sxZ" secondAttribute="leading" constant="14" id="FmV-PT-jRD"/>
                                     <constraint firstItem="iFW-FA-3p0" firstAttribute="centerY" secondItem="eGY-UN-YkK" secondAttribute="centerY" id="IUn-NO-zdh"/>
+                                    <constraint firstItem="fIw-ck-YxL" firstAttribute="top" secondItem="ghA-ar-sxZ" secondAttribute="top" constant="34" id="IiP-fq-rGt"/>
                                     <constraint firstItem="iFW-FA-3p0" firstAttribute="centerX" secondItem="eGY-UN-YkK" secondAttribute="centerX" id="Ldc-N8-KlU"/>
                                     <constraint firstAttribute="width" secondItem="ghA-ar-sxZ" secondAttribute="height" multiplier="375:136" id="PUz-Y4-z99"/>
                                     <constraint firstAttribute="trailing" secondItem="iFW-FA-3p0" secondAttribute="trailing" id="WN9-Nt-55k"/>
@@ -362,7 +376,9 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="MyMoviesButton" destination="iFW-FA-3p0" id="Axp-Gm-m2u"/>
+                        <outlet property="lupaItem" destination="fIw-ck-YxL" id="bmf-m4-5Bm"/>
                         <outlet property="mainCollectionView" destination="IdP-Kt-wqB" id="frd-BQ-xYp"/>
+                        <outlet property="seachBar" destination="wft-aK-peX" id="Va9-ei-ors"/>
                         <outlet property="star1" destination="Cdx-PR-PA3" id="8a0-pt-co4"/>
                         <outlet property="star2" destination="cld-F1-o2A" id="RpS-6B-aTF"/>
                         <outlet property="star3" destination="v3I-HS-JM5" id="Dcn-NU-Y7L"/>
@@ -445,6 +461,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="searchIcon" width="8" height="8"/>
         <image name="tempo" width="5" height="5"/>
     </resources>
 </document>

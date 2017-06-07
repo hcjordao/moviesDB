@@ -33,12 +33,13 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         myCollectionView.dataSource = self
         //collectionView.
         mySearchBar.delegate = self
-        mySearchBar.backgroundColor =  UIColor.init(colorLiteralRed: 127/255, green: 15/255, blue: 95/255, alpha: 1.0)
+        mySearchBar.backgroundImage = UIImage()
         mySearchBar.showsCancelButton = true
-        
+        mySearchBar.tintColor = UIColor.white
+       
         //self.configureSearchController()
         //mySearchBar.sizeToFit()
-        mySearchBar.placeholder = "Your placeholder"
+        
         //var leftNavBarButton = UIBarButtonItem(customView:searchBar)
         //self.navigationItem.titleView = searchBar
         
@@ -78,7 +79,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     func returnToMain(){
         
         let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
-        let destination: ViewController = main.instantiateViewController(withIdentifier: "main") as! ViewController
+        let destination: ViewController = main.instantiateViewController(withIdentifier: "MoviesInTheater") as! ViewController
         
         DispatchQueue.main.async(execute: {
             self.present(destination, animated: true, completion: {

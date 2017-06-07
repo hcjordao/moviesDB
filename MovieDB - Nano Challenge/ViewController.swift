@@ -23,6 +23,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 	@IBOutlet var star4: UIImageView!
 	@IBOutlet var star5: UIImageView!
 	
+    @IBOutlet weak var lupaItem: UIButton!
 	
 	let transition = TransitionAnimator()
 	
@@ -40,15 +41,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         seachBar.isHidden = true
         //self.navigationItem.leftBarButtonItem
         
-        let btn1 = UIButton(type: .custom)
-        btn1.setImage(UIImage(named: "searchIconCopy"), for: .normal)
-        btn1.frame = CGRect(x: 0, y: 0, width: 26, height: 26)
-        btn1.addTarget(self, action: #selector(lupaPressed), for: .touchUpInside)
-        let item1 = UIBarButtonItem(customView: btn1)
         
-       // self.navigationItem.setRightBarButtonItems(item1, animated: true)
-        self.navigationItem.rightBarButtonItem = item1
-        self.seachBar.addSubview(btn1)
+       
         
         //seachBar.backgroundColor =  UIColor.init(colorLiteralRed: 127/255, green: 15/255, blue: 95/255, alpha: 1.0)
         let screenSize = UIScreen.main.bounds.size
@@ -67,10 +61,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
     }
     
     
-    func lupaPressed(){
+    @IBAction func lupaPressed(_ sender: Any) {
+        
         seachBar.isHidden = false
+        seachBar.backgroundImage = UIImage()
+        seachBar.showsCancelButton = true
+        seachBar.tintColor = UIColor.white
+        self.lupaItem.isHidden = true
         
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
