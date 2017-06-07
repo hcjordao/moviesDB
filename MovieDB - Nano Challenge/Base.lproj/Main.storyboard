@@ -297,18 +297,64 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cdx-PR-PA3">
+                                <rect key="frame" x="124" y="589.5" width="18" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="5kb-VF-SgS"/>
+                                    <constraint firstAttribute="width" constant="18" id="LCp-QU-iv9"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cld-F1-o2A">
+                                <rect key="frame" x="150" y="589.5" width="18" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="S12-r6-k6F"/>
+                                    <constraint firstAttribute="height" constant="17" id="kmK-Kb-Jgz"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v3I-HS-JM5">
+                                <rect key="frame" x="176" y="589.5" width="18" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="TMa-2A-hBL"/>
+                                    <constraint firstAttribute="height" constant="17" id="nNh-KF-Ofx"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="InL-ly-ZYo">
+                                <rect key="frame" x="202" y="589.5" width="18" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="Vrj-Nb-rxU"/>
+                                    <constraint firstAttribute="height" constant="17" id="iuP-SH-UQK"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ecv-km-Yht">
+                                <rect key="frame" x="228" y="589.5" width="18" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="fKA-WX-HGH"/>
+                                    <constraint firstAttribute="width" constant="18" id="nj0-mI-1sn"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="CXl-0v-efg" firstAttribute="top" secondItem="IdP-Kt-wqB" secondAttribute="bottom" constant="112" id="0HD-MV-sEF"/>
                             <constraint firstAttribute="trailing" secondItem="ghA-ar-sxZ" secondAttribute="trailing" id="1wq-HM-YTk"/>
                             <constraint firstItem="IdP-Kt-wqB" firstAttribute="leading" secondItem="pIO-93-fe1" secondAttribute="leading" id="2Pr-Jz-FA8"/>
+                            <constraint firstItem="cld-F1-o2A" firstAttribute="top" secondItem="Vw1-On-cbW" secondAttribute="bottom" constant="5" id="7fd-nN-zmD"/>
                             <constraint firstItem="ghA-ar-sxZ" firstAttribute="top" secondItem="pIO-93-fe1" secondAttribute="top" id="8r8-tw-WdP"/>
+                            <constraint firstAttribute="trailing" secondItem="Ecv-km-Yht" secondAttribute="trailing" constant="129" id="B4d-Gp-Ge5"/>
                             <constraint firstItem="Vw1-On-cbW" firstAttribute="centerX" secondItem="pIO-93-fe1" secondAttribute="centerX" id="B7M-MF-FAK"/>
                             <constraint firstItem="Vw1-On-cbW" firstAttribute="top" secondItem="IdP-Kt-wqB" secondAttribute="bottom" constant="9" id="BFC-F1-GXf"/>
+                            <constraint firstItem="Ecv-km-Yht" firstAttribute="top" secondItem="Vw1-On-cbW" secondAttribute="bottom" constant="5" id="BwW-y0-ady"/>
+                            <constraint firstItem="cld-F1-o2A" firstAttribute="leading" secondItem="Cdx-PR-PA3" secondAttribute="trailing" constant="8" id="J2f-9N-I3l"/>
+                            <constraint firstItem="Cdx-PR-PA3" firstAttribute="leading" secondItem="pIO-93-fe1" secondAttribute="leading" constant="124" id="Lz2-25-Z2L"/>
                             <constraint firstItem="ghA-ar-sxZ" firstAttribute="leading" secondItem="pIO-93-fe1" secondAttribute="leading" id="PRQ-yh-oz4"/>
+                            <constraint firstItem="v3I-HS-JM5" firstAttribute="leading" secondItem="cld-F1-o2A" secondAttribute="trailing" constant="8" id="TWM-HD-RJh"/>
+                            <constraint firstItem="v3I-HS-JM5" firstAttribute="top" secondItem="Vw1-On-cbW" secondAttribute="bottom" constant="5" id="Yaa-lx-zCT"/>
+                            <constraint firstItem="InL-ly-ZYo" firstAttribute="top" secondItem="Vw1-On-cbW" secondAttribute="bottom" constant="5" id="ac7-mo-rtR"/>
                             <constraint firstAttribute="trailing" secondItem="IdP-Kt-wqB" secondAttribute="trailing" id="brs-Vw-pbT"/>
+                            <constraint firstItem="InL-ly-ZYo" firstAttribute="leading" secondItem="v3I-HS-JM5" secondAttribute="trailing" constant="8" id="jGO-eb-6Kd"/>
                             <constraint firstItem="IdP-Kt-wqB" firstAttribute="top" secondItem="ghA-ar-sxZ" secondAttribute="bottom" constant="14" id="kQS-4a-0Ul"/>
+                            <constraint firstItem="Cdx-PR-PA3" firstAttribute="top" secondItem="Vw1-On-cbW" secondAttribute="bottom" constant="5" id="shI-mi-Xum"/>
+                            <constraint firstItem="Ecv-km-Yht" firstAttribute="leading" secondItem="InL-ly-ZYo" secondAttribute="trailing" constant="8" id="srI-i3-CxT"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -317,11 +363,16 @@
                     <connections>
                         <outlet property="MyMoviesButton" destination="iFW-FA-3p0" id="Axp-Gm-m2u"/>
                         <outlet property="mainCollectionView" destination="IdP-Kt-wqB" id="frd-BQ-xYp"/>
+                        <outlet property="star1" destination="Cdx-PR-PA3" id="8a0-pt-co4"/>
+                        <outlet property="star2" destination="cld-F1-o2A" id="RpS-6B-aTF"/>
+                        <outlet property="star3" destination="v3I-HS-JM5" id="Dcn-NU-Y7L"/>
+                        <outlet property="star4" destination="InL-ly-ZYo" id="vNe-M1-0QH"/>
+                        <outlet property="star5" destination="Ecv-km-Yht" id="Jfj-YY-8bq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weR-gq-AoK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="106" y="149"/>
+            <point key="canvasLocation" x="104.8" y="148.87556221889056"/>
         </scene>
         <!--MyMovies-->
         <scene sceneID="FoI-hN-AVd">
