@@ -509,6 +509,20 @@
                                         <color key="textColor" red="0.84705882349999995" green="0.71764705880000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgd-a2-d3f">
+                                        <rect key="frame" x="0.0" y="90" width="175" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="MoviesInTheaterButtonPressed:" destination="HRO-AO-aLg" eventType="touchUpInside" id="88X-ZN-zzE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cG2-yq-KFS">
+                                        <rect key="frame" x="200" y="89" width="175" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="myMoviesButtonPressed:" destination="HRO-AO-aLg" eventType="touchUpInside" id="tL8-33-8GA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.49803921568627452" green="0.058823529411764705" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>

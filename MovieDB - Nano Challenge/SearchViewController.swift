@@ -13,15 +13,22 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     
     
     var searchText: String!
-    
+    let transition = TransitionAnimator()
     
     @IBOutlet weak var mySearchBar: UISearchBar!
-    
-    @IBAction func myMoviesButtonPressed(_ sender: UIButton) {
-        
-        self.returnToMain()
-        
-    }
+	
+	@IBAction func MoviesInTheaterButtonPressed(_ sender: UIButton) {
+		let moviesInTheaterViewController = storyboard?.instantiateViewController(withIdentifier: "MoviesInTheater") as? ViewController
+		present(moviesInTheaterViewController!, animated: true, completion: nil)
+		moviesInTheaterViewController!.transitioningDelegate = self
+	}
+	
+	@IBAction func myMoviesButtonPressed(_ sender: UIButton) {
+		let myMoviesViewController = storyboard?.instantiateViewController(withIdentifier: "MyMoviesViewController") as? MyMoviesViewController
+		present(myMoviesViewController!, animated: true, completion: nil)
+		myMoviesViewController?.transitioningDelegate = self
+	}
+	
     
     
     @IBAction func moviesInTheatreButtonPressed(_ sender: Any) {
@@ -113,7 +120,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     }
     
     
-    
+	
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
@@ -259,4 +266,16 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     }
     */
 
+}
+
+extension SearchViewController : UIViewControllerTransitioningDelegate {
+	
+	func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		return transition
+	}
+	
+	func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		return nil
+	}
+	
 }
