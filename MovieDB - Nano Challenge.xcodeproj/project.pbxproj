@@ -241,7 +241,7 @@
 				TargetAttributes = {
 					AF5CBC711EE1D5BD00DEA955 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = T72F5RH9V5;
+						DevelopmentTeam = H4ULM4YLT9;
 						ProvisioningStyle = Automatic;
 					};
 					AF5CBC851EE1D5BD00DEA955 = {
@@ -480,7 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T72F5RH9V5;
+				DEVELOPMENT_TEAM = H4ULM4YLT9;
 				INFOPLIST_FILE = "MovieDB - Nano Challenge/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nano.challenge.MovieDB.MovieDB---Nano-Challenge";
@@ -493,7 +493,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T72F5RH9V5;
+				DEVELOPMENT_TEAM = H4ULM4YLT9;
 				INFOPLIST_FILE = "MovieDB - Nano Challenge/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nano.challenge.MovieDB.MovieDB---Nano-Challenge";
