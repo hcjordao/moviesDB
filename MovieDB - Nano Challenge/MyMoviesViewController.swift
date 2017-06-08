@@ -8,9 +8,11 @@
 
 import UIKit
 
-class MyMoviesViewController: UIViewController {
+class MyMoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 	
 	let transition = TransitionAnimator()
+	
+	@IBOutlet var myMoviesCollectionView: UICollectionView!
 	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
@@ -19,29 +21,39 @@ class MyMoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.transitioningDelegate = self
-        // Do any additional setup after loading the view.
+	
+		myMoviesCollectionView.delegate = self
+		myMoviesCollectionView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	
 	@IBAction func MoviesInTheaterPressed(_ sender: UIButton) {
 		let moviesInTheaterViewController = storyboard!.instantiateViewController(withIdentifier: "MoviesInTheater") as! ViewController
 		present(moviesInTheaterViewController, animated: true, completion: nil)
 
 		moviesInTheaterViewController.transitioningDelegate = self
+	}
+	
+	// Collection view Methods
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		// Placeholder
+		return 3
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = myMoviesCollectionView.dequeueReusableCell(withReuseIdentifier: "myMovieCell", for: indexPath) as! MyMoviesCollectionViewCell
+		
+		cell.loadCell()
+		
+		return cell
 	}
 
 }
