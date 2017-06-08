@@ -12,11 +12,12 @@ class Actors: AnyObject {
 
     var name:String
     var profilePath:String
+    var role:String
     
-    
-    init(name:String, profilePath:String) {
+    init(name:String, profilePath:String, role:String) {
         self.name = name
         self.profilePath = profilePath
+        self.role = role
     }
     
     
