@@ -19,11 +19,11 @@
 		8D29B64B1EE73559001F36E8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D29B64A1EE73559001F36E8 /* MainViewController.swift */; };
 		AF5CBC761EE1D5BD00DEA955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */; };
 		AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */; };
-		AF5CBC7B1EE1D5BD00DEA955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */; };
 		AF5CBC7D1EE1D5BD00DEA955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF5CBC7C1EE1D5BD00DEA955 /* Assets.xcassets */; };
 		AF5CBC801EE1D5BD00DEA955 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF5CBC7E1EE1D5BD00DEA955 /* LaunchScreen.storyboard */; };
 		AF5CBC8B1EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC8A1EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeTests.swift */; };
 		AF5CBC961EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CBC951EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeUITests.swift */; };
+		AFB2650E1EE9BBD00087BBE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB2650C1EE9BBD00087BBE0 /* Main.storyboard */; };
 		EDEAA8681EE1DA8000666563 /* RequestsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA8671EE1DA8000666563 /* RequestsManager.swift */; };
 		EDEAA86A1EE1E69C00666563 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA8691EE1E69C00666563 /* URLManager.swift */; };
 		EDEAA8701EE5EAD300666563 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA86F1EE5EAD300666563 /* Images.swift */; };
@@ -62,7 +62,6 @@
 		AF5CBC721EE1D5BD00DEA955 /* MovieDB - Nano Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MovieDB - Nano Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AF5CBC7A1EE1D5BD00DEA955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF5CBC7C1EE1D5BD00DEA955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF5CBC7F1EE1D5BD00DEA955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF5CBC811EE1D5BD00DEA955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +71,7 @@
 		AF5CBC911EE1D5BD00DEA955 /* MovieDB - Nano ChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MovieDB - Nano ChallengeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5CBC951EE1D5BD00DEA955 /* MovieDB___Nano_ChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDB___Nano_ChallengeUITests.swift"; sourceTree = "<group>"; };
 		AF5CBC971EE1D5BD00DEA955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFB2650D1EE9BBD00087BBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "MovieDB - Nano Challenge/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		EDEAA8671EE1DA8000666563 /* RequestsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsManager.swift; sourceTree = "<group>"; };
 		EDEAA8691EE1E69C00666563 /* URLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
 		EDEAA86F1EE5EAD300666563 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -130,10 +130,10 @@
 				8D29B64A1EE73559001F36E8 /* MainViewController.swift */,
 				AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */,
 				AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */,
-				AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */,
 				EDEAA8B11EE8760000666563 /* DescriptionViewController.swift */,
 				AF5CBC7C1EE1D5BD00DEA955 /* Assets.xcassets */,
 				AF5CBC7E1EE1D5BD00DEA955 /* LaunchScreen.storyboard */,
+				AFB2650C1EE9BBD00087BBE0 /* Main.storyboard */,
 				AF5CBC811EE1D5BD00DEA955 /* Info.plist */,
 				8D1BA1E91EE1DB6B00537045 /* Movie.swift */,
 				7EFF13E41EE8686B00EF77C6 /* TransitionAnimator.swift */,
@@ -238,7 +238,7 @@
 				TargetAttributes = {
 					AF5CBC711EE1D5BD00DEA955 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = HXG58UK739;
+						DevelopmentTeam = H4ULM4YLT9;
 						ProvisioningStyle = Automatic;
 					};
 					AF5CBC851EE1D5BD00DEA955 = {
@@ -278,9 +278,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFB2650E1EE9BBD00087BBE0 /* Main.storyboard in Resources */,
 				AF5CBC801EE1D5BD00DEA955 /* LaunchScreen.storyboard in Resources */,
 				AF5CBC7D1EE1D5BD00DEA955 /* Assets.xcassets in Resources */,
-				AF5CBC7B1EE1D5BD00DEA955 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,20 +357,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AF5CBC7A1EE1D5BD00DEA955 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AF5CBC7E1EE1D5BD00DEA955 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AF5CBC7F1EE1D5BD00DEA955 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		AFB2650C1EE9BBD00087BBE0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFB2650D1EE9BBD00087BBE0 /* Base */,
+			);
+			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -475,7 +476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HXG58UK739;
+				DEVELOPMENT_TEAM = H4ULM4YLT9;
 				INFOPLIST_FILE = "MovieDB - Nano Challenge/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nano.challenge.MovieDB.MovieDB---Nano-Challenge";
@@ -488,7 +489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HXG58UK739;
+				DEVELOPMENT_TEAM = H4ULM4YLT9;
 				INFOPLIST_FILE = "MovieDB - Nano Challenge/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nano.challenge.MovieDB.MovieDB---Nano-Challenge";

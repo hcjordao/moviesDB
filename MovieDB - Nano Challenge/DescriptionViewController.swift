@@ -11,6 +11,8 @@ import UIKit
 class DescriptionViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource{
 
     
+    @IBOutlet weak var movieTitle: UILabel!
+    
     @IBOutlet weak var backgroundImgForMovie: UIImageView!
     
     @IBOutlet weak var collectionViewActors: UICollectionView!
@@ -22,6 +24,12 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var overviewLabel: UILabel!
+    
+    @IBOutlet weak var movieDirector: UILabel!
+    
+    @IBOutlet weak var genresAndDurationLabel: UILabel!
+    
+    var current = 5
     
     var requestest:RequestsManager!
     var movie:Movie!
@@ -45,6 +53,9 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         
         self.setGradientBackground()
         
+        
+        
+        
         self.requestest.getMovieInformationByMovieId(movieID: 671) { (Movie) in
             
             
@@ -58,32 +69,28 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
             
             
             self.heightConstraint.constant += self.overviewLabel.intrinsicContentSize.height
+            self.heightConstraint.constant += (4*self.movieTitle.intrinsicContentSize.height)
             
             
-            /*
-            for cast in self.movie.castList{
+            
+            self.movieTitle.text = self.movie.originalTitle
+            self.movieDirector.text = self.movie.director
+            
+            
+            
+            DispatchQueue.main.async {
+            
                 
-                self.requestest.getImageFromImageUrl(semiPath: cast.profilePath,size: 500,responseImg: { (data) in
-                    
-                    self.imgsDataArray.append(data)
-                    
-                    
-                })
+                self.backgroundImgForMovie.image = self.requestest.getImageFromImageUrl(semiPath: self.movie.backDropPath, size: 500)
+                
                 
             }
             
-           self.requestest.getImageFromImageUrl(semiPath: "/gjOiE5EYH5sqcJYlSDZnVWRMgNV.jpg", size: 500, responseImg: { (data) in
-                
-                var img = UIImage(data:data)!
-                
-                //self.scrollView.backgroundColor = UIColor(patternImage:img)
-                self.backgroundImgForMovie.image = img
-            })
-            
- */
-            self.collectionViewActors.reloadData()
-            
+
         
+            
+         self.collectionViewActors.reloadData()
+         
         }
 
         
@@ -92,8 +99,10 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     }
     
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return actors.count
+        return self.actors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -101,10 +110,15 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellActors", for: indexPath) as! ActorsCostumCollectionViewCell
         
         cell.actorName.text = self.actors[indexPath.row].name
+        cell.actorRole.text = self.actors[indexPath.row].role
         
         
-        cell.actorImageView.image = UIImage.init(data: self.imgsDataArray[indexPath.row])
+
+        cell.actorImageView.image = self.requestest.getImageFromImageUrl(semiPath: self.movie.castList[indexPath.row].profilePath, size: 500)
         
+        
+            
+            
         cell.actorImageView.layer.borderWidth = 3
         cell.actorImageView.layer.borderColor = UIColor.init(red: 127/255, green: 16/255, blue: 95/255, alpha: 1.0).cgColor
         
@@ -113,12 +127,18 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     }
     
     
+    
+    
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         
+        
+        /* Setting again gradient configurations */
         self.scrollView.layer.sublayers?.remove(at: 0)
         setGradientBackground()
         
+
     }
     
     func setGradientBackground() {

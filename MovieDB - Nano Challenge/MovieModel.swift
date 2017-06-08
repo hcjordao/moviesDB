@@ -10,7 +10,7 @@ import UIKit
 
 class MovieModel: AnyObject {
 
-    var movieArray: [Movie]!
+    var movieArray: [Movie]
     
     
     init() {

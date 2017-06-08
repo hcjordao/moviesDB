@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2MT-J9-QOv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bxX-xU-rgy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -129,7 +129,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZn-59-abq">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZn-59-abq">
                                                 <rect key="frame" x="16" y="300" width="343" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -177,7 +177,7 @@
                                                                         <constraint firstAttribute="height" constant="100" id="W4I-tB-aDd"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odD-F0-W6Y">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odD-F0-W6Y">
                                                                     <rect key="frame" x="0.0" y="112" width="113" height="19.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="113" id="J1M-kt-81V"/>
@@ -186,7 +186,7 @@
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="papel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6D-Cw-vg3">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="papel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6D-Cw-vg3">
                                                                     <rect key="frame" x="0.0" y="133.5" width="113" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="113" id="dVk-E0-Yqk"/>
@@ -230,7 +230,6 @@
                                             <constraint firstAttribute="trailing" secondItem="Ns2-SY-ypl" secondAttribute="trailing" constant="73.5" id="MPe-U0-3LL"/>
                                             <constraint firstAttribute="trailing" secondItem="gai-JW-0qI" secondAttribute="trailing" constant="16" id="MpD-TB-3mv"/>
                                             <constraint firstItem="qtb-C1-ZxZ" firstAttribute="top" secondItem="cuE-sD-8zp" secondAttribute="bottom" constant="9" id="P5O-qR-Skc"/>
-                                            <constraint firstAttribute="bottom" secondItem="C36-qv-qNR" secondAttribute="bottom" id="PbG-dw-SxD"/>
                                             <constraint firstItem="nWh-DY-qwl" firstAttribute="leading" secondItem="1gs-qD-UJL" secondAttribute="leading" constant="169.5" id="QEy-E6-oj1"/>
                                             <constraint firstAttribute="trailing" secondItem="C36-qv-qNR" secondAttribute="trailing" constant="16" id="Tvu-3N-YXA"/>
                                             <constraint firstItem="gai-JW-0qI" firstAttribute="leading" secondItem="1gs-qD-UJL" secondAttribute="leading" constant="17" id="ZB9-FZ-HYw"/>
@@ -245,6 +244,7 @@
                                             <constraint firstAttribute="trailing" secondItem="al3-Ry-pSu" secondAttribute="trailing" constant="10" id="koe-0E-RgK"/>
                                             <constraint firstAttribute="trailing" secondItem="cuE-sD-8zp" secondAttribute="trailing" constant="126.5" id="ksj-pF-ei1"/>
                                             <constraint firstItem="cuE-sD-8zp" firstAttribute="top" secondItem="1gs-qD-UJL" secondAttribute="top" constant="16" id="lrI-Sd-Bl2"/>
+                                            <constraint firstAttribute="bottom" secondItem="C36-qv-qNR" secondAttribute="bottom" id="mF8-Ob-93P"/>
                                             <constraint firstItem="al3-Ry-pSu" firstAttribute="top" secondItem="gai-JW-0qI" secondAttribute="bottom" constant="16" id="nqq-4L-tE1"/>
                                             <constraint firstItem="Lq8-rH-ccs" firstAttribute="centerY" secondItem="qtb-C1-ZxZ" secondAttribute="centerY" id="p4h-gz-Wqp"/>
                                             <constraint firstItem="Lq8-rH-ccs" firstAttribute="width" secondItem="bzF-1B-5JG" secondAttribute="width" id="qbl-7K-f7N"/>
@@ -288,7 +288,10 @@
                         <outlet property="backgroundImgForMovie" destination="Hvt-mj-PAo" id="gWr-zC-UEQ"/>
                         <outlet property="collectionViewActors" destination="C36-qv-qNR" id="RAu-Ws-tzj"/>
                         <outlet property="contentView" destination="1gs-qD-UJL" id="Y8b-br-GDP"/>
+                        <outlet property="genresAndDurationLabel" destination="al3-Ry-pSu" id="aDR-in-zgA"/>
                         <outlet property="heightConstraint" destination="NCz-ab-y1x" id="iYD-oJ-D0W"/>
+                        <outlet property="movieDirector" destination="gai-JW-0qI" id="j91-ia-pUW"/>
+                        <outlet property="movieTitle" destination="rZn-59-abq" id="quU-4U-vbK"/>
                         <outlet property="overviewLabel" destination="933-if-QLh" id="eUl-fb-fDF"/>
                         <outlet property="scrollView" destination="4ui-VH-JU0" id="rpW-Bn-SKc"/>
                     </connections>
@@ -454,7 +457,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-233" y="1090"/>
+            <point key="canvasLocation" x="105" y="1007"/>
         </scene>
         <!--Main-->
         <scene sceneID="JDd-5y-4hz">
@@ -468,7 +471,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IdP-Kt-wqB">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IdP-Kt-wqB">
                                 <rect key="frame" x="0.0" y="149.5" width="375" height="405.5"/>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.2156862745" blue="0.24313725489999999" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dp7-aa-fF2">
@@ -653,6 +656,8 @@
                         <outlet property="MyMoviesButton" destination="iFW-FA-3p0" id="Axp-Gm-m2u"/>
                         <outlet property="lupaItem" destination="fIw-ck-YxL" id="bmf-m4-5Bm"/>
                         <outlet property="mainCollectionView" destination="IdP-Kt-wqB" id="frd-BQ-xYp"/>
+                        <outlet property="movieTitle" destination="BnJ-fM-N0k" id="ETI-lm-Bsi"/>
+                        <outlet property="movieYear" destination="K9b-Dg-pph" id="vQt-KC-QoR"/>
                         <outlet property="seachBar" destination="wft-aK-peX" id="Va9-ei-ors"/>
                         <outlet property="star1" destination="Cdx-PR-PA3" id="8a0-pt-co4"/>
                         <outlet property="star2" destination="cld-F1-o2A" id="RpS-6B-aTF"/>
