@@ -11,15 +11,25 @@ import UIKit
 class MainScreenCollectionViewCell: UICollectionViewCell {
 	
 	@IBOutlet var movieImageView: UIImageView!
+    @IBOutlet weak var title: UILabel!
 	
+    var movie: Movie?
+    
 	func loadDefaultImg() {
 		// só pra testes
 		movieImageView.backgroundColor = UIColor.gray
-		
 	}
 	
 	func loadMovieImage(image img: UIImage) {
 		
 		movieImageView.image = img
 	}
+    
+    func setCellMovie(movie: Movie) -> Void{
+        self.movie = movie
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
 }

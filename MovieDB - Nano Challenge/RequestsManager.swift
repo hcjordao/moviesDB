@@ -84,7 +84,7 @@ class RequestsManager: AnyObject {
                                 
                                 if let profile_path = actor["profile_path"] as? String{
                                  
-                                    actorsToInsert.append(Actors(name: actor["name"] as! String, profilePath: profile_path))
+                                    actorsToInsert.append(Actors(name: actor["name"] as! String, profilePath: profile_path, role:actor["character"] as! String))
                                     
                                 }
                                 
@@ -322,23 +322,7 @@ class RequestsManager: AnyObject {
                                                                 id: movies["id"] as! Int,
                                                                 backGround: BackGround))
 
-                            
-//                            }
-//                            else{
-//                                
-//                            
-//                        
-//                            movieList.addMovie(movie: Movie(originalTitle: movies["original_title"] as! String,
-//                                                            releaseDate: movies["release_date"] as! String,
-//                                                            language: movies["original_language"] as! String,
-//                                                            overview: movies["overview"] as! String,
-//                                                            posterPath: "",
-//                                                            genres: (movies["genre_ids"] as? Array<Int>)!,
-//                                                            rating: movies["vote_average"] as! Float,
-//                                                            id: movies["id"] as! Int,
-//                                                            backGround:  movies["backdrop_path"] as! String))
-//                            }
-                            
+                
                         }
                         
                         responseMovies(movieList)
@@ -359,6 +343,23 @@ class RequestsManager: AnyObject {
     
     }
     
+    
+    func getImageFromImageUrl(semiPath:String, size:Int)->UIImage{
+        
+        let url = self.urlManager.getImageDataUrlFromSemiPathAndSize(semiPath: semiPath, size: 500)
+            
+            print(url)
+            
+        if let data =  NSData(contentsOf:url){
+            
+            return  UIImage(data:data as Data)!
+            
+        }
+        
+        return UIImage()
+        
+    }
+
     
 
     

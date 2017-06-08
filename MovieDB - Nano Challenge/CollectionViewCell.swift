@@ -36,93 +36,57 @@ class CollectionViewCell: UICollectionViewCell {
         
         //var duration:Int!
         
+        if String(cellMovie.releaseDate) != nil{
+            let year: String = cellMovie.releaseDate.components(separatedBy: "-")[0]
+            DispatchQueue.main.async {
+                self.movieYear.text = "("+year+")"
+            }
+        }
+        
         request.getMovieInformationByMovieId(movieID: cellMovie.id) { (movieInfo) in
             
             
             if (movieInfo.director) != nil{
+                
+                DispatchQueue.main.async {
+                    // Update U
+                
                 self.movieDirector.text = movieInfo.director
+                self.movieDirector.font = UIFont.italicSystemFont(ofSize: 18.0)
+                
+                }
             }
             
             
             if let duration = movieInfo.duration{
-                self.movieDuration.text = String(duration)
+                
+                DispatchQueue.main.async {
+                    // Update UI
+                
+                self.movieDuration.text = String (duration / 60)+"h"+String(duration%60)+"min"
+                    
+                }
             }
-            
-            
-            
-            
-            
-//            
-//            if let movieImages = movieInfo.movieImages{
-//                
-//                
-//                for paths in movieImages{
-//                    if let url = URL(string: "http://image.tmdb.org/t/p/w375/\(paths.imagePath)"){
-//                                        if let data =  NSData(contentsOf: url){
-//                                            self.movieImage.image = UIImage.init(data: data as Data)
-//                                        }
-//                                    }
-//                    
-//                }
-//                
-//               
-//                    
-//                    
-//                    
-//                }
-//            
-//            else 
-//                
-//            }
-            
-            
-            
-            
-            
-            
+           
         }
-        print( "backgorund: %d", cellMovie.backDropPath)
+       
         if let url = URL(string: "http://image.tmdb.org/t/p/original/" + (cellMovie.backDropPath)){
             
             
             print(url)
             
             if let data =  NSData(contentsOf: url){
+                
+                DispatchQueue.main.async {
+                    
                 self.movieImage.image = UIImage(data:data as Data)
+                    
+                }
             }
         }
 
         
-     
-        
-        
-        
-        
-        
-//        if (cellMovie.posterPath != ""){
-//
-//
-////            NSString *filePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"imageName"] ofType:@"jpg"];
-////            UIImage *theImage = [UIImage imageWithContentsOfFile:filePath];
-//            if let url = URL(string: cellMovie.posterPath){
-//                if let data =  NSData(contentsOf: url){
-//                    movieImage.image = UIImage.init(data: data as Data)
-//                }
-//            }
-//            
-//            
-//        }
-//        
-        
-        
-        //movieYear.text = String.init(format: "(" + cellMovie.year + ")")
         movieTitleEn.text = cellMovie.originalTitle
-        
-        
-    
-        
-        //movieTitlePort.text = cellMovie.
-        //movieDuration.text = String(cellMovie.duration)
-        
+
     }
 }

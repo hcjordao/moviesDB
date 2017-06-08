@@ -13,6 +13,9 @@ class Images: AnyObject {
     
     var imagePath:String!
     
+    init() {
+        imagePath = ""
+    }
     
     init(imagePath:String) {
         
