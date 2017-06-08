@@ -27,6 +27,8 @@
 		EDEAA8681EE1DA8000666563 /* RequestsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA8671EE1DA8000666563 /* RequestsManager.swift */; };
 		EDEAA86A1EE1E69C00666563 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA8691EE1E69C00666563 /* URLManager.swift */; };
 		EDEAA8701EE5EAD300666563 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA86F1EE5EAD300666563 /* Images.swift */; };
+		EDEAA8B21EE8760000666563 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA8B11EE8760000666563 /* DescriptionViewController.swift */; };
+		EDEAA8B41EE8D30F00666563 /* ActorsCostumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEAA8B31EE8D30F00666563 /* ActorsCostumCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		EDEAA8671EE1DA8000666563 /* RequestsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsManager.swift; sourceTree = "<group>"; };
 		EDEAA8691EE1E69C00666563 /* URLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
 		EDEAA86F1EE5EAD300666563 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		EDEAA8B11EE8760000666563 /* DescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
+		EDEAA8B31EE8D30F00666563 /* ActorsCostumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActorsCostumCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 				AF5CBC751EE1D5BD00DEA955 /* AppDelegate.swift */,
 				AF5CBC771EE1D5BD00DEA955 /* ViewController.swift */,
 				AF5CBC791EE1D5BD00DEA955 /* Main.storyboard */,
+				EDEAA8B11EE8760000666563 /* DescriptionViewController.swift */,
 				AF5CBC7C1EE1D5BD00DEA955 /* Assets.xcassets */,
 				AF5CBC7E1EE1D5BD00DEA955 /* LaunchScreen.storyboard */,
 				AF5CBC811EE1D5BD00DEA955 /* Info.plist */,
@@ -142,6 +147,7 @@
 				8D1BA1F31EE5C43100537045 /* SearchViewController.swift */,
 				8D1BA1F51EE5CDBC00537045 /* SearchCollectionReusableView.swift */,
 				8D1BA1F71EE5D11100537045 /* CollectionViewCell.swift */,
+				EDEAA8B31EE8D30F00666563 /* ActorsCostumCollectionViewCell.swift */,
 			);
 			path = "MovieDB - Nano Challenge";
 			sourceTree = "<group>";
@@ -307,11 +313,13 @@
 				EDEAA8701EE5EAD300666563 /* Images.swift in Sources */,
 				EDEAA86A1EE1E69C00666563 /* URLManager.swift in Sources */,
 				8D1BA1F41EE5C43100537045 /* SearchViewController.swift in Sources */,
+				EDEAA8B41EE8D30F00666563 /* ActorsCostumCollectionViewCell.swift in Sources */,
 				AF5CBC781EE1D5BD00DEA955 /* ViewController.swift in Sources */,
 				AF5CBC761EE1D5BD00DEA955 /* AppDelegate.swift in Sources */,
 				8D1BA1EE1EE1DE8500537045 /* MovieModel.swift in Sources */,
 				8D1BA1EA1EE1DB6B00537045 /* Movie.swift in Sources */,
 				7EFF13E71EE8689000EF77C6 /* MainScreenCollectionViewCell.swift in Sources */,
+				EDEAA8B21EE8760000666563 /* DescriptionViewController.swift in Sources */,
 				8D1BA1EC1EE1DBFA00537045 /* Actors.swift in Sources */,
 				7EFF13E51EE8686B00EF77C6 /* TransitionAnimator.swift in Sources */,
 			);
