@@ -13,11 +13,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
     @IBOutlet weak var seachBar: UISearchBar!
 	@IBOutlet var mainCollectionView: UICollectionView!
 	@IBOutlet var MyMoviesButton: UIButton!
+    
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieYear: UILabel!
 	
-	@IBOutlet var movieTitle: UILabel!
-	@IBOutlet var movieYear: UILabel!
 	
 	@IBOutlet var star1: UIImageView!
 	@IBOutlet var star2: UIImageView!
@@ -119,7 +118,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
                     
                 }
             case UISwipeGestureRecognizerDirection.left:
-                if(self.middleCellIndex.item < self.mainCollectionView.numberOfItems(inSection: 0)-1){
+                if(self.middleCellIndex.item < self.mainCollectionView.numberOfItems(inSection: 0) - 1){
                     
                     self.middleCellIndex =  IndexPath(item: self.middleCellIndex.item + 1, section: 0)
                    
@@ -344,7 +343,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MainScreenCollectionViewCell
 		
             cell.loadDefaultImg()
-            cell.title.text = nowPlayingMoviesModel.movieArray[indexPath.item].originalTitle
+            //cell.title.text = nowPlayingMoviesModel.movieArray[indexPath.item].originalTitle
             cell.setCellMovie(movie: nowPlayingMoviesModel.movieArray[indexPath.item])
         
         if(indexPath.item == 1 && self.middleCellIndex == nil){

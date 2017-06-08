@@ -23,6 +23,7 @@ class Actors: AnyObject {
     init (){
         self.name = ""
         self.profilePath = ""
+        self.role = ""
     }
     
 }
