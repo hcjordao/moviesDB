@@ -178,7 +178,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-20" y="1178.8605697151424"/>
+            <point key="canvasLocation" x="10" y="1018"/>
         </scene>
         <!--Main-->
         <scene sceneID="JDd-5y-4hz">
@@ -192,7 +192,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IdP-Kt-wqB">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IdP-Kt-wqB">
                                 <rect key="frame" x="0.0" y="149.5" width="375" height="405.5"/>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.2156862745" blue="0.24313725489999999" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dp7-aa-fF2">
@@ -212,6 +212,13 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z4E-17-5u9">
                                                     <rect key="frame" x="0.0" y="0.0" width="273" height="405"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkK-fQ-1Ya">
+                                                    <rect key="frame" x="115" y="192" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -223,6 +230,7 @@
                                         <size key="customSize" width="273" height="405"/>
                                         <connections>
                                             <outlet property="movieImageView" destination="z4E-17-5u9" id="Sb8-LD-Kzf"/>
+                                            <outlet property="title" destination="UkK-fQ-1Ya" id="s5D-9Z-MHV"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -317,6 +325,8 @@
                     <connections>
                         <outlet property="MyMoviesButton" destination="iFW-FA-3p0" id="Axp-Gm-m2u"/>
                         <outlet property="mainCollectionView" destination="IdP-Kt-wqB" id="frd-BQ-xYp"/>
+                        <outlet property="movieTitle" destination="BnJ-fM-N0k" id="ScS-CO-6oI"/>
+                        <outlet property="movieYear" destination="K9b-Dg-pph" id="OzO-HI-bK7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weR-gq-AoK" sceneMemberID="firstResponder"/>

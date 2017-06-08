@@ -19,5 +19,9 @@ class Actors: AnyObject {
         self.profilePath = profilePath
     }
     
+    init (){
+        self.name = ""
+        self.profilePath = ""
+    }
     
 }
