@@ -29,7 +29,10 @@ class URLManager: AnyObject {
     
     func getMoviesUrlSearchForMovieName(movieName:String)->URL{
         
-        return URL(string: "http://api.themoviedb.org/3/search/movie?api_key=f0e3c4fcec46612abd4acf735d09c4a6&query=\(movieName)&sort_by=original_title.asc")!
+        
+        var movieNameS = movieName.replacingOccurrences(of:" ", with: "%20")
+        
+        return URL(string: "http://api.themoviedb.org/3/search/movie?api_key=f0e3c4fcec46612abd4acf735d09c4a6&query=" + (movieNameS) + "&sort_by=original_title.asc")!
    
     
     }
