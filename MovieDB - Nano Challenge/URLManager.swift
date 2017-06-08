@@ -45,8 +45,15 @@ class URLManager: AnyObject {
     
     func getImageDataUrlFromSemiPathAndSize(semiPath:String, size:Int)->URL{
         
-        return URL(string: "https://image.tmdb.org/t/p/w\(size)\(semiPath)")!
-        
+        if(size>0){
+         
+            return URL(string: "https://image.tmdb.org/t/p/original\(semiPath)")!
+            
+        }
+        else{
+            
+            return URL(string: "https://image.tmdb.org/t/p/w\(size)\(semiPath)")!
+        }
     }
     
     
