@@ -13,7 +13,8 @@ class Images: AnyObject {
     
     var imagePath:String!
     
-    init() {
+   init() {
+        
         imagePath = ""
     }
     
@@ -21,5 +22,19 @@ class Images: AnyObject {
         
         self.imagePath = imagePath
     }
+    
+//    required init(coder decoder: NSCoder) {
+//        self.imagePath = decoder.decodeObject(forKey: "imagePath") as? String ?? ""
+//        
+//        
+//        
+//    }
+//    
+//    func encode(with coder: NSCoder) {
+//        coder.encode(imagePath, forKey: "imagePath")
+//        
+//        
+//    }
+    
     
 }
