@@ -40,12 +40,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     var searchController: UISearchController!
     //let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6.7, right: 0)
     
-    
-    
-    
-    
-    
-    
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         myCollectionView.delegate = self
@@ -122,7 +117,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
-        //self.returnToMain()
+        self.mySearchBar.resignFirstResponder()
         
         
         
