@@ -8,23 +8,25 @@
 
 import UIKit
 
-class Movie: AnyObject {
+class Movie:  NSObject, NSCoding {
     
-    let originalTitle: String
-    let releaseDate: String
-    let castList: [Actors]! // depois
-    let language: String
-    let duration: Int! // depois
-    let overview: String
-    let posterPath: String
+    var originalTitle: String
+    var releaseDate: String
+    var castList: [Actors]! // depois
+    var language: String
+    var duration: Int! // depois
+    var overview: String
+    var posterPath: String
     var genres: [String] = []
-    let rating: Float
-    let id: Int
-    let movieImages:[Images]!
-    let director: String!
-    let backDropPath: String!
+    var rating: Float
+    var id: Int
+    var movieImages:[Images]!
+    var director: String!
+    var backDropPath: String!
     
-    init() {
+    override init() {
+        
+        
         originalTitle = ""
         releaseDate = ""
         castList = [Actors()] // depois
@@ -38,11 +40,13 @@ class Movie: AnyObject {
         movieImages = [Images()]
         director = ""
         backDropPath = ""
+        super.init()
     }
     
     
-    init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<Any>, rating:Float, id:Int, backGround:String) {
+    convenience  init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<Any>, rating:Float, id:Int, backGround:String) {
         
+        self.init()
         self.originalTitle = originalTitle
         self.releaseDate = releaseDate
         self.language = language
@@ -61,8 +65,8 @@ class Movie: AnyObject {
         
     }
     
-    init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<NSDictionary>, rating:Float, id:Int, duration:Int, castList:[Actors], movieImages:[Images], director:String, backGroung:String) {
-        
+    convenience init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<NSDictionary>, rating:Float, id:Int, duration:Int, castList:[Actors], movieImages:[Images], director:String, backGroung:String) {
+        self.init()
         self.originalTitle = originalTitle
         self.releaseDate = releaseDate
         self.language = language
@@ -122,6 +126,51 @@ class Movie: AnyObject {
         
         return genderArray
     }
+    
+    
+    required init(coder decoder: NSCoder) {
+        self.originalTitle = decoder.decodeObject(forKey: "title") as? String ?? ""
+        self.releaseDate = decoder.decodeObject(forKey: "releaseDate") as? String ?? ""
+        
+       
+        self.language = decoder.decodeObject(forKey: "language") as? String ?? ""
+        self.overview = decoder.decodeObject(forKey: "overview") as? String ?? ""
+        self.posterPath = decoder.decodeObject(forKey: "posterPath") as? String ?? ""
+        
+        self.rating =  decoder.decodeFloat(forKey: "rating")
+        
+        self.id = decoder.decodeInteger(forKey: "id")
+        
+        self.duration = decoder.decodeObject(forKey: "duration") as? Int
+        self.movieImages = decoder.decodeObject(forKey: "image") as? [Images] ?? []
+        self.director = decoder.decodeObject(forKey: "director") as? String ?? ""
+        self.backDropPath = decoder.decodeObject(forKey: "backDropPath") as? String ?? ""
+        self.genres = decoder.decodeObject(forKey: "genres") as! [String]
+        self.castList = decoder.decodeObject(forKey: "castList") as? [Actors] ?? []
+
+
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(originalTitle, forKey: "title")
+        coder.encode(releaseDate, forKey: "releaseDate")
+        coder.encode(language, forKey: "language")
+        coder.encode(overview, forKey: "overview")
+        coder.encode(posterPath,  forKey: "posterPath")
+        
+        coder.encode(rating, forKey: "rating")
+        coder.encode(id, forKey: "id")
+        coder.encode(duration, forKey: "duration")
+        coder.encode(movieImages, forKey: "image")
+        coder.encode(director, forKey: "director")
+        coder.encode(backDropPath, forKey: "backDropPath")
+        coder.encode(genres, forKey: "genres")
+        coder.encode(castList, forKey: "castList")
+
+    }
+    
+    
+    
     
     
     private func defineGenderById(id:Int)->String{
