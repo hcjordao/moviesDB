@@ -34,6 +34,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 	
     var middleCellIndex: IndexPath!
     
+    var posterArray: [UIImage?]
+    
     var onlyOnce = false
     
     override func viewDidLoad() {
@@ -76,6 +78,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         self.nowPlayingMoviesModel = MovieModel()
         
         requester.getMoviesInTheaterInformation(search: .CurrentTheaterSearch, movieName: "") { (movieList) in
+            
+            for movie in movieList.movieArray{
+                let image: UIImage = self.requester.getImageFromImageUrl(semiPath: movie.posterPath, size: -1)
+                self.posterArray.append(image)
+            }
             
             self.nowPlayingMoviesModel = movieList
             self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: 0)
@@ -342,13 +349,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MainScreenCollectionViewCell
 		
-            cell.loadDefaultImg()
-            //cell.title.text = nowPlayingMoviesModel.movieArray[indexPath.item].originalTitle
             cell.setCellMovie(movie: nowPlayingMoviesModel.movieArray[indexPath.item])
+            //if()
+                //cell.movieImageView.image = posterArray[indexPath.row]
+                
+                //requester.getImageFromImageUrl(semiPath: (cell.movie?.posterPath)!, size: -1)
+        
         
         if(indexPath.item == 1 && self.middleCellIndex == nil){
             self.middleCellIndex = IndexPath(item: 1, section: 0)
-            //self.mainCollectionView.scrollToItem(at: middleCellIndex, at: .centeredHorizontally, animated: false)
         }
         
         return cell
