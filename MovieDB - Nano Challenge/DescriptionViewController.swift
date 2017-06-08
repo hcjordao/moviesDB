@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DescriptionViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource{
+class DescriptionViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     
     @IBOutlet weak var movieTitle: UILabel!
@@ -29,12 +29,28 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     
     @IBOutlet weak var genresAndDurationLabel: UILabel!
     
-    var current = 5
+    @IBOutlet weak var cameraViewImage: UIImageView!
+    
+    @IBOutlet weak var personMovieWatchedImage: UIImageView!
+    
+    @IBOutlet weak var Star1: UIImageView!
+    
+    @IBOutlet weak var Star2: UIImageView!
+    
+    @IBOutlet weak var Star5: UIImageView!
+    
+    @IBOutlet weak var Star3: UIImageView!
+    
+    @IBOutlet weak var Star4: UIImageView!
     
     var requestest:RequestsManager!
     var movie:Movie!
-    var actors:[Actors] = []
-    var imgsDataArray:[Data] = []
+    var cast:[Actors] = []
+    var id:Int!
+    
+    var userAlreadyWatched = false
+    
+    let picker = UIImagePickerController()
     
    
     
@@ -45,25 +61,33 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         self.collectionViewActors.delegate = self
         self.collectionViewActors.dataSource = self
         self.scrollView.delegate = self
-     
+        self.picker.delegate = self
+        
         self.requestest = RequestsManager()
         
+        self.personMovieWatchedImage.layer.cornerRadius = 70/2
+        self.personMovieWatchedImage.layer.masksToBounds = false
+        self.personMovieWatchedImage.clipsToBounds = true
+        
+        // verifiy user defaults!
+        
+        self.userAlreadyWatched = true
         
         self.contentView.backgroundColor = UIColor.clear
         
         self.setGradientBackground()
         
         
+        self.id = 671
         
-        
-        self.requestest.getMovieInformationByMovieId(movieID: 671) { (Movie) in
+        self.requestest.getMovieInformationByMovieId(movieID: self.id) { (Movie) in
             
             
             self.movie = Movie
             
             print(self.movie.overview)
             
-            self.actors = self.movie.castList
+            self.cast = self.movie.castList
             
             self.overviewLabel.text = self.movie.overview
             
@@ -74,7 +98,8 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
             
             
             self.movieTitle.text = self.movie.originalTitle
-            self.movieDirector.text = self.movie.director
+            
+            
             
             
             
@@ -82,6 +107,10 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
             
                 
                 self.backgroundImgForMovie.image = self.requestest.getImageFromImageUrl(semiPath: self.movie.backDropPath, size: 500)
+                self.setGenderAndMovieDurationToLabel()
+                self.movieDirector.text = self.movie.director
+                self.refreshRating(rating: CGFloat(self.movie.rating), isUserRating: false)
+                
                 
                 
             }
@@ -102,15 +131,15 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.actors.count
+        return self.cast.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellActors", for: indexPath) as! ActorsCostumCollectionViewCell
         
-        cell.actorName.text = self.actors[indexPath.row].name
-        cell.actorRole.text = self.actors[indexPath.row].role
+        cell.actorName.text =  self.movie.castList[indexPath.row].name
+        cell.actorRole.text =  self.movie.castList[indexPath.row].role
         
         
 
@@ -125,8 +154,6 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         return cell
      
     }
-    
-    
     
     
     
@@ -155,8 +182,319 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         
     }
     
+    func setGenderAndMovieDurationToLabel(){
+        
+        self.genresAndDurationLabel.text = ""
+        
+        self.genresAndDurationLabel.text?.append(String(self.movie.duration)+" | ")
+        
+        for genre in self.movie.genres{
+            
+            if(movie.genres.last != genre){
+             
+                self.genresAndDurationLabel.text?.append(genre+" | ")
+                
+            }else{
+                
+                self.genresAndDurationLabel.text?.append(genre)
+            }
+        }
+        
+    }
+    
+    
+    
+    /************ PICKER METHODS *******************/
+   
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func photoButtonSelected(_ sender: Any) {
+        
+        self.settingConfigurationForImageTouch()
+        
+    }
+    
+    
+    
+    func settingConfigurationForImageTouch(){
+        
+        let alert = UIAlertController(title: "", message: "Image Source",
+                                      preferredStyle: .actionSheet)
+        
+        let action = UIAlertAction(title: "Galery", style: .default) { (act) in
+            
+            self.picker.allowsEditing = false
+            self.picker.sourceType = .photoLibrary
+            self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+            
+            self.present(self.picker, animated: true, completion: nil)
+            
+        }
+        
+        let action2 = UIAlertAction(title: "Camera", style: .default) { (act) in
+            
+            self.picker.allowsEditing = false
+            self.picker.sourceType = UIImagePickerControllerSourceType.camera
+            self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+            
+            self.present(self.picker, animated: true, completion: nil)
+            
+        }
+        
+        
+        alert.addAction(action)
+        alert.addAction(action2)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: false, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        self.settingImageToSpecificView(selectedView: self.personMovieWatchedImage, info: info)
+        
+    }
+    
+    
+    func settingImageToSpecificView(selectedView:UIImageView, info: [String : Any]){
+        
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            selectedView.image = image
+            self.cameraViewImage.isHidden = true
+        }
+        
+        dismiss(animated: true) {
+            
+            
+            
+        }
+        
+    }
+    
+    
+    
+    func resetRating(){
+        
+        refreshRating(rating: CGFloat(0), isUserRating: true)
+    }
+    
+    
+    @IBAction func buttonToStar1Pressed(_ sender: Any) {
+        
+        if(self.userAlreadyWatched){
+            
+            resetRating()
+            refreshRating(rating: CGFloat(1), isUserRating: true)
+            
+        }
+    }
+    
     
 
+    @IBAction func buttonToStar2Presssed(_ sender: Any) {
+       
+        
+        if(self.userAlreadyWatched){
+         
+            
+            resetRating()
+            refreshRating(rating: CGFloat(2), isUserRating: true)
+            
+            
+        }
+    }
+    
+    
+    
+    @IBAction func buttonToStar3Pressed(_ sender: Any) {
+        
+        if(self.userAlreadyWatched){
+            
+            
+            resetRating()
+            refreshRating(rating: CGFloat(3), isUserRating: true)
+
+            
+        }
+    }
+    
+    
+    @IBAction func buttonToStar4Pressed(_ sender: Any) {
+        
+        if(self.userAlreadyWatched){
+            
+            resetRating()
+            refreshRating(rating: CGFloat(4), isUserRating: true)
+        }
+    }
+    
+    
+    
+    
+    
+    @IBAction func buttonToStar5Pressed(_ sender: Any) {
+        
+        if(self.userAlreadyWatched){
+            
+            resetRating()
+            refreshRating(rating: CGFloat(5), isUserRating: true)
+
+        }
+        
+    }
+    
+    
+    
+    
+    
+    func refreshRating (rating: CGFloat, isUserRating: Bool) {
+        
+        var movieRating = rating
+        
+        if(!isUserRating){
+            
+            movieRating = movieRating/2
+        }
+        
+        if !isUserRating {
+            switch movieRating {
+            case 4.76...5.0:
+                self.Star5.image = UIImage(named: "averageStarFull")
+                self.Star4.image = UIImage(named: "averageStarFull")
+                self.Star3.image = UIImage(named: "averageStarFull")
+                self.Star2.image = UIImage(named: "averageStarFull")
+                self.Star1.image = UIImage(named: "averageStarFull")
+                break
+            case 4.26...4.75:
+                self.Star5.image = UIImage(named: "averageStarHalf")
+                self.Star4.image = UIImage(named: "averageStarFull")
+                self.Star3.image = UIImage(named: "averageStarFull")
+                self.Star2.image = UIImage(named: "averageStarFull")
+                self.Star1.image = UIImage(named: "averageStarFull")
+                break
+            case 3.76...4.25:
+                self.Star5.image = UIImage(named: "averageStarEmpty")
+                self.Star4.image = UIImage(named: "averageStarFull")
+                self.Star3.image = UIImage(named: "averageStarFull")
+                self.Star2.image = UIImage(named: "averageStarFull")
+                self.Star1.image = UIImage(named: "averageStarFull")
+                break
+            case 3.26...3.75:
+                self.Star5.image = UIImage(named: "averageStarEmpty")
+                self.Star4.image = UIImage(named: "averageStarHalf")
+                self.Star3.image = UIImage(named: "averageStarFull")
+                self.Star2.image = UIImage(named: "averageStarFull")
+                self.Star1.image = UIImage(named: "averageStarFull")
+                break
+            case 2.76...3.25:
+                self.Star5.image = UIImage(named: "averageStarEmpty")
+                self.Star4.image = UIImage(named: "averageStarEmpty")
+                self.Star3.image = UIImage(named: "averageStarFull")
+                self.Star2.image = UIImage(named: "averageStarFull")
+                self.Star1.image = UIImage(named: "averageStarFull")
+                break
+            case 2.26...2.75:
+                self.Star5.image = UIImage(named: "averageStarEmpty")
+                self.Star4.image = UIImage(named: "averageStarEmpty")
+                self.Star3.image = UIImage(named: "averageStarHalf")
+                self.Star2.image = UIImage(named: "averageStarFull")
+                self.Star1.image = UIImage(named: "averageStarFull")
+                break
+            case 1.76...2.25:
+                self.Star5.image = UIImage(named: "averageStarEmpty")
+                self.Star4.image = UIImage(named: "averageStarEmpty")
+                self.Star3.image = UIImage(named: "averageStarEmpty")
+                self.Star2.image = UIImage(named: "averageStarFull")
+                self.Star1.image = UIImage(named: "averageStarFull")
+                break
+            case 1.26...1.75:
+                self.Star5.image = UIImage(named: "averageStarEmpty")
+                self.Star4.image = UIImage(named: "averageStarEmpty")
+                self.Star3.image = UIImage(named: "averageStarEmpty")
+                self.Star2.image = UIImage(named: "averageStarHalf")
+                self.Star1.image = UIImage(named: "averageStarFull")
+                break
+            case 0.76...1.25:
+                self.Star5.image = UIImage(named: "averageStarEmpty")
+                self.Star4.image = UIImage(named: "averageStarEmpty")
+                self.Star3.image = UIImage(named: "averageStarEmpty")
+                self.Star2.image = UIImage(named: "averageStarEmpty")
+                self.Star1.image = UIImage(named: "averageStarFull")
+                break
+            case 0.26...0.75:
+                self.Star5.image = UIImage(named: "averageStarEmpty")
+                self.Star4.image = UIImage(named: "averageStarEmpty")
+                self.Star3.image = UIImage(named: "averageStarEmpty")
+                self.Star2.image = UIImage(named: "averageStarEmpty")
+                self.Star1.image = UIImage(named: "averageStarHalf")
+                break
+            default:
+                self.Star5.image = UIImage(named: "averageStarEmpty")
+                self.Star4.image = UIImage(named: "averageStarEmpty")
+                self.Star3.image = UIImage(named: "averageStarEmpty")
+                self.Star2.image = UIImage(named: "averageStarEmpty")
+                self.Star1.image = UIImage(named: "averageStarEmpty")
+            }
+        } else {
+            switch rating {
+            case 5:
+                self.Star5.image = UIImage(named: "userStarFull")
+                self.Star4.image = UIImage(named: "userStarFull")
+                self.Star3.image = UIImage(named: "userStarFull")
+                self.Star2.image = UIImage(named: "userStarFull")
+                self.Star1.image = UIImage(named: "userStarFull")
+                break
+            case 4:
+                self.Star5.image = UIImage(named: "userStarEmpty")
+                self.Star4.image = UIImage(named: "userStarFull")
+                self.Star3.image = UIImage(named: "userStarFull")
+                self.Star2.image = UIImage(named: "userStarFull")
+                self.Star1.image = UIImage(named: "userStarFull")
+                break
+            case 3:
+                self.Star5.image = UIImage(named: "userStarEmpty")
+                self.Star4.image = UIImage(named: "userStarEmpty")
+                self.Star3.image = UIImage(named: "userStarFull")
+                self.Star2.image = UIImage(named: "userStarFull")
+                self.Star1.image = UIImage(named: "userStarFull")
+                break
+            case 2:
+                self.Star5.image = UIImage(named: "userStarEmpty")
+                self.Star4.image = UIImage(named: "userStarEmpty")
+                self.Star3.image = UIImage(named: "userStarEmpty")
+                self.Star2.image = UIImage(named: "userStarFull")
+                self.Star1.image = UIImage(named: "userStarFull")
+                break
+            case 1:
+                self.Star5.image = UIImage(named: "userStarEmpty")
+                self.Star4.image = UIImage(named: "userStarEmpty")
+                self.Star3.image = UIImage(named: "userStarEmpty")
+                self.Star2.image = UIImage(named: "userStarEmpty")
+                self.Star1.image = UIImage(named: "userStarFull")
+                break
+            default:
+                self.Star5.image = UIImage(named: "averageStarEmpty")
+                self.Star4.image = UIImage(named: "averageStarEmpty")
+                self.Star3.image = UIImage(named: "averageStarEmpty")
+                self.Star2.image = UIImage(named: "averageStarEmpty")
+                self.Star1.image = UIImage(named: "averageStarEmpty")
+            }
+        }
+    }
+
+    
+    
+    
+    
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -34,6 +34,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 	
     var middleCellIndex: IndexPath!
     
+    var posterArray: [UIImage?] = []
+    
     var onlyOnce = false
     
     override func viewDidLoad() {
@@ -55,12 +57,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
        
         
         //seachBar.backgroundColor =  UIColor.init(colorLiteralRed: 127/255, green: 15/255, blue: 95/255, alpha: 1.0)
-        let screenSize = UIScreen.main.bounds.size
-        let cellWidth = floor(screenSize.width * 0.6)
-        let cellHeight = floor(screenSize.height * 0.4)
-        let insetX = (view.bounds.width - cellWidth)/2.0
-        let insetY = (view.bounds.height - cellHeight)/2.0
-        let layout = mainCollectionView!.collectionViewLayout as! UICollectionViewFlowLayout
+        //let screenSize = UIScreen.main.bounds.size
+        //let cellWidth = floor(screenSize.width * 0.6)
+        //let cellHeight = floor(screenSize.height * 0.4)
+//        let insetX = (view.bounds.width - cellWidth)/2.0
+//        let insetY = (view.bounds.height - cellHeight)/2.0
+//        let layout = mainCollectionView!.collectionViewLayout as! UICollectionViewFlowLayout
         
         let swipeHorizontalRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeHorizontalRight.direction = UISwipeGestureRecognizerDirection.right
@@ -77,8 +79,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         
         requester.getMoviesInTheaterInformation(search: .CurrentTheaterSearch, movieName: "") { (movieList) in
             
+//            for movie in movieList.movieArray{
+//                let image: UIImage = self.requester.getImageFromImageUrl(semiPath: movie.posterPath, size: -1)
+//                self.posterArray.append(image)
+//            }
+            
             self.nowPlayingMoviesModel = movieList
             self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: 0)
+            self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: self.nowPlayingMoviesModel.movieArray.count)
             self.movieTitle.text = self.nowPlayingMoviesModel.movieArray[1].originalTitle
             self.movieYear.text = self.nowPlayingMoviesModel.movieArray[1].getYearFromReleaseDate()
             
@@ -104,25 +112,40 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
             case UISwipeGestureRecognizerDirection.right:
                 if(self.middleCellIndex.item > 1){
                     
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    })
+                    
+                    
                     if(self.middleCellIndex.item == 1){
                         self.middleCellIndex = IndexPath(item: 1, section: 0)
                     } else{
                         self.middleCellIndex = IndexPath(item: self.middleCellIndex.item - 1, section: 0)
                     }
                     
-                    DispatchQueue.main.async {
                         
-                        self.mainCollectionView.scrollToItem(at: self.middleCellIndex, at: .centeredHorizontally, animated: true)
-                    }
+                    self.mainCollectionView.scrollToItem(at: self.middleCellIndex, at: .centeredHorizontally, animated: true)
+                    
+                    
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.transform = CGAffineTransform(scaleX: 1.02  , y: 1.5)
+                    })
                     
                     
                 }
             case UISwipeGestureRecognizerDirection.left:
-                if(self.middleCellIndex.item < self.mainCollectionView.numberOfItems(inSection: 0) - 1){
+                if(self.middleCellIndex.item < self.mainCollectionView.numberOfItems(inSection: 0) - 2){
+                    
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    })
                     
                     self.middleCellIndex =  IndexPath(item: self.middleCellIndex.item + 1, section: 0)
                    
                     self.mainCollectionView.scrollToItem(at: self.middleCellIndex, at: .centeredHorizontally, animated: true)
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.transform = CGAffineTransform(scaleX: 1.02, y: 1.5)
+                    })
                 }
             default:
                 break
@@ -343,12 +366,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MainScreenCollectionViewCell
 		
             cell.loadDefaultImg()
-            //cell.title.text = nowPlayingMoviesModel.movieArray[indexPath.item].originalTitle
             cell.setCellMovie(movie: nowPlayingMoviesModel.movieArray[indexPath.item])
+//        if(indexPath.item > 0){
+//                cell.movieImageView.image = posterArray[indexPath.row-1]
+//        }
+    
+                //cell.movieImageView.image = requester.getImageFromImageUrl(semiPath: (cell.movie?.posterPath)!, size: -1)
+        
         
         if(indexPath.item == 1 && self.middleCellIndex == nil){
             self.middleCellIndex = IndexPath(item: 1, section: 0)
-            //self.mainCollectionView.scrollToItem(at: middleCellIndex, at: .centeredHorizontally, animated: false)
         }
         
         return cell

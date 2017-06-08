@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E68C6931EE88B5300A104CC /* MyMoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68C6921EE88B5300A104CC /* MyMoviesCollectionViewCell.swift */; };
 		7EFF13E51EE8686B00EF77C6 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFF13E41EE8686B00EF77C6 /* TransitionAnimator.swift */; };
 		7EFF13E71EE8689000EF77C6 /* MainScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFF13E61EE8689000EF77C6 /* MainScreenCollectionViewCell.swift */; };
 		7EFF13E91EE868AE00EF77C6 /* MyMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFF13E81EE868AE00EF77C6 /* MyMoviesViewController.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E68C6921EE88B5300A104CC /* MyMoviesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMoviesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7EFF13E41EE8686B00EF77C6 /* TransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
 		7EFF13E61EE8689000EF77C6 /* MainScreenCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		7EFF13E81EE868AE00EF77C6 /* MyMoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMoviesViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				8D1BA1E91EE1DB6B00537045 /* Movie.swift */,
 				7EFF13E41EE8686B00EF77C6 /* TransitionAnimator.swift */,
 				7EFF13E81EE868AE00EF77C6 /* MyMoviesViewController.swift */,
+				7E68C6921EE88B5300A104CC /* MyMoviesCollectionViewCell.swift */,
 				7EFF13E61EE8689000EF77C6 /* MainScreenCollectionViewCell.swift */,
 				8D1BA1EB1EE1DBFA00537045 /* Actors.swift */,
 				8D1BA1ED1EE1DE8500537045 /* MovieModel.swift */,
@@ -311,6 +314,7 @@
 				EDEAA8681EE1DA8000666563 /* RequestsManager.swift in Sources */,
 				7EFF13E91EE868AE00EF77C6 /* MyMoviesViewController.swift in Sources */,
 				EDEAA8701EE5EAD300666563 /* Images.swift in Sources */,
+				7E68C6931EE88B5300A104CC /* MyMoviesCollectionViewCell.swift in Sources */,
 				EDEAA86A1EE1E69C00666563 /* URLManager.swift in Sources */,
 				8D1BA1F41EE5C43100537045 /* SearchViewController.swift in Sources */,
 				EDEAA8B41EE8D30F00666563 /* ActorsCostumCollectionViewCell.swift in Sources */,
