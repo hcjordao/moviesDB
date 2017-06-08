@@ -33,12 +33,15 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         myCollectionView.dataSource = self
         //collectionView.
         mySearchBar.delegate = self
+        mySearchBar.backgroundImage = UIImage()
+        mySearchBar.showsCancelButton = true
+        mySearchBar.tintColor = UIColor.white
+       
         //self.configureSearchController()
         //mySearchBar.sizeToFit()
-        mySearchBar.placeholder = "Your placeholder"
+        
         //var leftNavBarButton = UIBarButtonItem(customView:searchBar)
         //self.navigationItem.titleView = searchBar
-        
         
         let myRequestsManeger = RequestsManager()
         myRequestsManeger.getMoviesInTheaterInformation(search: .NameSearch, movieName: searchText) { (movieList) in
@@ -48,13 +51,13 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
             print(self.movieArray.movieArray)
             
         }
-         self.myCollectionView.reloadData()
+        self.myCollectionView.reloadData()
         
         for movieName in self.movieArray.movieArray{
             
             print(movieName.originalTitle)
         }
-        
+    
         
         
         
@@ -64,11 +67,27 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         // Do any additional setup after loading the view.
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        //self.returnToMain()
+        
+        
+        
+    }
     
     
-    
-    
-    
+    func returnToMain(){
+        
+        let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
+        let destination: ViewController = main.instantiateViewController(withIdentifier: "MoviesInTheater") as! ViewController
+        
+        //DispatchQueue.main.async(execute: {
+            self.present(destination, animated: true, completion:nil)
+                
+            //})    });
+    }
+
+
     
     
     func collectionView(_ collectionView: UICollectionView,
@@ -76,17 +95,22 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
         //let paddingSpace = sectionInsets.left
-        let availableWidth = view.frame.width //- paddingSpace
+        let availableWidth = collectionView.frame.size.width //- paddingSpace
         let widthPerItem = availableWidth
         
-        return CGSize(width: widthPerItem, height: 212)
+        
+        return CGSize(width: widthPerItem, height: 267)
     }
     
-    //3
+    
 //    func collectionView(_ collectionView: UICollectionView,
 //                        layout collectionViewLayout: UICollectionViewLayout,
 //                        insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return sectionInsets
+//        return UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 20.0
 //    }
     
     // 4
@@ -120,10 +144,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
-        
-        
-        
-        
+       
         
     }
     
