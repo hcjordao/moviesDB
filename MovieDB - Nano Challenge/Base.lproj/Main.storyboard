@@ -496,8 +496,26 @@
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="na4-Hn-rZW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Movies" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIV-rd-JKv">
+                                        <rect key="frame" x="271" y="102" width="89" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <color key="textColor" red="0.84705882349999995" green="0.71764705880000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies In Theater" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRd-Xj-Yt2">
+                                        <rect key="frame" x="15" y="102" width="147.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <color key="textColor" red="0.84705882349999995" green="0.71764705880000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.49803921568627452" green="0.058823529411764705" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="RRd-Xj-Yt2" secondAttribute="bottom" constant="13" id="MnS-9l-ycj"/>
+                                    <constraint firstAttribute="bottom" secondItem="YIV-rd-JKv" secondAttribute="bottom" constant="13" id="WRv-L9-jWE"/>
+                                    <constraint firstAttribute="trailing" secondItem="YIV-rd-JKv" secondAttribute="trailing" constant="15" id="g68-zD-icM"/>
+                                    <constraint firstItem="RRd-Xj-Yt2" firstAttribute="leading" secondItem="na4-Hn-rZW" secondAttribute="leading" constant="15" id="lbr-Uy-qHj"/>
                                     <constraint firstAttribute="height" constant="136" id="rtH-Sv-D6m"/>
                                 </constraints>
                             </view>
@@ -536,7 +554,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="105" y="1007"/>
+            <point key="canvasLocation" x="104.8" y="1006.1469265367317"/>
         </scene>
         <!--Main-->
         <scene sceneID="JDd-5y-4hz">
@@ -590,24 +608,24 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Te1-4B-OMt">
                                         <rect key="frame" x="14" y="67" width="68.5" height="24"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Theater" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2S8-Xd-iY6">
-                                        <rect key="frame" x="14" y="87" width="174" height="43"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
+                                        <rect key="frame" x="14" y="87" width="180" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Movies" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGY-UN-YkK">
-                                        <rect key="frame" x="271" y="102" width="87" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <rect key="frame" x="269" y="102" width="89" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <color key="textColor" red="0.84705882349999995" green="0.71764705880000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFW-FA-3p0">
-                                        <rect key="frame" x="254" y="67" width="121" height="91"/>
+                                        <rect key="frame" x="252" y="67" width="123" height="91"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                         <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -616,10 +634,11 @@
                                             <action selector="MyMoviesPressed:" destination="bxX-xU-rgy" eventType="touchUpInside" id="hZY-iK-LDY"/>
                                         </connections>
                                     </button>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wft-aK-peX">
-                                        <rect key="frame" x="0.0" y="23" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                    <searchBar contentMode="redraw" placeholder="search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wft-aK-peX">
+                                        <rect key="frame" x="15" y="28" width="352" height="44"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="barTintColor" red="0.49803921568627452" green="0.058823529411764705" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search"/>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIw-ck-YxL">
                                         <rect key="frame" x="341" y="34" width="26" height="26"/>
@@ -643,10 +662,13 @@
                                     <constraint firstItem="iFW-FA-3p0" firstAttribute="centerY" secondItem="eGY-UN-YkK" secondAttribute="centerY" id="IUn-NO-zdh"/>
                                     <constraint firstItem="fIw-ck-YxL" firstAttribute="top" secondItem="ghA-ar-sxZ" secondAttribute="top" constant="34" id="IiP-fq-rGt"/>
                                     <constraint firstItem="iFW-FA-3p0" firstAttribute="centerX" secondItem="eGY-UN-YkK" secondAttribute="centerX" id="Ldc-N8-KlU"/>
+                                    <constraint firstItem="wft-aK-peX" firstAttribute="top" secondItem="ghA-ar-sxZ" secondAttribute="top" constant="28" id="N4v-ob-q0P"/>
                                     <constraint firstAttribute="width" secondItem="ghA-ar-sxZ" secondAttribute="height" multiplier="375:136" id="PUz-Y4-z99"/>
                                     <constraint firstAttribute="trailing" secondItem="iFW-FA-3p0" secondAttribute="trailing" id="WN9-Nt-55k"/>
                                     <constraint firstItem="2S8-Xd-iY6" firstAttribute="leading" secondItem="ghA-ar-sxZ" secondAttribute="leading" constant="14" id="atH-aX-3lB"/>
                                     <constraint firstAttribute="bottom" secondItem="eGY-UN-YkK" secondAttribute="bottom" constant="13" id="b1O-5E-n5v"/>
+                                    <constraint firstAttribute="trailing" secondItem="wft-aK-peX" secondAttribute="trailing" constant="8" id="kcz-fB-GUD"/>
+                                    <constraint firstItem="wft-aK-peX" firstAttribute="leading" secondItem="ghA-ar-sxZ" secondAttribute="leading" constant="15" id="oDI-FA-xpS"/>
                                     <constraint firstItem="eGY-UN-YkK" firstAttribute="top" secondItem="ghA-ar-sxZ" secondAttribute="top" constant="102" id="yhG-LG-DML"/>
                                     <constraint firstItem="Te1-4B-OMt" firstAttribute="top" secondItem="ghA-ar-sxZ" secondAttribute="top" constant="67" id="zLr-LN-KBW"/>
                                 </constraints>
@@ -737,7 +759,7 @@
                         <outlet property="mainCollectionView" destination="IdP-Kt-wqB" id="frd-BQ-xYp"/>
                         <outlet property="movieTitle" destination="BnJ-fM-N0k" id="ETI-lm-Bsi"/>
                         <outlet property="movieYear" destination="K9b-Dg-pph" id="vQt-KC-QoR"/>
-                        <outlet property="seachBar" destination="wft-aK-peX" id="Va9-ei-ors"/>
+                        <outlet property="searchBar" destination="wft-aK-peX" id="z3M-1a-5xs"/>
                         <outlet property="star1" destination="Cdx-PR-PA3" id="8a0-pt-co4"/>
                         <outlet property="star2" destination="cld-F1-o2A" id="RpS-6B-aTF"/>
                         <outlet property="star3" destination="v3I-HS-JM5" id="Dcn-NU-Y7L"/>
@@ -765,14 +787,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies In Theater" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0U-EL-Tae">
-                                        <rect key="frame" x="15" y="102" width="143.5" height="21"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <rect key="frame" x="15" y="102" width="147.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <color key="textColor" red="0.84705882349999995" green="0.71764705880000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RuR-GX-tDv">
-                                        <rect key="frame" x="326.5" y="67" width="31.5" height="26.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                                        <rect key="frame" x="328.5" y="67" width="29.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -784,8 +806,8 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQ5-GP-E1K">
-                                        <rect key="frame" x="231.5" y="87" width="126.5" height="44.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="37"/>
+                                        <rect key="frame" x="231.5" y="87" width="126.5" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -827,37 +849,37 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3i-aT-ilb">
-                                                    <rect key="frame" x="10" y="222" width="152.5" height="24"/>
+                                                    <rect key="frame" x="10" y="222" width="160.5" height="24"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wK3-zl-KOX">
-                                                            <rect key="frame" x="0.0" y="0.0" width="97.5" height="24"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="98" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(2000)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzm-qM-o7e">
-                                                            <rect key="frame" x="97.5" y="0.0" width="55" height="24"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                            <rect key="frame" x="98" y="0.0" width="62.5" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Director Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJl-XT-Dar">
-                                                    <rect key="frame" x="10" y="246" width="116.5" height="21"/>
+                                                    <rect key="frame" x="10" y="246" width="118" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="UlQ-jG-vqO"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0h00m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U97-eg-dWE">
-                                                    <rect key="frame" x="309.5" y="246" width="55.5" height="21"/>
+                                                    <rect key="frame" x="306.5" y="246" width="58.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Iq0-3a-J7z"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -925,7 +947,7 @@
         <image name="emptyStar" width="18" height="17"/>
         <image name="oval" width="83" height="83"/>
         <image name="oval-dark" width="70" height="70"/>
-        <image name="searchIcon" width="8" height="8"/>
+        <image name="searchIcon" width="26" height="26"/>
         <image name="tempo" width="5" height="5"/>
     </resources>
 </document>

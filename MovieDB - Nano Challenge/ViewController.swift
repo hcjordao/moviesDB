@@ -10,13 +10,12 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate {
 
-    @IBOutlet weak var seachBar: UISearchBar!
+	@IBOutlet var searchBar: UISearchBar!
 	@IBOutlet var mainCollectionView: UICollectionView!
 	@IBOutlet var MyMoviesButton: UIButton!
     
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieYear: UILabel!
-	
 	
 	@IBOutlet var star1: UIImageView!
 	@IBOutlet var star2: UIImageView!
@@ -40,23 +39,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        seachBar.delegate = self
+        searchBar.delegate = self
 		self.transitioningDelegate = self
 		mainCollectionView.delegate = self
 		mainCollectionView.dataSource = self
 		mainCollectionView.prefetchDataSource = self
 		
 		refreshRating(rating: 5.0, isUserRating: false)
-
-        
-
-        seachBar.isHidden = true
+        searchBar.isHidden = true
+		
         //self.navigationItem.leftBarButtonItem
-        
-        
-       
-        
-        //seachBar.backgroundColor =  UIColor.init(colorLiteralRed: 127/255, green: 15/255, blue: 95/255, alpha: 1.0)
+		
+        //searchBar.backgroundColor =  UIColor.init(colorLiteralRed: 127/255, green: 15/255, blue: 95/255, alpha: 1.0)
         //let screenSize = UIScreen.main.bounds.size
         //let cellWidth = floor(screenSize.width * 0.6)
         //let cellHeight = floor(screenSize.height * 0.4)
@@ -101,8 +95,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         }
         
     }
-    
-    
+	
     func handleSwipe(gesture:UIGestureRecognizer) -> Void {
         
         self.updateMovieLabels()
@@ -163,14 +156,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
             }
         }
     }
-    
 
     @IBAction func lupaPressed(_ sender: Any) {
         
-        seachBar.isHidden = false
-        seachBar.backgroundImage = UIImage()
-        seachBar.showsCancelButton = true
-        seachBar.tintColor = UIColor.white
+        searchBar.isHidden = false
+        searchBar.backgroundImage = UIImage()
+//        searchBar.showsCancelButton = true
+        searchBar.tintColor = UIColor.white
         self.lupaItem.isHidden = true
         
     }
@@ -328,8 +320,27 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		// return movieModel.movies.count
 		return nowPlayingMoviesModel.movieArray.count
 	}
-    
-    
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MainScreenCollectionViewCell
+		
+		cell.loadDefaultImg()
+		cell.setCellMovie(movie: nowPlayingMoviesModel.movieArray[indexPath.item])
+		//        if(indexPath.item > 0){
+		//                cell.movieImageView.image = posterArray[indexPath.row-1]
+		//        }
+		
+		//cell.movieImageView.image = requester.getImageFromImageUrl(semiPath: (cell.movie?.posterPath)!, size: -1)
+		
+		
+		if(indexPath.item == 1 && self.middleCellIndex == nil){
+			self.middleCellIndex = IndexPath(item: 1, section: 0)
+		}
+		
+		return cell
+	}
+	
+// MARK: - SearchBar Settings
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //performSegue(withIdentifier: , sender: nil)
         // let mySegue = UIStoryboardSegue.init(identifier: , source: self, destination: SearchViewController as! UIViewController)
@@ -349,41 +360,29 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         
         
     }
-    
-    
-    func goToSearch(){
+	
+    func goToSearch() {
     
         let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
         let destination: SearchViewController = main.instantiateViewController(withIdentifier: "search") as! SearchViewController
-        destination.searchText =  seachBar.text
+        destination.searchText =  searchBar.text
     //DispatchQueue.main.async(execute: {
     self.present(destination, animated: true, completion: nil)
         
     //})    });
     }
 	
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MainScreenCollectionViewCell
-		
-            cell.loadDefaultImg()
-            cell.setCellMovie(movie: nowPlayingMoviesModel.movieArray[indexPath.item])
-//        if(indexPath.item > 0){
-//                cell.movieImageView.image = posterArray[indexPath.row-1]
-//        }
-    
-                //cell.movieImageView.image = requester.getImageFromImageUrl(semiPath: (cell.movie?.posterPath)!, size: -1)
-        
-        
-        if(indexPath.item == 1 && self.middleCellIndex == nil){
-            self.middleCellIndex = IndexPath(item: 1, section: 0)
-        }
-        
-        return cell
+	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+		self.searchBar.resignFirstResponder()
 	}
+	
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		self.searchBar.resignFirstResponder()
+		searchBar.isHidden = true
+		self.lupaItem.isHidden = false
+	}
+	
 }
-
-
-
 
 // MARK: - CollectionView Data Source
 extension ViewController: UIScrollViewDelegate, UICollectionViewDelegate{
