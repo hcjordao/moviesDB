@@ -253,10 +253,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
         let destination: SearchViewController = main.instantiateViewController(withIdentifier: "search") as! SearchViewController
         destination.searchText =  seachBar.text
-    DispatchQueue.main.async(execute: {
-    self.present(destination, animated: true, completion: { 
+    //DispatchQueue.main.async(execute: {
+    self.present(destination, animated: true, completion: nil)
         
-    })    });
+    //})    });
     }
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

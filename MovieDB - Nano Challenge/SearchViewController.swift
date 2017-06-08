@@ -69,7 +69,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
-        self.returnToMain()
+        //self.returnToMain()
         
         
         
@@ -81,10 +81,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
         let destination: ViewController = main.instantiateViewController(withIdentifier: "MoviesInTheater") as! ViewController
         
-        DispatchQueue.main.async(execute: {
-            self.present(destination, animated: true, completion: {
+        //DispatchQueue.main.async(execute: {
+            self.present(destination, animated: true, completion:nil)
                 
-            })    });
+            //})    });
     }
 
 
@@ -95,18 +95,23 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
         //let paddingSpace = sectionInsets.left
-        let availableWidth = view.frame.width //- paddingSpace
+        let availableWidth = collectionView.frame.size.width //- paddingSpace
         let widthPerItem = availableWidth
+        
         
         return CGSize(width: widthPerItem, height: 267)
     }
     
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
-    }
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 20.0
+//    }
     
     // 4
 //    func collectionView(_ collectionView: UICollectionView,
