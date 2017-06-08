@@ -24,6 +24,21 @@ class Movie: AnyObject {
     let director: String!
     let backDropPath: String!
     
+    init() {
+        originalTitle = ""
+        releaseDate = ""
+        castList = [Actors()] // depois
+        language = ""
+        duration = 0 // depois
+        overview = ""
+        posterPath = ""
+        genres = []
+        rating = 0
+        id = 0
+        movieImages = [Images()]
+        director = ""
+        backDropPath = ""
+    }
     
     
     init(originalTitle:String, releaseDate:String, language:String, overview:String, posterPath:String, genres:Array<Any>, rating:Float, id:Int, backGround:String) {
@@ -66,7 +81,14 @@ class Movie: AnyObject {
         
     }
     
-    
+    func getYearFromReleaseDate() -> String {
+        
+        let index = self.releaseDate.index(self.releaseDate.startIndex, offsetBy:4)
+
+        let year = " (" + self.releaseDate.substring(to: index) + ")"
+        
+        return year
+    }
     
     private func setMovieGendersByIdAndSearchForName(genders:Array<Any>)->[String]{
         
