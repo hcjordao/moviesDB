@@ -150,30 +150,37 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
         //let paddingSpace = sectionInsets.left
-        let availableWidth = collectionView.frame.size.width //- paddingSpace
+        var availableWidth: CGFloat = 0
+        if view.frame.size.width < 700{
+            availableWidth = collectionView.frame.size.width
+        }
+        else{
+            availableWidth = collectionView.frame.size.width / 2
+            
+        }
         let widthPerItem = availableWidth
+         //- paddingSpace
         
         
         return CGSize(width: widthPerItem, height: 287)
     }
     
     
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 20.0
-//    }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 15, left: 10, bottom: 0, right: 10)
+    }
+    
+    
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    
     
     // 4
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return sectionInsets.left
-//    }
+ 
     
     
     override func didReceiveMemoryWarning() {
@@ -191,9 +198,13 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return 1;
-        
+        if view.frame.size.width > 700{
+            
+            return 2
+        }
+        else {
+            return 1;
+        }
         
     }
     
@@ -218,15 +229,26 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         
         let cell: CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! CollectionViewCell
+        if view.frame.size.width > 700{
+            cell.initWithContent(cellMovie: movieArray.movieArray[indexPath.item + indexPath.section])
+        }
+        else{
+            
+            cell.initWithContent(cellMovie: movieArray.movieArray[indexPath.section])
+        }
         
-        cell.initWithContent(cellMovie: movieArray.movieArray[indexPath.section])
         
        
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if view.frame.size.width > 700{
+            return self.movieArray.movieArray.count / 2
+        }
+        else{
+             return self.movieArray.movieArray.count
+        }
         
-        return self.movieArray.movieArray.count
         
         //return 10
     }
