@@ -15,11 +15,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 	@IBOutlet var mainCollectionView: UICollectionView!
 	@IBOutlet var MyMoviesButton: UIButton!
     
-    //Shadows
-    //Activity
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var shadowView1: UIView!
+    
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieYear: UILabel!
 	
+    @IBOutlet weak var activity: UIActivityIndicatorView!
 	@IBOutlet var star1: UIImageView!
 	@IBOutlet var star2: UIImageView!
 	@IBOutlet var star3: UIImageView!
@@ -48,20 +51,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		mainCollectionView.dataSource = self
 		mainCollectionView.prefetchDataSource = self
 		
-		refreshRating(rating: 5.0, isUserRating: false)
         searchBar.isHidden = true
-		
-       //start loading animation
-        //install shadows
+		activity.startAnimating()
+        self.shadowView.installShadow2()
+        self.shadowView1.installShadow1()
+        
         
         let swipeHorizontalRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeHorizontalRight.direction = UISwipeGestureRecognizerDirection.right
         let swipeHorizontalLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeHorizontalLeft.direction = UISwipeGestureRecognizerDirection.left
         
-//        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        
-        //mainCollectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
         mainCollectionView?.addGestureRecognizer(swipeHorizontalRight)
         mainCollectionView?.addGestureRecognizer(swipeHorizontalLeft)
         
@@ -71,8 +71,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         
             requester.getMoviesInTheaterInformation(search: .CurrentTheaterSearch, movieName: "") { (movieList) in
             
-                //poster array to load images
-                
             for movie in movieList.movieArray{
                 let image: UIImage = self.requester.getImageFromImageUrl(semiPath: movie.posterPath, size: -1)
                 self.posterArray.append(image)
@@ -81,13 +79,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
             self.nowPlayingMoviesModel = movieList
             self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: 0)
             self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: self.nowPlayingMoviesModel.movieArray.count)
-            //self.movieTitle.text = self.nowPlayingMoviesModel.movieArray[1].originalTitle
-            //self.movieYear.text = self.nowPlayingMoviesModel.movieArray[1].getYearFromReleaseDate()
             
             DispatchQueue.main.async { // Telling the code to run in the main thread
                 self.mainCollectionView.reloadData()
-    
+                self.activity.stopAnimating()
+                self.activity.isHidden = true
             }
+                
                 var threeMovies: [Movie] = []
                 //threeMovies.append(self.nowPlayingMoviesModel.movieArray[0])
                 threeMovies.append(self.nowPlayingMoviesModel.movieArray[1])
@@ -96,21 +94,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
                 
                 let encodedData = NSKeyedArchiver.archivedData(withRootObject: threeMovies)
                 UserDefaults.standard.set(encodedData, forKey: "moviesInTheatre")
-
-            
-            
             }
         }
         
         else {
-            
-            
             self.nowPlayingMoviesModel = MovieModel()
             
             if let data = UserDefaults.standard.data(forKey: "moviesInTheatre"),
                 let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
                 print(MovieList.count)
-                
                 
                 self.nowPlayingMoviesModel.movieArray = MovieList
                 self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: 0)
@@ -118,32 +110,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
                 self.movieTitle.text = self.nowPlayingMoviesModel.movieArray[1].originalTitle
                 self.movieYear.text = self.nowPlayingMoviesModel.movieArray[1].getYearFromReleaseDate()
                 
-                
-                
-                
-               
                 for people in MovieList{
                     print(people.originalTitle)
-                    
-                    
                 }
              DispatchQueue.main.async {
                 self.mainCollectionView.reloadData()
-                
                 }
-                
             } else {
                 print("There is an issue")
             }
-            
-            
-            
-            
             print("Internet Connection not Available!")
-            
-            
-            
-            
         }
             
         
@@ -191,8 +167,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
                         self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.origin.y = (self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.origin.y)! - offsetOriginY
                         
                     })
-                    
-                    
                 }
             case UISwipeGestureRecognizerDirection.left:
                 if(self.middleCellIndex.item < self.mainCollectionView.numberOfItems(inSection: 0) - 2){
@@ -237,10 +211,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         if let cell: MainScreenCollectionViewCell = (self.mainCollectionView.cellForItem(at: middleCellIndex) as? MainScreenCollectionViewCell) {
             if(middleCellIndex.item != 0 ){
                 self.movieTitle.text = cell.movie?.originalTitle
+                
+                if (self.stackView.frame.origin.x < self.view.bounds.origin.x){
+                    self.stackView.frame.origin.x = self.view.bounds.origin.x
+                }
+                
                 self.movieYear.text = cell.movie?.getYearFromReleaseDate()
-                print(self.middleCellIndex)
-                print(self.movieTitle.text)
-                print(self.movieYear.text)
+                self.refreshRating(rating: CGFloat((cell.movie?.rating)!), isUserRating: false)
             }
         }
     }
@@ -249,7 +226,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         
         searchBar.isHidden = false
         searchBar.backgroundImage = UIImage()
-//        searchBar.showsCancelButton = true
         searchBar.tintColor = UIColor.white
         self.lupaItem.isHidden = true
         
@@ -273,7 +249,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		
 		let movieRating = rating / 2
 		
-		if isUserRating {
+		if !isUserRating {
 			switch movieRating {
 			case 4.76...5.0:
 				star5.image = UIImage(named: "averageStarFull")
@@ -405,7 +381,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		// return movieModel.movies.count
 		return nowPlayingMoviesModel.movieArray.count
 	}
 	
@@ -538,6 +513,25 @@ extension ViewController: UIScrollViewDelegate, UICollectionViewDelegate{
             self.refreshRating(rating: CGFloat(self.nowPlayingMoviesModel.movieArray[6].rating), isUserRating: false)
             self.onlyOnce = true
         }
+    }
+}
+
+extension UIView {
+    func installShadow2() {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0 , height: 4)
+        layer.shadowOpacity = 0.4
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        layer.shadowRadius = 1.0
+    }
+    func installShadow1() {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0 , height: 2)
+        layer.shadowOpacity = 1
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        layer.shadowRadius = 1.0
     }
 }
 
