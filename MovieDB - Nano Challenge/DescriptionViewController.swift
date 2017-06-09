@@ -138,11 +138,14 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
             
             if(self.movie.userPhoto != nil){
                 
-                
+                self.cast =  self.movie.castList
                 self.userAlreadyWatched = true
                 self.refreshRating(rating: CGFloat(self.movie.rating), isUserRating: true)
                 self.personMovieWatchedImage.image = self.movie.userPhoto
                 self.cameraViewImage.isHidden = true
+                 self.collectionViewActors.reloadData()
+                
+                
                 
             }else{
                 
@@ -153,6 +156,8 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
             }
             
             self.settingMovieInformationToLabelsWithMovie(movie: self.movie)
+            self.verifyingConstraintsForIpadDevice()
+            self.collectionViewActors.reloadData()
             
         }
         

@@ -125,11 +125,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         
     }
     
-    
-    @IBAction func unwintToMoviesInTheater(segue: UIStoryboardSegue){
+    @IBAction func descriptionPressed(_ sender: Any) {
+        
+        goToDescription(movie: (self.mainCollectionView.cellForItem(at: middleCellIndex) as! MainScreenCollectionViewCell).movie!)
+        
+        
         
         
     }
+    
+    
 	
     func handleSwipe(gesture:UIGestureRecognizer) -> Void {
         

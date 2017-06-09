@@ -13,7 +13,7 @@
         <!--description-->
         <scene sceneID="9Zs-22-jGL">
             <objects>
-                <viewController title="description" id="2MT-J9-QOv" customClass="DescriptionViewController" customModule="MovieDB___Nano_Challenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="description" title="description" id="2MT-J9-QOv" customClass="DescriptionViewController" customModule="MovieDB___Nano_Challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Osx-r3-iKB"/>
                         <viewControllerLayoutGuide type="bottom" id="MtG-vC-6st"/>
@@ -28,6 +28,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9er-rm-b9j">
                                         <rect key="frame" x="175" y="26" width="25" height="14"/>
                                         <state key="normal" image="closeWindow"/>
+                                        <connections>
+                                            <action selector="buttonToExtiPressed:" destination="2MT-J9-QOv" eventType="touchUpInside" id="nOm-Np-7It"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.4995305538" green="0.063728220759999996" blue="0.37158352140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -432,9 +435,9 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="wBq-Aq-FaE"/>
                                                 <exclude reference="OrZ-gS-z9p"/>
                                                 <exclude reference="hPL-T5-Mha"/>
+                                                <exclude reference="wBq-Aq-FaE"/>
                                                 <exclude reference="Zs0-r2-3zH"/>
                                                 <exclude reference="2G4-ds-bgO"/>
                                                 <exclude reference="QXL-xt-AbL"/>
@@ -443,15 +446,15 @@
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <mask key="constraints">
-                                                <exclude reference="MPe-U0-3LL"/>
-                                                <exclude reference="ikg-tI-rhD"/>
-                                                <include reference="wBq-Aq-FaE"/>
                                                 <include reference="OrZ-gS-z9p"/>
                                                 <exclude reference="fjR-BE-OId"/>
                                                 <exclude reference="ksj-pF-ei1"/>
                                                 <exclude reference="ek4-04-U2T"/>
                                                 <include reference="hPL-T5-Mha"/>
                                                 <exclude reference="tz8-32-FkW"/>
+                                                <exclude reference="MPe-U0-3LL"/>
+                                                <exclude reference="ikg-tI-rhD"/>
+                                                <include reference="wBq-Aq-FaE"/>
                                                 <exclude reference="6wT-8f-ddZ"/>
                                                 <exclude reference="CbA-7J-Soz"/>
                                                 <include reference="Zs0-r2-3zH"/>
@@ -894,6 +897,9 @@
                                             <constraint firstAttribute="width" constant="25" id="vLm-fQ-EoI"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="disclosureIndicator"/>
+                                        <connections>
+                                            <action selector="descriptionPressed:" destination="bxX-xU-rgy" eventType="touchUpInside" id="yYP-vS-hLk"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.49803921568627452" green="0.062745098039215685" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
