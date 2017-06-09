@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SystemConfiguration
 
-class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate{
 
 	@IBOutlet var searchBar: UISearchBar!
 	@IBOutlet var mainCollectionView: UICollectionView!
@@ -48,15 +49,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		refreshRating(rating: 5.0, isUserRating: false)
         searchBar.isHidden = true
 		
-        //self.navigationItem.leftBarButtonItem
-		
-        //searchBar.backgroundColor =  UIColor.init(colorLiteralRed: 127/255, green: 15/255, blue: 95/255, alpha: 1.0)
-        //let screenSize = UIScreen.main.bounds.size
-        //let cellWidth = floor(screenSize.width * 0.6)
-        //let cellHeight = floor(screenSize.height * 0.4)
-//        let insetX = (view.bounds.width - cellWidth)/2.0
-//        let insetY = (view.bounds.height - cellHeight)/2.0
-//        let layout = mainCollectionView!.collectionViewLayout as! UICollectionViewFlowLayout
+       
         
         let swipeHorizontalRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeHorizontalRight.direction = UISwipeGestureRecognizerDirection.right
@@ -69,14 +62,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         mainCollectionView?.addGestureRecognizer(swipeHorizontalRight)
         mainCollectionView?.addGestureRecognizer(swipeHorizontalLeft)
         
-        self.nowPlayingMoviesModel = MovieModel()
+        if Reachability.isConnectedToNetwork() == true {
         
-        requester.getMoviesInTheaterInformation(search: .CurrentTheaterSearch, movieName: "") { (movieList) in
+            self.nowPlayingMoviesModel = MovieModel()
+        
+            requester.getMoviesInTheaterInformation(search: .CurrentTheaterSearch, movieName: "") { (movieList) in
             
-//            for movie in movieList.movieArray{
-//                let image: UIImage = self.requester.getImageFromImageUrl(semiPath: movie.posterPath, size: -1)
-//                self.posterArray.append(image)
-//            }
             
             self.nowPlayingMoviesModel = movieList
             self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: 0)
@@ -86,13 +77,67 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
             
             DispatchQueue.main.async { // Telling the code to run in the main thread
                 self.mainCollectionView.reloadData()
-                
-                //self.updateMovieLabels()
-                
+    
 
             }
+                var threeMovies: [Movie] = []
+                //threeMovies.append(self.nowPlayingMoviesModel.movieArray[0])
+                threeMovies.append(self.nowPlayingMoviesModel.movieArray[1])
+                threeMovies.append(self.nowPlayingMoviesModel.movieArray[2])
+                threeMovies.append(self.nowPlayingMoviesModel.movieArray[3])
+                
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: threeMovies)
+                UserDefaults.standard.set(encodedData, forKey: "moviesInTheatre")
+
+            
             
         }
+        }
+        
+        else {
+            
+            
+            self.nowPlayingMoviesModel = MovieModel()
+            
+            if let data = UserDefaults.standard.data(forKey: "moviesInTheatre"),
+                let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
+                print(MovieList.count)
+                
+                
+                self.nowPlayingMoviesModel.movieArray = MovieList
+                self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: 0)
+                self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: self.nowPlayingMoviesModel.movieArray.count)
+                self.movieTitle.text = self.nowPlayingMoviesModel.movieArray[1].originalTitle
+                self.movieYear.text = self.nowPlayingMoviesModel.movieArray[1].getYearFromReleaseDate()
+                
+                
+                
+                
+               
+                for people in MovieList{
+                    print(people.originalTitle)
+                    
+                    
+                }
+             DispatchQueue.main.async {
+                self.mainCollectionView.reloadData()
+                
+                }
+                
+            } else {
+                print("There is an issue")
+            }
+            
+            
+            
+            
+            print("Internet Connection not Available!")
+            
+            
+            
+            
+        }
+            
         
     }
 	
@@ -326,6 +371,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		
 		cell.loadDefaultImg()
 		cell.setCellMovie(movie: nowPlayingMoviesModel.movieArray[indexPath.item])
+        
+        
+        
 		//        if(indexPath.item > 0){
 		//                cell.movieImageView.image = posterArray[indexPath.row-1]
 		//        }
@@ -382,7 +430,51 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		self.lupaItem.isHidden = false
 	}
 	
+    
+    
 }
+
+public class Reachability {
+    
+    class func isConnectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
+            return false
+        }
+        
+        /* Only Working for WIFI
+         let isReachable = flags == .reachable
+         let needsConnection = flags == .connectionRequired
+         
+         return isReachable && !needsConnection
+         */
+        
+        // Working for Cellular and WIFI
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        let ret = (isReachable && !needsConnection)
+        
+        return ret
+        
+    }
+}
+
+
+
+
+
+
 
 // MARK: - CollectionView Data Source
 extension ViewController: UIScrollViewDelegate, UICollectionViewDelegate{

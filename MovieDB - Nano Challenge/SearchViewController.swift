@@ -154,7 +154,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         let widthPerItem = availableWidth
         
         
-        return CGSize(width: widthPerItem, height: 267)
+        return CGSize(width: widthPerItem, height: 287)
     }
     
     

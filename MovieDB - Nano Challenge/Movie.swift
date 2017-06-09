@@ -23,6 +23,8 @@ class Movie:  NSObject, NSCoding {
     var movieImages:[Images]!
     var director: String!
     var backDropPath: String!
+    var userPhoto: UIImage!
+    
     
     override init() {
         
@@ -40,6 +42,7 @@ class Movie:  NSObject, NSCoding {
         movieImages = [Images()]
         director = ""
         backDropPath = ""
+        userPhoto = UIImage()
         super.init()
     }
     
@@ -54,6 +57,7 @@ class Movie:  NSObject, NSCoding {
         self.posterPath = posterPath
         self.rating = rating
         self.id = id
+        self.userPhoto = UIImage()
         self.castList = nil
         self.duration = nil
         self.movieImages = nil
@@ -79,6 +83,7 @@ class Movie:  NSObject, NSCoding {
         self.movieImages = movieImages
         self.director = director
         self.backDropPath = backGroung
+        self.userPhoto = UIImage()
         self.genres = self.setMovieGendersById(genders: genres)
        
         
@@ -142,11 +147,12 @@ class Movie:  NSObject, NSCoding {
         self.id = decoder.decodeInteger(forKey: "id")
         
         self.duration = decoder.decodeObject(forKey: "duration") as? Int
-        self.movieImages = decoder.decodeObject(forKey: "image") as? [Images] ?? []
+        //self.movieImages = decoder.decodeObject(forKey: "image") as? [Images] ?? []
         self.director = decoder.decodeObject(forKey: "director") as? String ?? ""
         self.backDropPath = decoder.decodeObject(forKey: "backDropPath") as? String ?? ""
         self.genres = decoder.decodeObject(forKey: "genres") as! [String]
         self.castList = decoder.decodeObject(forKey: "castList") as? [Actors] ?? []
+        self.userPhoto = decoder.decodeObject(forKey: "userPhoto") as? UIImage 
 
 
     }
@@ -161,11 +167,13 @@ class Movie:  NSObject, NSCoding {
         coder.encode(rating, forKey: "rating")
         coder.encode(id, forKey: "id")
         coder.encode(duration, forKey: "duration")
-        coder.encode(movieImages, forKey: "image")
+        //coder.encode(movieImages, forKey: "image")
         coder.encode(director, forKey: "director")
         coder.encode(backDropPath, forKey: "backDropPath")
         coder.encode(genres, forKey: "genres")
         coder.encode(castList, forKey: "castList")
+        
+        coder.encode(userPhoto, forKey:"userPhoto")
 
     }
     

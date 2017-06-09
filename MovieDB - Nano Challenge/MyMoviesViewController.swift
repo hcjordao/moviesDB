@@ -12,7 +12,10 @@ class MyMoviesViewController: UIViewController, UICollectionViewDelegate, UIColl
 	
 	let transition = TransitionAnimator()
 	
-
+    var watchedMovies: [Movie]! = []
+    
+    
+    
 	@IBOutlet var lupaIcon: UIButton!
 	@IBOutlet var searchBar2: UISearchBar!
 	
@@ -31,6 +34,20 @@ class MyMoviesViewController: UIViewController, UICollectionViewDelegate, UIColl
 		
 		searchBar2.delegate = self
 		searchBar2.isHidden = true
+        
+        if let data = UserDefaults.standard.data(forKey: "watchedMovies"),
+            let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
+           self.watchedMovies = MovieList
+        }
+        DispatchQueue.main.async {
+           self.myMoviesCollectionView.reloadData()
+            
+        }
+
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,18 +97,18 @@ class MyMoviesViewController: UIViewController, UICollectionViewDelegate, UIColl
 	
 //MARK: - Collection view Methods
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
-		return 1
+		return self.watchedMovies.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		// Placeholder
-		return 3
+		return 1
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = myMoviesCollectionView.dequeueReusableCell(withReuseIdentifier: "myMovieCell", for: indexPath) as! MyMoviesCollectionViewCell
 		
-		cell.loadCell()
+		cell.loadCell(cellMovie: watchedMovies[indexPath.section] )
 		
 		return cell
 	}
