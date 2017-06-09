@@ -42,7 +42,7 @@ class Movie:  NSObject, NSCoding {
         movieImages = [Images()]
         director = ""
         backDropPath = ""
-        userPhoto = UIImage()
+        userPhoto = nil
         super.init()
     }
     
@@ -57,7 +57,7 @@ class Movie:  NSObject, NSCoding {
         self.posterPath = posterPath
         self.rating = rating
         self.id = id
-        self.userPhoto = UIImage()
+        self.userPhoto = nil
         self.castList = nil
         self.duration = nil
         self.movieImages = nil
@@ -83,7 +83,7 @@ class Movie:  NSObject, NSCoding {
         self.movieImages = movieImages
         self.director = director
         self.backDropPath = backGroung
-        self.userPhoto = UIImage()
+        self.userPhoto = nil
         self.genres = self.setMovieGendersById(genders: genres)
        
         
@@ -147,7 +147,7 @@ class Movie:  NSObject, NSCoding {
         self.id = decoder.decodeInteger(forKey: "id")
         
         self.duration = decoder.decodeObject(forKey: "duration") as? Int
-        //self.movieImages = decoder.decodeObject(forKey: "image") as? [Images] ?? []
+        self.movieImages = decoder.decodeObject(forKey: "image") as? [Images] ?? []
         self.director = decoder.decodeObject(forKey: "director") as? String ?? ""
         self.backDropPath = decoder.decodeObject(forKey: "backDropPath") as? String ?? ""
         self.genres = decoder.decodeObject(forKey: "genres") as! [String]

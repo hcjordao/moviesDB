@@ -14,6 +14,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     
     var searchText: String!
     let transition = TransitionAnimator()
+    var previewMovie:String!
+    
     
     @IBOutlet weak var mySearchBar: UISearchBar!
 	
@@ -65,6 +67,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         //self.navigationItem.titleView = searchBar
         
         let myRequestsManeger = RequestsManager()
+        
+        
+        
+        
         myRequestsManeger.getMoviesInTheaterInformation(search: .NameSearch, movieName: searchText) { (movieList) in
             
             
@@ -151,13 +157,13 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         //2
         //let paddingSpace = sectionInsets.left
         var availableWidth: CGFloat = 0
-        if view.frame.size.width < 700{
-            availableWidth = collectionView.frame.size.width
-        }
-        else{
-            availableWidth = collectionView.frame.size.width / 2
+//        if view.frame.size.width < 700{
+//            availableWidth = collectionView.frame.size.width
+//        }
+//        else{
+            availableWidth = collectionView.frame.size.width /// 2
             
-        }
+       // }
         let widthPerItem = availableWidth
          //- paddingSpace
         
@@ -166,12 +172,12 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     }
     
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 15, left: 10, bottom: 0, right: 10)
-    }
-    
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 15, left: 10, bottom: 0, right: 10)
+//    }
+//    
     
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
@@ -198,13 +204,13 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if view.frame.size.width > 700{
-            
-            return 2
-        }
-        else {
+//        if view.frame.size.width > 700{
+//            
+//            return 2
+//        }
+//        else {
             return 1;
-        }
+        //}
         
     }
     
@@ -229,30 +235,59 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         
         let cell: CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! CollectionViewCell
-        if view.frame.size.width > 700{
-            cell.initWithContent(cellMovie: movieArray.movieArray[indexPath.item + indexPath.section])
-        }
-        else{
-            
+//        if view.frame.size.width > 700{
+//            cell.initWithContent(cellMovie: movieArray.movieArray[indexPath.item + indexPath.section])
+//        }
+//        else{
+        
             cell.initWithContent(cellMovie: movieArray.movieArray[indexPath.section])
-        }
+        
+        
+//        DispatchQueue.main.async {
+//        
+//         self.movieArray.movieArray[indexPath.section] =  cell.moveInfoToReturn
+//    
+//        }
         
         
        
         return cell
     }
+    
+    
+    
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if view.frame.size.width > 700{
-            return self.movieArray.movieArray.count / 2
-        }
-        else{
+        //if view.frame.size.width > 700{
+//            return self.movieArray.movieArray.count / 2
+//        }
+//        else{
              return self.movieArray.movieArray.count
-        }
+        //}
         
         
         //return 10
     }
     
+    func goToDescription(movie: Movie) {
+        
+        let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
+        let destination: DescriptionViewController = main.instantiateViewController(withIdentifier: "description") as! DescriptionViewController
+        destination.movie = movie
+        destination.viewIdentifier = "search"
+        self.present(destination, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        goToDescription(movie: movieArray.movieArray[indexPath.section])
+        
+    }
+
     
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        //return searchController

@@ -63,7 +63,35 @@ class MyMoviesViewController: UIViewController, UICollectionViewDelegate, UIColl
 	}
 	
 //MARK: - SearchBar methods
-	@IBAction func lupaIconPressed(_ sender: UIButton) {
+	
+    @IBAction func unwindToMyMovies(segue: UIStoryboardSegue){
+        
+        
+        
+    }
+    
+    
+    func goToDescription(movie: Movie) {
+        
+        let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
+        let destination: DescriptionViewController = main.instantiateViewController(withIdentifier: "description") as! DescriptionViewController
+        destination.movie = movie
+        destination.viewIdentifier = "MyMoviesViewController"
+        self.present(destination, animated: true, completion: nil)
+        
+    }
+    
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        self.goToDescription(movie: nowPlayingMoviesModel.movieArray[indexPath.item + 1])
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.goToDescription(movie: watchedMovies[indexPath.section])
+    }
+    
+    
+    @IBAction func lupaIconPressed(_ sender: UIButton) {
 		searchBar2.isHidden = false
 		searchBar2.backgroundImage = UIImage()
 		searchBar2.tintColor = UIColor.white

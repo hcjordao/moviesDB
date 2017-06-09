@@ -54,6 +54,10 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     var cast:[Actors] = []
     var id:Int!
     
+    
+    var viewIdentifier: String!
+    var userRating = -1
+    
     var userAlreadyWatched = false
     
     var currentUserAverageForMovie:Int!
@@ -89,23 +93,21 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         
         // verifiy user defaults!
         
-        self.userAlreadyWatched = true
+       
         
         self.contentView.backgroundColor = UIColor.clear
         
         self.setGradientBackground()
         
         
-        self.id = 671
-        
-        
         
         // Movie does not have all information
         
-        if(true){
+        if(self.movie.duration == nil){
             
             
-            self.requestest.getMovieInformationByMovieId(movieID: self.id) { (Movie) in
+            
+            self.requestest.getMovieInformationByMovieId(movieID: self.movie.id) { (Movie) in
                 
                 
                 self.movie = Movie
@@ -127,12 +129,28 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
                 
             }
             
-            
+            self.refreshRating(rating: CGFloat(self.movie.rating), isUserRating: false)
             
             
         }
         
         else{
+            
+            if(self.movie.userPhoto != nil){
+                
+                
+                self.userAlreadyWatched = true
+                self.refreshRating(rating: CGFloat(self.movie.rating), isUserRating: true)
+                self.personMovieWatchedImage.image = self.movie.userPhoto
+                self.cameraViewImage.isHidden = true
+                
+            }else{
+                
+                
+               
+                self.refreshRating(rating: CGFloat(self.movie.rating), isUserRating: false)
+                
+            }
             
             self.settingMovieInformationToLabelsWithMovie(movie: self.movie)
             
@@ -145,6 +163,36 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     }
     
     
+    
+    func goToViewController( ) {
+        
+        
+        let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
+        switch(self.viewIdentifier){
+            
+        case "MoviesInTheater":
+            let destination = main.instantiateViewController(withIdentifier: self.viewIdentifier) as! ViewController
+             self.present(destination, animated: true, completion: nil)
+            break
+        case "MyMoviesViewController":
+            let destination = main.instantiateViewController(withIdentifier: self.viewIdentifier) as! MyMoviesViewController
+            self.present(destination, animated: true, completion: nil)
+            break
+        default:
+            let destination = main.instantiateViewController(withIdentifier: self.viewIdentifier) as! SearchViewController
+            destination.searchText = self.movie.originalTitle
+            self.present(destination, animated: true, completion: nil)
+            
+            break
+            
+            
+        }
+        
+        
+       
+        
+    }
+    
     func settingMovieInformationToLabelsWithMovie(movie:Movie){
         
         self.cast = self.movie.castList
@@ -156,7 +204,7 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         self.backgroundImgForMovie.image = self.requestest.getImageFromImageUrl(semiPath: self.movie.backDropPath, size: 500)
         self.setGenderAndMovieDurationToLabel()
         self.movieDirector.text = self.movie.director
-        self.refreshRating(rating: CGFloat(self.movie.rating), isUserRating: false)
+        
         
         self.collectionViewActors.reloadData()
         
@@ -263,9 +311,43 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     
     
     
-    /************ PICKER METHODS *******************/
    
+    @IBAction func buttonToExtiPressed(_ sender: Any) {
+        
+        if self.userRating != -1{
+            if let data = UserDefaults.standard.data(forKey: "watchedMovies"),
+                let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
+                
+                var index = -1
+                for movie in MovieList{
+                    if self.movie.id == movie.id{
+                        index = MovieList.index(of: movie)!
+                        
+                    }
+                    
+                }
+                
+                MovieList[index].rating = Float(userRating)
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: MovieList)
+                UserDefaults.standard.set(encodedData, forKey: "watchedMovies")
+                
+                
+                
+            
+        }
+        
+        
+            
+            
+            
+        }
+        
+        self.goToViewController()
+        
+    }
     
+    
+    /************ PICKER METHODS *******************/
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
@@ -355,6 +437,8 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
             self.currentUserAverageForMovie = 1
             resetRating()
             refreshRating(rating: CGFloat(1), isUserRating: true)
+            self.userRating = 1
+
             
         }
     }
@@ -369,6 +453,7 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
             self.currentUserAverageForMovie = 2
             resetRating()
             refreshRating(rating: CGFloat(2), isUserRating: true)
+            self.userRating = 2
             
             
         }
@@ -383,6 +468,7 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
             self.currentUserAverageForMovie = 3
             resetRating()
             refreshRating(rating: CGFloat(3), isUserRating: true)
+            self.userRating = 3
 
             
         }
@@ -395,6 +481,7 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
             self.currentUserAverageForMovie = 4
             resetRating()
             refreshRating(rating: CGFloat(4), isUserRating: true)
+            self.userRating = 4
         }
     }
     
@@ -408,6 +495,7 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
             self.currentUserAverageForMovie = 5
             resetRating()
             refreshRating(rating: CGFloat(5), isUserRating: true)
+            self.userRating = 5
 
         }
         
@@ -568,15 +656,35 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
         
+        var alreadyWatched = false
+        self.userAlreadyWatched = true
+        
         selectedView.image = image
         self.cameraViewImage.isHidden = true
+        self.movie.userPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+
         
         
         if let data = UserDefaults.standard.data(forKey: "watchedMovies"),
         let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
-        self.movie.userPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
-        var watchedMovies: [Movie] = MovieList
-        watchedMovies.append(self.movie)
+        
+            var watchedMovies: [Movie] = MovieList
+        
+            for movie in watchedMovies{
+                
+                if(self.movie.id == movie.id){
+                    
+                    alreadyWatched = true
+                    let index = watchedMovies.index(of: movie)
+                    watchedMovies[index!] = self.movie
+                }
+            }
+           
+            if(!alreadyWatched){
+             
+                
+                watchedMovies.append(self.movie)
+            }
         
         let encodedData = NSKeyedArchiver.archivedData(withRootObject: watchedMovies)
         UserDefaults.standard.set(encodedData, forKey: "watchedMovies")
@@ -607,15 +715,11 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         }
         
         
+            
         
         }
         
-        dismiss(animated: true) {
-        
-        
-        
-        }
-    
+      
  }
     
     func setShadowToFakeNavBar(){

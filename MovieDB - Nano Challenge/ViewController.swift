@@ -148,6 +148,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
             
         
     }
+    
+    
+    @IBAction func unwintToMoviesInTheater(segue: UIStoryboardSegue){
+        
+        
+    }
 	
     func handleSwipe(gesture:UIGestureRecognizer) -> Void {
         
@@ -413,8 +419,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MainScreenCollectionViewCell
 		cell.setCellMovie(movie: nowPlayingMoviesModel.movieArray[indexPath.item])
         
-        if(indexPath.item > 0 && indexPath.item < self.mainCollectionView.numberOfItems(inSection: 0) - 1){
+        if(indexPath.item > 0 && indexPath.item < self.mainCollectionView.numberOfItems(inSection: 0) - 1 && Reachability.isConnectedToNetwork()){
             cell.movieImageView.image = posterArray[indexPath.row - 1]
+        } else{
+            
+            
+            cell.movieImageView.image = requester.getImageFromImageUrl(semiPath: (cell.movie?.posterPath)!, size: -1)
+                
+            
         }
         
         if(indexPath.item == 0 || indexPath.item == self.mainCollectionView.numberOfItems(inSection: 0) - 1){
@@ -422,8 +434,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         }
         
         
-        if(indexPath.item == 6 && self.middleCellIndex == nil){
-            self.middleCellIndex = IndexPath(item: 6, section: 0)
+        if(indexPath.item == 2 && self.middleCellIndex == nil){
+            self.middleCellIndex = IndexPath(item: 2, section: 0)
             let pastHeight = cell.frame.height
             
             cell.transform = CGAffineTransform(scaleX: 1.075  , y: 1.14)
@@ -437,6 +449,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         
         return cell
 	}
+    
+    func goToDescription(movie: Movie) {
+        
+        let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
+        let destination: DescriptionViewController = main.instantiateViewController(withIdentifier: "description") as! DescriptionViewController
+        destination.movie = movie
+        destination.viewIdentifier = "MoviesInTheater"
+        self.present(destination, animated: true, completion: nil)
+        
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.goToDescription(movie: nowPlayingMoviesModel.movieArray[indexPath.item])
+    }
+    
 	
 // MARK: - SearchBar Settings
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -531,11 +559,11 @@ extension ViewController: UIScrollViewDelegate, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if self.onlyOnce == false {
-            let indexToScrollTo = IndexPath(item: 6, section: 0)
-            self.movieTitle.text = self.nowPlayingMoviesModel.movieArray[6].originalTitle
-            self.movieYear.text = self.nowPlayingMoviesModel.movieArray[6].getYearFromReleaseDate()
+            let indexToScrollTo = IndexPath(item: 2, section: 0)
+            self.movieTitle.text = self.nowPlayingMoviesModel.movieArray[2].originalTitle
+            self.movieYear.text = self.nowPlayingMoviesModel.movieArray[2].getYearFromReleaseDate()
             self.mainCollectionView.scrollToItem(at: indexToScrollTo, at: .centeredHorizontally, animated: false)
-            self.refreshRating(rating: CGFloat(self.nowPlayingMoviesModel.movieArray[6].rating), isUserRating: false)
+            self.refreshRating(rating: CGFloat(self.nowPlayingMoviesModel.movieArray[2].rating), isUserRating: false)
             self.onlyOnce = true
         }
     }

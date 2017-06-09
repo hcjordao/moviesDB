@@ -26,6 +26,7 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieDirector: UILabel!
     
     
+    var moveInfoToReturn:Movie!
     
     
     func initWithContent(cellMovie: Movie){
@@ -45,6 +46,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         request.getMovieInformationByMovieId(movieID: cellMovie.id) { (movieInfo) in
             
+            self.moveInfoToReturn = movieInfo
             
             if (movieInfo.director) != nil{
                 
