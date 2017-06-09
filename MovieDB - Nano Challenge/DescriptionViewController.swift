@@ -8,8 +8,9 @@
 
 import UIKit
 
-class DescriptionViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class DescriptionViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout{
 
+    @IBOutlet weak var fakeNavBar: UIView!
     
     @IBOutlet weak var movieTitle: UILabel!
     
@@ -19,7 +20,12 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    /** Constraints to modify **/
+    
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var distanceBetweenMovieTitleAndTextConstraint: NSLayoutConstraint!
+    
     
     @IBOutlet weak var contentView: UIView!
     
@@ -50,24 +56,36 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     
     var userAlreadyWatched = false
     
+    var currentUserAverageForMovie:Int!
+    
     let picker = UIImagePickerController()
     
-   
+    var iPadDevice = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(self.contentView.frame.size.width >= 768){
+            
+           self.iPadDevice = true
+        }else{
+            self.iPadDevice = false
+            
+        }
         
         self.collectionViewActors.delegate = self
         self.collectionViewActors.dataSource = self
         self.scrollView.delegate = self
         self.picker.delegate = self
         
+        
         self.requestest = RequestsManager()
         
         self.personMovieWatchedImage.layer.cornerRadius = 70/2
         self.personMovieWatchedImage.layer.masksToBounds = false
         self.personMovieWatchedImage.clipsToBounds = true
+        
+        self.setShadowToFakeNavBar()
         
         // verifiy user defaults!
         
@@ -80,47 +98,46 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         
         self.id = 671
         
-        self.requestest.getMovieInformationByMovieId(movieID: self.id) { (Movie) in
+        
+        
+        // Movie does not have all information
+        
+        if(true){
             
             
-            self.movie = Movie
-            
-            print(self.movie.overview)
-            
-            self.cast = self.movie.castList
-            
-            self.overviewLabel.text = self.movie.overview
-            
-            
-            self.heightConstraint.constant += self.overviewLabel.intrinsicContentSize.height
-            self.heightConstraint.constant += (4*self.movieTitle.intrinsicContentSize.height)
-            
-            
-            
-            self.movieTitle.text = self.movie.originalTitle
-            
-            
-            
-            
-            
-            DispatchQueue.main.async {
-            
+            self.requestest.getMovieInformationByMovieId(movieID: self.id) { (Movie) in
                 
-                self.backgroundImgForMovie.image = self.requestest.getImageFromImageUrl(semiPath: self.movie.backDropPath, size: 500)
-                self.setGenderAndMovieDurationToLabel()
-                self.movieDirector.text = self.movie.director
-                self.refreshRating(rating: CGFloat(self.movie.rating), isUserRating: false)
+                
+                self.movie = Movie
+                
+                
+                DispatchQueue.main.async {
+                    
+                    print(self.movie.overview)
+                    
+                    self.settingMovieInformationToLabelsWithMovie(movie: self.movie)
+                    
+                    self.collectionViewActors.reloadData()
+                    
+                    self.verifyingConstraintsForIpadDevice()
+                    
+                }
                 
                 
                 
             }
             
-
-        
             
-         self.collectionViewActors.reloadData()
-         
+            
+            
         }
+        
+        else{
+            
+            self.settingMovieInformationToLabelsWithMovie(movie: self.movie)
+            
+        }
+        
 
         
         
@@ -128,6 +145,48 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     }
     
     
+    func settingMovieInformationToLabelsWithMovie(movie:Movie){
+        
+        self.cast = self.movie.castList
+        
+        self.overviewLabel.text = self.movie.overview
+        
+        self.movieTitle.text = self.movie.originalTitle
+        
+        self.backgroundImgForMovie.image = self.requestest.getImageFromImageUrl(semiPath: self.movie.backDropPath, size: 500)
+        self.setGenderAndMovieDurationToLabel()
+        self.movieDirector.text = self.movie.director
+        self.refreshRating(rating: CGFloat(self.movie.rating), isUserRating: false)
+        
+        self.collectionViewActors.reloadData()
+        
+        
+        
+    }
+ 
+    
+    func verifyingConstraintsForIpadDevice(){
+        
+        if(!self.iPadDevice){
+            
+            
+            self.heightConstraint.constant += self.overviewLabel.intrinsicContentSize.height
+            self.heightConstraint.constant += (self.movieTitle.intrinsicContentSize.height)
+            
+            
+            
+        }
+        else{
+            
+            if(self.overviewLabel.intrinsicContentSize.height>=10){
+                
+                self.heightConstraint.constant+=(20+self.overviewLabel.intrinsicContentSize.height/3)
+                self.distanceBetweenMovieTitleAndTextConstraint.constant = (self.contentView.intrinsicContentSize.height*0.43)
+                
+            }
+        }
+        
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -138,10 +197,10 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellActors", for: indexPath) as! ActorsCostumCollectionViewCell
         
+        
+        
         cell.actorName.text =  self.movie.castList[indexPath.row].name
         cell.actorRole.text =  self.movie.castList[indexPath.row].role
-        
-        
 
         cell.actorImageView.image = self.requestest.getImageFromImageUrl(semiPath: self.movie.castList[indexPath.row].profilePath, size: 500)
         
@@ -264,6 +323,9 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     func settingImageToSpecificView(selectedView:UIImageView, info: [String : Any]){
         
         
+        
+        self.settingImageToUserDefault(selectedView: selectedView, info: info)
+        
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
             selectedView.image = image
@@ -290,6 +352,7 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         
         if(self.userAlreadyWatched){
             
+            self.currentUserAverageForMovie = 1
             resetRating()
             refreshRating(rating: CGFloat(1), isUserRating: true)
             
@@ -303,7 +366,7 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         
         if(self.userAlreadyWatched){
          
-            
+            self.currentUserAverageForMovie = 2
             resetRating()
             refreshRating(rating: CGFloat(2), isUserRating: true)
             
@@ -317,7 +380,7 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         
         if(self.userAlreadyWatched){
             
-            
+            self.currentUserAverageForMovie = 3
             resetRating()
             refreshRating(rating: CGFloat(3), isUserRating: true)
 
@@ -329,7 +392,7 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     @IBAction func buttonToStar4Pressed(_ sender: Any) {
         
         if(self.userAlreadyWatched){
-            
+            self.currentUserAverageForMovie = 4
             resetRating()
             refreshRating(rating: CGFloat(4), isUserRating: true)
         }
@@ -342,7 +405,7 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     @IBAction func buttonToStar5Pressed(_ sender: Any) {
         
         if(self.userAlreadyWatched){
-            
+            self.currentUserAverageForMovie = 5
             resetRating()
             refreshRating(rating: CGFloat(5), isUserRating: true)
 
@@ -351,6 +414,14 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     }
     
     
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+        } else {
+            print("Portrait")
+        }
+    }
     
     
     
@@ -490,9 +561,79 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     }
 
     
+    // ** User defauts configuration **/
+    
+    func settingImageToUserDefault(selectedView:UIImageView, info: [String : Any]){
     
     
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        
+        selectedView.image = image
+        self.cameraViewImage.isHidden = true
+        
+        
+        if let data = UserDefaults.standard.data(forKey: "watchedMovies"),
+        let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
+        self.movie.userPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+        var watchedMovies: [Movie] = MovieList
+        watchedMovies.append(self.movie)
+        
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: watchedMovies)
+        UserDefaults.standard.set(encodedData, forKey: "watchedMovies")
+        
+        
+        }
+        
+        else {
+        
+        
+        self.movie.userPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+        var watchedMovies: [Movie] = []
+        watchedMovies.append(self.movie)
+        
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: watchedMovies)
+        UserDefaults.standard.set(encodedData, forKey: "watchedMovies")
+        
+        if let data = UserDefaults.standard.data(forKey: "watchedMovies"),
+        let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
+        
+        
+        print(MovieList[0].originalTitle)
+        
+        }
+        
+        
+        
+        }
+        
+        
+        
+        }
+        
+        dismiss(animated: true) {
+        
+        
+        
+        }
     
+ }
+    
+    func setShadowToFakeNavBar(){
+        
+        self.fakeNavBar.layer.shadowColor = UIColor.black.cgColor
+        self.fakeNavBar.layer.shadowOpacity = 1
+        self.fakeNavBar.layer.shadowOffset = CGSize.zero
+        self.fakeNavBar.layer.shadowRadius = 30
+        
+        self.fakeNavBar.layer.shadowPath = UIBezierPath(rect: self.fakeNavBar.bounds).cgPath
+        self.fakeNavBar.layer.shouldRasterize = true
+    }
+    
+    func refreshCollectionView() {
+        DispatchQueue.main.async(execute: {
+            self.collectionViewActors.reloadData()
+        })
+    }
 
     
     override func didReceiveMemoryWarning() {
