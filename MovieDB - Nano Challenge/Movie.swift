@@ -94,7 +94,7 @@ class Movie:  NSObject, NSCoding {
         
         let index = self.releaseDate.index(self.releaseDate.startIndex, offsetBy:4)
 
-        let year = " (" + self.releaseDate.substring(to: index) + ")"
+        let year = "(" + self.releaseDate.substring(to: index) + ")"
         
         return year
     }
