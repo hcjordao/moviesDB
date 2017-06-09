@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import SystemConfiguration
 
-class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate{
 
-    @IBOutlet weak var seachBar: UISearchBar!
+	@IBOutlet var searchBar: UISearchBar!
 	@IBOutlet var mainCollectionView: UICollectionView!
 	@IBOutlet var MyMoviesButton: UIButton!
     
+    //Shadows
+    //Activity
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieYear: UILabel!
-	
 	
 	@IBOutlet var star1: UIImageView!
 	@IBOutlet var star2: UIImageView!
@@ -36,33 +38,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
     
     var posterArray: [UIImage?] = []
     
-    var onlyOnce = false
+    var onlyOnce = false //change name
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        seachBar.delegate = self
+        searchBar.delegate = self
 		self.transitioningDelegate = self
 		mainCollectionView.delegate = self
 		mainCollectionView.dataSource = self
 		mainCollectionView.prefetchDataSource = self
 		
 		refreshRating(rating: 5.0, isUserRating: false)
-
-        
-
-        seachBar.isHidden = true
-        //self.navigationItem.leftBarButtonItem
-        
-        
-       
-        
-        //seachBar.backgroundColor =  UIColor.init(colorLiteralRed: 127/255, green: 15/255, blue: 95/255, alpha: 1.0)
-        //let screenSize = UIScreen.main.bounds.size
-        //let cellWidth = floor(screenSize.width * 0.6)
-        //let cellHeight = floor(screenSize.height * 0.4)
-//        let insetX = (view.bounds.width - cellWidth)/2.0
-//        let insetY = (view.bounds.height - cellHeight)/2.0
-//        let layout = mainCollectionView!.collectionViewLayout as! UICollectionViewFlowLayout
+        searchBar.isHidden = true
+		
+       //start loading animation
+        //install shadows
         
         let swipeHorizontalRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeHorizontalRight.direction = UISwipeGestureRecognizerDirection.right
@@ -75,34 +65,90 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         mainCollectionView?.addGestureRecognizer(swipeHorizontalRight)
         mainCollectionView?.addGestureRecognizer(swipeHorizontalLeft)
         
-        self.nowPlayingMoviesModel = MovieModel()
+        if Reachability.isConnectedToNetwork() == true {
         
-        requester.getMoviesInTheaterInformation(search: .CurrentTheaterSearch, movieName: "") { (movieList) in
+            self.nowPlayingMoviesModel = MovieModel()
+        
+            requester.getMoviesInTheaterInformation(search: .CurrentTheaterSearch, movieName: "") { (movieList) in
             
-//            for movie in movieList.movieArray{
-//                let image: UIImage = self.requester.getImageFromImageUrl(semiPath: movie.posterPath, size: -1)
-//                self.posterArray.append(image)
-//            }
+                //poster array to load images
+                
+            for movie in movieList.movieArray{
+                let image: UIImage = self.requester.getImageFromImageUrl(semiPath: movie.posterPath, size: -1)
+                self.posterArray.append(image)
+            }
             
             self.nowPlayingMoviesModel = movieList
             self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: 0)
             self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: self.nowPlayingMoviesModel.movieArray.count)
-            self.movieTitle.text = self.nowPlayingMoviesModel.movieArray[1].originalTitle
-            self.movieYear.text = self.nowPlayingMoviesModel.movieArray[1].getYearFromReleaseDate()
+            //self.movieTitle.text = self.nowPlayingMoviesModel.movieArray[1].originalTitle
+            //self.movieYear.text = self.nowPlayingMoviesModel.movieArray[1].getYearFromReleaseDate()
             
             DispatchQueue.main.async { // Telling the code to run in the main thread
                 self.mainCollectionView.reloadData()
-                
-                //self.updateMovieLabels()
-                
-
+    
             }
+                var threeMovies: [Movie] = []
+                //threeMovies.append(self.nowPlayingMoviesModel.movieArray[0])
+                threeMovies.append(self.nowPlayingMoviesModel.movieArray[1])
+                threeMovies.append(self.nowPlayingMoviesModel.movieArray[2])
+                threeMovies.append(self.nowPlayingMoviesModel.movieArray[3])
+                
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: threeMovies)
+                UserDefaults.standard.set(encodedData, forKey: "moviesInTheatre")
+
             
+            
+            }
         }
         
+        else {
+            
+            
+            self.nowPlayingMoviesModel = MovieModel()
+            
+            if let data = UserDefaults.standard.data(forKey: "moviesInTheatre"),
+                let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
+                print(MovieList.count)
+                
+                
+                self.nowPlayingMoviesModel.movieArray = MovieList
+                self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: 0)
+                self.nowPlayingMoviesModel.movieArray.insert(Movie(), at: self.nowPlayingMoviesModel.movieArray.count)
+                self.movieTitle.text = self.nowPlayingMoviesModel.movieArray[1].originalTitle
+                self.movieYear.text = self.nowPlayingMoviesModel.movieArray[1].getYearFromReleaseDate()
+                
+                
+                
+                
+               
+                for people in MovieList{
+                    print(people.originalTitle)
+                    
+                    
+                }
+             DispatchQueue.main.async {
+                self.mainCollectionView.reloadData()
+                
+                }
+                
+            } else {
+                print("There is an issue")
+            }
+            
+            
+            
+            
+            print("Internet Connection not Available!")
+            
+            
+            
+            
+        }
+            
+        
     }
-    
-    
+	
     func handleSwipe(gesture:UIGestureRecognizer) -> Void {
         
         self.updateMovieLabels()
@@ -113,9 +159,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
                 if(self.middleCellIndex.item > 1){
                     
                     UIView.animate(withDuration: 0.1, animations: {
+                        let pastHeight = self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.height
+                        
                         self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                        
+                        let newHeight = self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.height
+                        
+                        let offsetOriginY = (pastHeight! - newHeight!)/2
+                        
+                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.origin.y = (self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.origin.y)! + offsetOriginY
                     })
-                    
                     
                     if(self.middleCellIndex.item == 1){
                         self.middleCellIndex = IndexPath(item: 1, section: 0)
@@ -123,12 +176,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
                         self.middleCellIndex = IndexPath(item: self.middleCellIndex.item - 1, section: 0)
                     }
                     
-                        
                     self.mainCollectionView.scrollToItem(at: self.middleCellIndex, at: .centeredHorizontally, animated: true)
                     
-                    
                     UIView.animate(withDuration: 0.1, animations: {
-                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.transform = CGAffineTransform(scaleX: 1.02  , y: 1.5)
+                        
+                        let pastHeight = self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.height
+                        
+                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.transform = CGAffineTransform(scaleX: 1.075  , y: 1.14)
+                        
+                        let newHeight = self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.height
+                        
+                        let offsetOriginY = (newHeight! - pastHeight!)/2
+                        
+                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.origin.y = (self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.origin.y)! - offsetOriginY
+                        
                     })
                     
                     
@@ -137,14 +198,31 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
                 if(self.middleCellIndex.item < self.mainCollectionView.numberOfItems(inSection: 0) - 2){
                     
                     UIView.animate(withDuration: 0.1, animations: {
+                        let pastHeight = self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.height
+                        
                         self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                        
+                        let newHeight = self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.height
+                        
+                        let offsetOriginY = (pastHeight! - newHeight!)/2
+                        
+                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.origin.y = (self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.origin.y)! + offsetOriginY
                     })
                     
                     self.middleCellIndex =  IndexPath(item: self.middleCellIndex.item + 1, section: 0)
-                   
+                    
                     self.mainCollectionView.scrollToItem(at: self.middleCellIndex, at: .centeredHorizontally, animated: true)
+                    
                     UIView.animate(withDuration: 0.1, animations: {
-                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.transform = CGAffineTransform(scaleX: 1.02, y: 1.5)
+                        let pastHeight = self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.height
+                        
+                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.transform = CGAffineTransform(scaleX: 1.075  , y: 1.14)
+                        
+                        let newHeight = self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.height
+                        
+                        let offsetOriginY = (newHeight! - pastHeight!)/2
+                        
+                        self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.origin.y = (self.mainCollectionView.cellForItem(at: self.middleCellIndex)?.frame.origin.y)! - offsetOriginY
                     })
                 }
             default:
@@ -160,17 +238,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
             if(middleCellIndex.item != 0 ){
                 self.movieTitle.text = cell.movie?.originalTitle
                 self.movieYear.text = cell.movie?.getYearFromReleaseDate()
+                print(self.middleCellIndex)
+                print(self.movieTitle.text)
+                print(self.movieYear.text)
             }
         }
     }
-    
 
     @IBAction func lupaPressed(_ sender: Any) {
         
-        seachBar.isHidden = false
-        seachBar.backgroundImage = UIImage()
-        seachBar.showsCancelButton = true
-        seachBar.tintColor = UIColor.white
+        searchBar.isHidden = false
+        searchBar.backgroundImage = UIImage()
+//        searchBar.showsCancelButton = true
+        searchBar.tintColor = UIColor.white
         self.lupaItem.isHidden = true
         
     }
@@ -328,8 +408,37 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
 		// return movieModel.movies.count
 		return nowPlayingMoviesModel.movieArray.count
 	}
-    
-    
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MainScreenCollectionViewCell
+		cell.setCellMovie(movie: nowPlayingMoviesModel.movieArray[indexPath.item])
+        
+        if(indexPath.item > 0 && indexPath.item < self.mainCollectionView.numberOfItems(inSection: 0) - 1){
+            cell.movieImageView.image = posterArray[indexPath.row - 1]
+        }
+        
+        if(indexPath.item == 0 || indexPath.item == self.mainCollectionView.numberOfItems(inSection: 0) - 1){
+            cell.movieImageView.image = UIImage()
+        }
+        
+        
+        if(indexPath.item == 6 && self.middleCellIndex == nil){
+            self.middleCellIndex = IndexPath(item: 6, section: 0)
+            let pastHeight = cell.frame.height
+            
+            cell.transform = CGAffineTransform(scaleX: 1.075  , y: 1.14)
+            
+            let newHeight = cell.frame.height
+            
+            let offsetOriginY = (newHeight - pastHeight)/2
+            
+            cell.frame.origin.y = cell.frame.origin.y - offsetOriginY
+        }
+        
+        return cell
+	}
+	
+// MARK: - SearchBar Settings
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //performSegue(withIdentifier: , sender: nil)
         // let mySegue = UIStoryboardSegue.init(identifier: , source: self, destination: SearchViewController as! UIViewController)
@@ -349,38 +458,70 @@ class ViewController: UIViewController, UICollectionViewDataSource, UISearchBarD
         
         
     }
-    
-    
-    func goToSearch(){
+	
+    func goToSearch() {
     
         let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
         let destination: SearchViewController = main.instantiateViewController(withIdentifier: "search") as! SearchViewController
-        destination.searchText =  seachBar.text
+        destination.searchText =  searchBar.text
     //DispatchQueue.main.async(execute: {
     self.present(destination, animated: true, completion: nil)
         
     //})    });
     }
 	
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MainScreenCollectionViewCell
-		
-            cell.loadDefaultImg()
-            cell.setCellMovie(movie: nowPlayingMoviesModel.movieArray[indexPath.item])
-//        if(indexPath.item > 0){
-//                cell.movieImageView.image = posterArray[indexPath.row-1]
-//        }
+	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+		self.searchBar.resignFirstResponder()
+	}
+	
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		self.searchBar.resignFirstResponder()
+		searchBar.isHidden = true
+		self.lupaItem.isHidden = false
+	}
+	
     
-                //cell.movieImageView.image = requester.getImageFromImageUrl(semiPath: (cell.movie?.posterPath)!, size: -1)
+    
+}
+
+public class Reachability {
+    
+    class func isConnectedToNetwork() -> Bool {
         
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
         
-        if(indexPath.item == 1 && self.middleCellIndex == nil){
-            self.middleCellIndex = IndexPath(item: 1, section: 0)
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
         }
         
-        return cell
-	}
+        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
+            return false
+        }
+        
+        /* Only Working for WIFI
+         let isReachable = flags == .reachable
+         let needsConnection = flags == .connectionRequired
+         
+         return isReachable && !needsConnection
+         */
+        
+        // Working for Cellular and WIFI
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        let ret = (isReachable && !needsConnection)
+        
+        return ret
+        
+    }
 }
+
+
+
 
 
 
@@ -390,8 +531,11 @@ extension ViewController: UIScrollViewDelegate, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if self.onlyOnce == false {
-            let indexToScrollTo = IndexPath(item: 1, section: 0)
+            let indexToScrollTo = IndexPath(item: 6, section: 0)
+            self.movieTitle.text = self.nowPlayingMoviesModel.movieArray[6].originalTitle
+            self.movieYear.text = self.nowPlayingMoviesModel.movieArray[6].getYearFromReleaseDate()
             self.mainCollectionView.scrollToItem(at: indexToScrollTo, at: .centeredHorizontally, animated: false)
+            self.refreshRating(rating: CGFloat(self.nowPlayingMoviesModel.movieArray[6].rating), isUserRating: false)
             self.onlyOnce = true
         }
     }

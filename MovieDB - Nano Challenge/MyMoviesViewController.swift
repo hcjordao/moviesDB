@@ -8,9 +8,16 @@
 
 import UIKit
 
-class MyMoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MyMoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
 	
 	let transition = TransitionAnimator()
+	
+    var watchedMovies: [Movie]! = []
+    
+    
+    
+	@IBOutlet var lupaIcon: UIButton!
+	@IBOutlet var searchBar2: UISearchBar!
 	
 	@IBOutlet var myMoviesCollectionView: UICollectionView!
 	
@@ -24,6 +31,23 @@ class MyMoviesViewController: UIViewController, UICollectionViewDelegate, UIColl
 	
 		myMoviesCollectionView.delegate = self
 		myMoviesCollectionView.dataSource = self
+		
+		searchBar2.delegate = self
+		searchBar2.isHidden = true
+        
+        if let data = UserDefaults.standard.data(forKey: "watchedMovies"),
+            let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
+           self.watchedMovies = MovieList
+        }
+        DispatchQueue.main.async {
+           self.myMoviesCollectionView.reloadData()
+            
+        }
+
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,20 +62,53 @@ class MyMoviesViewController: UIViewController, UICollectionViewDelegate, UIColl
 		moviesInTheaterViewController.transitioningDelegate = self
 	}
 	
-	// Collection view Methods
+//MARK: - SearchBar methods
+	@IBAction func lupaIconPressed(_ sender: UIButton) {
+		searchBar2.isHidden = false
+		searchBar2.backgroundImage = UIImage()
+		searchBar2.tintColor = UIColor.white
+		lupaIcon.isHidden = true
+	}
+	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+		secondViewController.searchText = searchBar.text
+		self.goToSearch()
+	}
+	
+	func goToSearch () {
+		
+		let main: UIStoryboard  = UIStoryboard.init(name: "Main", bundle: nil)
+		let destination: SearchViewController = main.instantiateViewController(withIdentifier: "search") as! SearchViewController
+		destination.searchText =  searchBar2.text
+
+		self.present(destination, animated: true, completion: nil)
+	}
+	
+	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+		self.searchBar2.endEditing(true)
+	}
+	
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		self.searchBar2.resignFirstResponder()
+		self.searchBar2.isHidden = true
+		lupaIcon.isHidden = false
+	}
+	
+//MARK: - Collection view Methods
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
-		return 1
+		return self.watchedMovies.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		// Placeholder
-		return 3
+		return 1
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = myMoviesCollectionView.dequeueReusableCell(withReuseIdentifier: "myMovieCell", for: indexPath) as! MyMoviesCollectionViewCell
 		
-		cell.loadCell()
+		cell.loadCell(cellMovie: watchedMovies[indexPath.section] )
 		
 		return cell
 	}

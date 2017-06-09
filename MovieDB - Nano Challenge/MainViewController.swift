@@ -15,11 +15,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, UISearchControl
     @IBOutlet weak var searchBar: UISearchBar!
     
     let resultsController = SearchViewController()
-    
-   
-
-    
-    
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         //let searchController = UISearchController(searchResultsController: nil)
@@ -49,31 +45,36 @@ class MainViewController: UIViewController, UISearchBarDelegate, UISearchControl
         //navBar.addSubview(searchController.searchBar)
         //searchController.searchBar.resignFirstResponder()
         //tableView.tableHeaderView = searchController.searchBar
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        
+	
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	func updateSearchResults(for searchController: UISearchController) {
+		
+	}
+
+	
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-            }
-    
+		
+	}
     
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
-        
-        
+        self.searchBar.endEditing(true)
         
     }
-    
+
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.searchBar.endEditing(true)
+	}
+	
+	override func resignFirstResponder() -> Bool {
+		return true
+	}
     
     override func performSegue(withIdentifier identifier: String, sender: Any?) {
         
@@ -86,7 +87,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, UISearchControl
         searchBar.setShowsCancelButton(true, animated: true)
         
         
-        print ("hhshhassbdhavsjbhajsbhs")
+//        print ("hhshhassbdhavsjbhajsbhs")
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -99,8 +100,8 @@ class MainViewController: UIViewController, UISearchBarDelegate, UISearchControl
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print ("hhshhashs")
-        
+//        print ("hhshhashs")
+		
         
     }
     

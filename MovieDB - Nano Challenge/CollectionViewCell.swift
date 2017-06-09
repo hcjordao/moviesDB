@@ -63,7 +63,7 @@ class CollectionViewCell: UICollectionViewCell {
                 DispatchQueue.main.async {
                     // Update UI
                 
-                self.movieDuration.text = String (duration / 60)+"h"+String(duration%60)+"min"
+                self.movieDuration.text = String (duration / 60)+"h"+String(duration%60)+"m"
                     
                 }
             }
@@ -84,6 +84,8 @@ class CollectionViewCell: UICollectionViewCell {
                 }
             }
         }
+        
+        
 
         
         movieTitleEn.text = cellMovie.originalTitle
