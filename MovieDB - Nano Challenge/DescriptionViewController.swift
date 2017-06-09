@@ -323,6 +323,9 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
     func settingImageToSpecificView(selectedView:UIImageView, info: [String : Any]){
         
         
+        
+        self.settingImageToUserDefault(selectedView: selectedView, info: info)
+        
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
             selectedView.image = image
@@ -557,6 +560,63 @@ class DescriptionViewController: UIViewController, UIScrollViewDelegate, UIColle
         }
     }
 
+    
+    // ** User defauts configuration **/
+    
+    func settingImageToUserDefault(selectedView:UIImageView, info: [String : Any]){
+    
+    
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        
+        selectedView.image = image
+        self.cameraViewImage.isHidden = true
+        
+        
+        if let data = UserDefaults.standard.data(forKey: "watchedMovies"),
+        let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
+        self.movie.userPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+        var watchedMovies: [Movie] = MovieList
+        watchedMovies.append(self.movie)
+        
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: watchedMovies)
+        UserDefaults.standard.set(encodedData, forKey: "watchedMovies")
+        
+        
+        }
+        
+        else {
+        
+        
+        self.movie.userPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+        var watchedMovies: [Movie] = []
+        watchedMovies.append(self.movie)
+        
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: watchedMovies)
+        UserDefaults.standard.set(encodedData, forKey: "watchedMovies")
+        
+        if let data = UserDefaults.standard.data(forKey: "watchedMovies"),
+        let MovieList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Movie] {
+        
+        
+        print(MovieList[0].originalTitle)
+        
+        }
+        
+        
+        
+        }
+        
+        
+        
+        }
+        
+        dismiss(animated: true) {
+        
+        
+        
+        }
+    
+ }
     
     func setShadowToFakeNavBar(){
         
